@@ -6,8 +6,10 @@
     </head>
     
     <body>
-
-
+    <?php
+    $mangoBoys = "Go!";
+    echo $mangoBoys;
+    ?>
     	
 
     </body>
