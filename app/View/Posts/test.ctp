@@ -6,5 +6,9 @@
     </head>
     
     <body>
+    	<?php
+    	$mango = "Hi! Team Raiber!!";
+    	echo $mango;
+    	?>
     </body>
 </html>
