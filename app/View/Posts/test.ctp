@@ -8,13 +8,7 @@
     <body>
 
 
-    	こんにちは
-
-    	<?php
-    	$mango = "Hi! Team Raiber!!";
-    	echo $mango;
-        echo 'succeed!';
-    	?>
+    	
 
     </body>
 </html>
