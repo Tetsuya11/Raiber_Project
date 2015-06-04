@@ -7,6 +7,13 @@
     
     <body>
 
+
     	こんにちは
+
+    	<?php
+    	$mango = "Hi! Team Raiber!!";
+    	echo $mango;
+    	?>
+
     </body>
 </html>
