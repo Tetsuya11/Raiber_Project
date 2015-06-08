@@ -1,9 +1,8 @@
-<h2>記事一覧</h2>
-
-<ul>
-<?php foreach ($posts as $post) :?>
-
-	debug($post);
-<li></li>
-<?php endforeach; ?>
-</ul>
+<?php
+foreach ($posts as $post){
+	echo "<a href=\"".
+		//$post["Post"]["url"]."\">".
+		$post["Post"]["title"]."</a><br>".
+		$post["Post"]["message"].
+		$post["Post"]["created"]."<br><br>";
+}
