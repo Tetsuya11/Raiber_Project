@@ -1,6 +1,6 @@
 <?php
 
-App::uses('AppController', 'Controller');
+App::uses('AppController', 'MembersController');
 App::import('Vender', 'facebook/php-sdk/src/facebook');
 
 class MembersController extends AppController{
@@ -18,8 +18,8 @@ class MembersController extends AppController{
 
 		public function index() {
 			if ($this->Auth->loggedIn()) {
-				$facebookId = $this->Facebook->getUser();
-				$this->set('member', $this->Member->find('first', ['conditions' => ['Member.id' => $facebook]]));
+				$facebookId = $this->Facebook->getMember();
+				$this->set('member', $this->Member->find('first', ['conditions' => ['id' => $facebook]]));
 			} else {
 				$this->redirect(['action' => 'logout']);
 			}
@@ -28,12 +28,12 @@ class MembersController extends AppController{
 		public function login() {
 			$this->autoRender = false;
 			// facebook Auth login
-			$facebookId = $this->Facebook->getUser();
+			$facebookId = $this->Facebook->getMember();
 			if (!$facebook) {
 				$this->_authFacebook();
 			}
 
-			$member = $this->Member->find)('first', ['conditions' => ['Member.id' => $facebookId]]);
+			$member = $this->Member->find)('first', ['conditions' => ['id' => $facebookId]]);
 			if (!empty($member['Member'])) {
 				if ($this->Auth->login($member['Member'])) {
 					$this->redirect(['action' => 'index']);

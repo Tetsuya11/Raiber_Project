@@ -19,7 +19,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('Controller', 'Controller');
+App::uses('AppController', 'MembersController');
 
 /**
  * Application Controller
@@ -30,7 +30,7 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {
+class AppController extends MembersController {
 	public $helpers = array('Form', 'Html');
     public $components = array(
         'Auth' => array(

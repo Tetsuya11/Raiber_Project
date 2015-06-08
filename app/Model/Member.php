@@ -1,4 +1,5 @@
 <?php
+App::uses('AppModel', 'Model');
 
 class Member extends AppModel {
 
@@ -13,7 +14,7 @@ class Member extends AppModel {
 		'password' => array(
 			'notEmpty' => array(
 				'rule' => array('notEmpty'),
-			)
+			),
 		),
 	);
 }
