@@ -1,6 +1,6 @@
 <?php
 
-App::uses('AppController', 'Controller');
+App::uses('AppController', 'Controller');//クラスのローディング
 
 class PostsController extends AppController{
 		var $name = "Posts";
