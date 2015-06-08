@@ -6,3 +6,6 @@ foreach ($posts as $post){
 		$post["Post"]["message"].
 		$post["Post"]["created"]."<br><br>";
 }
+
+echo $this->Form->create)('Members', ['action' => 'login', 'method' => 'post']);
+echo $this->Form->button('Facebookログイン');
