@@ -1,3 +1,4 @@
+
 <?php
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
@@ -112,3 +113,4 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+CakePlugin::load('DebugKit');
