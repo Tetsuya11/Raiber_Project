@@ -17,5 +17,4 @@ class Member extends AppModel {
 		),
 	);
 }
-
 ?>
