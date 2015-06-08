@@ -30,7 +30,7 @@ App::uses('AppController', 'Controller');//クラスのローディング。よ�
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends MembersController {
+class AppController extends Controller {
 	public $helpers = array('Form', 'Html');
     public $components = array(
         'Auth' => array(
