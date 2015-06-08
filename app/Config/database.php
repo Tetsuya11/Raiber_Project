@@ -71,10 +71,10 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => 'localhost',
+		'host' => '127.0.0.1',
 		'login' => 'root',
-		'password' => 'tetu1129',
-		'database' => 'cakephp',
+		'password' => 'baron0522',
+		'database' => 'Raiber_Project',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);
