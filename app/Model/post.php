@@ -4,7 +4,7 @@ class Post extends AppModel {
       
 }
 
-public $belongsTo = 'Item';
+//public $belongsTo = 'Item';
 
 
 ?>
