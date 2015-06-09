@@ -2,7 +2,8 @@
 
 class ItemsController extends AppController{
 
-		public $helpers = array('Html','Form');
+		public $helpers = array('Html','Form','Session');
+		public $components = array('Session');
 
 
 		public function index() {
@@ -21,6 +22,18 @@ class ItemsController extends AppController{
 	            throw new NotFoundException(__('Invalid post'));
 	        }
 	        $this->set('item', $item);
+	    }
+
+
+	    public function add() {
+	        if ($this->request->is('post')) {
+	            $this->Item->create();
+	            if ($this->Item->save($this->request->data)) {
+	                $this->Session->setFlash(__('Your post has been saved.'));
+	                return $this->redirect(array('action' => 'index'));
+	            }
+	            $this->Session->setFlash(__('Unable to add your post.'));
+	        }
 	    }
 
 

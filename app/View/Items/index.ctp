@@ -15,7 +15,9 @@
 	<tr>
 		<td></td>
 
-		<td></td>
+		<td>
+			<?php echo $this->Html->link($item['Item']['image1'],array('action' => 'view', $item['Item']['id'])); ?>
+		</td>
 
 		<td>
 			<?php
@@ -34,3 +36,4 @@
 	</tr>
 <?php endforeach; ?>
 </table>
+<p><?php echo $this->Html->link("Add Item", array('action' => 'add')); ?></p>
