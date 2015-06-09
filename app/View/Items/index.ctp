@@ -43,7 +43,7 @@
 
 		<td>
 			<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
-			<?php echo $this->Form->postLink('Deleat',array('action'=>'delete',$item['Item']['id']));?>
+			<?php echo $this->Form->postLink('Deleat',array('action'=>'delete',$item['Item']['id']),array('confirm'=>'Are you sure?'));?>
 		</td>
 	</tr>
 <?php endforeach; ?>
