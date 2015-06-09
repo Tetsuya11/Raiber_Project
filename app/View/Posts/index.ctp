@@ -13,9 +13,6 @@
 	</tr>
 
 
-echo $this->Form->create('Users', ['action' => 'login', 'method' => 'post']);
-//echo $this->Form->button('Facebookログイン');
-
 	<?php foreach($posts as $post) 
 	// {
 	// 		// echo "<a href=\"".
