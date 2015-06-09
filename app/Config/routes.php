@@ -41,3 +41,9 @@
  * the built-in default routes.
  */
 	require CAKE . 'Config' . DS . 'routes.php';
+
+	/*
+	Router::connect(
+			'/opauth-complete/*',
+			array('controller' => 'users', 'action' => 'opauth_complete'));
+	*/
