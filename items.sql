@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- ホスト: localhost
--- 生成日時: 2015 年 6 月 08 日 13:02
+-- 生成日時: 2015 年 6 月 09 日 07:00
 -- サーバのバージョン: 5.1.73
 -- PHP のバージョン: 5.3.3
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `items` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- テーブルのデータのダンプ `items`
@@ -49,7 +49,13 @@ CREATE TABLE IF NOT EXISTS `items` (
 
 INSERT INTO `items` (`id`, `user_id`, `category_id`, `title`, `name`, `discription`, `image1`, `image2`, `image3`, `status`, `delete_flag`, `created`, `modified`) VALUES
 (1, 1, 2, 'シャンプー欲しい人いませんか？', 'シャンプー', 'TSUBAKIのシャンプーです。もうすぐ卒業するので余っ\r\nた物欲しいかたがいたら交換してください。未使用の物と\r\n半分以上残っている物があります。', '077cc654584828d5473c0e90894f730b_9048.jpeg', '86080461000728691', '337', 0, 0, NULL, NULL),
-(2, 2, 3, 'Do you want mango?', 'mango', 'Do you love mango?', 'img56440770', '', '', 0, 0, NULL, NULL);
+(2, 2, 3, 'Do you want mango?', 'mango', 'Do you love mango?', 'img56440770', '', '', 0, 0, NULL, NULL),
+(3, 0, 0, 'りんご', '', '', 'ringo.jpg', '', '', 0, 0, '2015-06-09 14:25:05', '2015-06-09 14:25:05'),
+(4, 0, 0, 'りんごpart2', '', '日本から持ってきた青森県産の美味しいりんごです。７個ほど持っていますが何かと交換して欲しい方いますか？', 'ringo.jpg', '', '', 0, 0, '2015-06-09 14:30:53', '2015-06-09 14:30:53'),
+(5, 0, 0, 'りんごpart3', '', '日本から持ってきた青森県産の美味しいりんごです。７個ほど持っていますが何かと交換して欲しい方いますか？', 'ringo.jpg', '', '', 0, 0, '2015-06-09 14:32:47', '2015-06-09 14:32:47'),
+(6, 0, 0, 'りんごpart4 画像表示されない indexに戻らない', '', '日本から持ってきた青森県産の美味しいりんごです。７個ほど持っていますが何かと交換して欲しい方いますか？', 'ringo.jpg', '', '', 0, 0, '2015-06-09 14:36:30', '2015-06-09 14:36:30'),
+(7, 0, 0, 'りんごpart5 画像表示されない indexに戻らない', '', '戻ってこい！！！！！', 'ringo.jpg', '', '', 0, 0, '2015-06-09 14:40:58', '2015-06-09 14:40:58'),
+(8, 0, 0, 'りんごpart6 画像表示されない indexに戻らない', '', '戻ってきてーーーーー', 'ringo.jpg', '', '', 0, 0, '2015-06-09 14:44:55', '2015-06-09 14:44:55');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
