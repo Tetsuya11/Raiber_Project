@@ -12,10 +12,10 @@
 		<th>Created</th>
 	</tr>
 
-<<<<<<< HEAD
+
 echo $this->Form->create('Users', ['action' => 'login', 'method' => 'post']);
 //echo $this->Form->button('Facebookログイン');
-=======
+
 	<?php foreach($posts as $post) 
 	// {
 	// 		// echo "<a href=\"".
@@ -36,4 +36,3 @@ echo $this->Form->create('Users', ['action' => 'login', 'method' => 'post']);
 
 <!-- echo $this->Form->create('Members', ['action' => 'login', 'method' => 'post']);
 echo $this->Form->button('Facebookログイン'); -->
->>>>>>> e6a0c08fb1dcb0729d9976e3d1a7a367a98696dc
