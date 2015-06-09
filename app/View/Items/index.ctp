@@ -1,13 +1,36 @@
 <?php $this->assign('title','Raiber  商品一覧 Item lists'); ?>
-<h2>商品一覧  Item lists</h2>
+<h1>商品一覧  Item lists</h1>
 
-<ul>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Image</th>
+		<th>Title</th>
+		<th>Discription</th>
+		<th>Category</th>
+		<th>Created</th>
+	</tr>
+
 <?php foreach ($items as $item): ?>
-<li>
-<?php
-//debug($item);
-echo h($item['Item']['title']);
-?>
-</li>
+	<tr>
+		<td></td>
+
+		<td></td>
+
+		<td>
+			<?php
+			//debug($item);
+			echo $this->Html->link($item['Item']['title'],array('action' => 'view', $item['Item']['id']));
+			?>
+		</td>
+
+		<td></td>
+
+		<td></td>
+
+		<td>
+			<?php echo $item['Item']['created']; ?>
+		</td>
+	</tr>
 <?php endforeach; ?>
-</ul>
+</table>
