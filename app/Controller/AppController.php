@@ -36,6 +36,11 @@ class AppController extends Controller {
         'Auth' => array(
             'loginRedirect' => array('controller' => 'posts', 'action' => 'index'),
             'logoutRedirect' => array('controller' => 'posts', 'action' => 'index'),
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            )
         ),
         'DebugKit.Toolbar',
         'Session',
