@@ -1,72 +1,87 @@
 <?php
-
-App::uses('AppController', 'Controller');//ローディング
-//App::import('Vendor', 'facebook/php-sdk/src/facebook');
-
 class UsersController extends AppController {
-
-    public $name = 'Users';
-    public $uses = array('User');
-    public $components = array(
-        'Auth' => array(
-            'authenticate' => array(
-                'Form' => array(
-                    'passwordHasher' => 'Blowfish', 
-                    'fields' => array(
-                        'username' => 'email', 
-                        'password' => 'password', 
-                    ), 
-                )
-            ), 
-            'loginAction' => '/users/login', 
-            'loginRedirect' => '/users/mypage', 
-        ), 
-        'Session', 
-        'Security', 
-    );
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'logout');
-        $this->Security->blackHoleCallback = 'blackhole';
+        $this->Auth->allow('add');
     }
 
-    public function login() {
+    public function index() {
+        $this->User->recursive = 0;
+        $this->set('users', $this->paginate());
+    }
 
-        //フォームから情報が送信された場合のみの認証を実施
-        if ($this->request->is('post')) {
-
-            //認証処理を実施
-            if($this->Auth->login()){
-                //認証に成功した場合は、設定されたURLへリダイレクト
-                return $this->redirect($this->Auth->redirectUrl());
-            }else{
-                $this->Session->setFlash('ログインに失敗しました');
-            }
-
+    public function view($id = null) {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
         }
+        $this->set('user', $this->User->read(null, $id));
+    }
 
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved'));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+            }
+        }
+    }
+
+    public function edit($id = null) {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved'));
+                $this->redirect(array('action' => 'index'));
+            } else {
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+            }
+        } else {
+            $this->request->data = $this->User->read(null, $id);
+            unset($this->request->data['User']['password']);
+        }
+    }
+
+    public function delete($id = null) {
+        $this->request->onlyAllow('post');
+
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->User->delete()) {
+            $this->Session->setFlash(__('User deleted'));
+            $this->redirect(array('action' => 'index'));
+        }
+        $this->Session->setFlash(__('User was not deleted'));
+        $this->redirect(array('action' => 'index'));
+    }
+    /*
+    public function beforeFilter() {
+        parent::beforeFilter();
+    // ユーザー自身による登録とログアウトを許可する
+        $this->Auth->allow('add', 'logout');
+    }
+    */
+    public function login() {
+        if ($this->request->is('post')) {
+            if ($this->Auth->login()) {
+                $this->redirect($this->Auth->redirect());
+            } else {
+                $this->Session->setFlash(__('Invalid username or password, try again'));
+            }
+        }
     }
 
     public function logout() {
-
-        //ログアウトを実施
-        $this->Auth->logout();
-
-        //ログアウト完了画面を表示
-        $this->render('logout');
-
-    }
-
-    public function mypage() {
-
-    }
-
-    public function blackhole($type) {
-
-        $this->Session->setFlash('不正なリクエストが行われました');
-        $this->redirect(array('controller' => $this->controller, 'action' => $this->action));
-
+        $this->redirect($this->Auth->logout());
     }
 
 }

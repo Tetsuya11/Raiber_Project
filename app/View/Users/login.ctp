@@ -1,6 +1,13 @@
-<?php echo $this->Form->create(); ?>
-<?php echo $this->Form->label('User.name'); ?>
-<?php echo $this->Form->text('User.name'); ?>
-<?php echo $this->Form->label('User.password'); ?>
-<?php echo $this->Form->password('User.password'); ?>
-<?php echo $this->Form->end('ログイン'); ?>
+//app/View/Users/login.ctp
+
+<div class="users form">
+<?php echo $this->Session->flash('auth'); ?>
+<?php echo $this->Form->create('User'); ?>
+    <fieldset>
+        <legend><?php echo __('Please enter your username and password'); ?></legend>
+        <?php echo $this->Form->input('name');
+        echo $this->Form->input('password');
+    ?>
+    </fieldset>
+<?php echo $this->Form->end(__('Login')); ?>
+</div>
