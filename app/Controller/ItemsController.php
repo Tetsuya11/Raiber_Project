@@ -36,6 +36,29 @@ class ItemsController extends AppController{
 	        }
 	    }
 
+	    public function edit($id = null){
+	    	if(!$id){
+	    		throw new NotFoundException(__('Invalid post'));
+	    	}
+
+	    	$item = $this->Item->findById($id);
+	    	if(!$item){
+	    		throw new NotFoundException(__('Invalid post'));
+	    	}
+
+	    	if($this->request->is(array('item','put'))){
+	    		$this->Item->id = $id;
+	    		if($this->Item->save($this->request->data)){
+	    			$this->Session->setFlash(__('Your post has been updated.'));
+	    			return $this->redirect(array('action'=>'index'));
+	    	}
+	    	$this->Session->setFlash(__('Unable to updata your post.'));
+	    }
+	    	if(!$this->request->data){
+	    		$this->request->data = $item;
+	    	}
+	    }
+
 
 
 }

@@ -37,3 +37,4 @@
 <?php endforeach; ?>
 </table>
 <p><?php echo $this->Html->link("Add Item", array('action' => 'add')); ?></p>
+<p><?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id'])); ?>
