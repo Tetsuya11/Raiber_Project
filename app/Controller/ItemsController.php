@@ -59,6 +59,21 @@ class ItemsController extends AppController{
 	    	}
 	    }
 
+		   public function delete($id){
+		   	if($this->request->is('get')){
+		   		throw new MethodNotAllowedException();
+		   	}
+		   	if($this->Item->delete($id)){
+		   		$this->Session->setFlash(__('The post with id: %s has been deleted.',h($id)));
+		   	}
+		   	else{
+		   		$this->Session->setFlash(__('The post with id %s could not be deleted.',h($id)));
+		   	}
+
+		   	return $this->redirect(array('action' =>'index'));
+
+	   }
+
 
 
 }
