@@ -1,6 +1,6 @@
 <?php
 
-App::uses('AppController', 'MembersController');
+App::uses('AppController', 'Controller');
 App::import('Vender', 'facebook/php-sdk/src/facebook');
 
 class MembersController extends AppController{
@@ -29,7 +29,7 @@ class MembersController extends AppController{
 			$this->autoRender = false;
 			// facebook Auth login
 			$facebookId = $this->Facebook->getMember();
-			if (!$facebook) {
+			if (!$facebookId) {
 				$this->_authFacebook();
 			}
 
@@ -63,6 +63,7 @@ class MembersController extends AppController{
 				'Member' => [
 					'id' => $facebookInfo['id'],
 					'name' => $facebookInfo['name'],
+					'type' => $facebookInfo['type'],
 					]
 			);
 			$this->Member->create();
