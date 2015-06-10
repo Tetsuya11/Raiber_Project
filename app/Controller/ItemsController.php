@@ -46,7 +46,7 @@ class ItemsController extends AppController{
 	    		throw new NotFoundException(__('Invalid post'));
 	    	}
 
-	    	if($this->request->is(array('item','put'))){
+	    	if($this->request->is(array('post','put'))){
 	    		$this->Item->id = $id;
 	    		if($this->Item->save($this->request->data)){
 	    			$this->Session->setFlash(__('Your post has been updated.'));
