@@ -19,7 +19,7 @@
 		</td>
 
 		<td>
-			<?php echo $this->Html->link($item['Item']['image1'],array('action' => 'view', $item['Item']['id'])); ?>
+			<img src='<?php echo $this->Html->link($item['Item']['image1'],array('action' => 'view', $item['Item']['id'])); ?>' />
 		</td>
 
 		<td>
