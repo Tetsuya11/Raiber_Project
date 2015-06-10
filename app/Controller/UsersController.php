@@ -10,6 +10,7 @@ class UsersController extends AppController {
 
     public function login() {
         if ($this->request->is('post')) {
+
             if ($this->Auth->login()) {
                 $this->redirect($this->Auth->redirect());
             } else {
@@ -21,8 +22,6 @@ class UsersController extends AppController {
     public function logout() {
         $this->redirect($this->Auth->logout());
     }
-
-
 
     public function index() {
         $this->User->recursive = 0;
@@ -42,7 +41,7 @@ class UsersController extends AppController {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'login'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
