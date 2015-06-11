@@ -1,10 +1,14 @@
 <?php
 
 class Post extends AppModel {
-      var $name = "Post";
-}
+    public $validate = array(
+       'message' => array(
+           'rule' => 'notEmpty'
+       ),
+    );
 
-//public $belongsTo = 'Item';
+    public $belongsTo = 'Item';
+}
 
 
 ?>

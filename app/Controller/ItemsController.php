@@ -4,6 +4,7 @@ class ItemsController extends AppController{
 
 		public $helpers = array('Html','Form','Session');
 		public $components = array('Session');
+		public $uses = array('Item','Post');
 
 
 		public function index() {
@@ -22,6 +23,15 @@ class ItemsController extends AppController{
 	            throw new NotFoundException(__('Invalid post'));
 	        }
 	        $this->set('item', $item);
+
+	        if ($this->request->is('post')) {
+		            $this->Post->create();
+		            if ($this->Post->save($this->request->data)) {
+		                $this->Session->setFlash(__('投稿完了！ Your post has been saved.'));
+		                return $this->redirect(array('action' => 'view',$id));
+		            } else {$this->Session->setFlash(__('投稿できませんでした Unable to add your post.')); }
+		            
+		        }
 	    }
 
 
@@ -64,7 +74,7 @@ class ItemsController extends AppController{
 		   		throw new MethodNotAllowedException();
 		   	}
 		   	if ($this->request->is('ajax')) {
-		   		if ($this->Post->delete($id)) {
+		   		if ($this->Item->delete($id)) {
 		   			$this->autoRender = false;
 		   			$this->autoLayout = false;
 		   			$response = array('id' => $id);

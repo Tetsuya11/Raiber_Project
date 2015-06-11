@@ -2,6 +2,8 @@
 
 class Item extends AppModel {
 
+	public $hasMany = 'Post';
+
 	public $validate = array(
         'title' => array(
             'rule' => 'notEmpty'
@@ -10,6 +12,7 @@ class Item extends AppModel {
             'rule' => 'notEmpty'
         )
     );
+
 }
 
 ?>

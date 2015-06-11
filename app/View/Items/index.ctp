@@ -13,13 +13,13 @@
 	</tr>
 
 <?php foreach ($items as $item): ?>
-	<tr id="post_<?php echo h($item['Item']['id']); ?>">
+	<tr id="item_<?php echo h($item['Item']['id']); ?>">
 		<td>
 
 		</td>
 
 		<td>
-			<img src='<?php echo $this->Html->link($item['Item']['image1'],array('action' => 'view', $item['Item']['id'])); ?>' />
+			<?php echo $this->Html->link('<img src="/Raiber_Project/item_img/'.$item['Item']['image1'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?>
 		</td>
 
 		<td>
@@ -56,8 +56,8 @@
 $(function() {
 	$('a.delete').click(function(e) {
 		if (confirm('sure?')) {
-			$.post('Raiber_Project/items/delete/'+$(this).data('post-id'), {} , function(res) {
-				$('#post_'+res.id).fadeOut();
+			$.post('./items/delete/'+$(this).data('post-id'), {} , function(res) {
+				$('#item_'+res.id).fadeOut();
 			}, "json");
 		}
 		return false;
