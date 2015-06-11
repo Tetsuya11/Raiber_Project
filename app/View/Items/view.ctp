@@ -9,8 +9,8 @@
 <?php
 	echo $this->Form->create('Post');
 	echo $this->Form->input('message');
-	echo $this->Form->hidden('item_id',array('value'=>$item['Item']['id']));
-	echo $this->Form->end('送信');
+	echo $this->Form->hidden('item_id',array('value'=>$item['Item']['id']));//掲示板の送信ボタンを押したときに自分のページに帰ってくるようにする
+	echo $this->Form->end('投稿');
 ?>
 <table>
 	<tr>
