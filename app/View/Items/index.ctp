@@ -13,7 +13,7 @@
 	</tr>
 
 <?php foreach ($items as $item): ?>
-	<tr>
+	<tr id="post_<?php echo h($item['Item']['id']); ?>">
 		<td>
 
 		</td>
@@ -43,9 +43,26 @@
 
 		<td>
 			<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
-			<?php echo $this->Form->postLink('Deleat',array('action'=>'delete',$item['Item']['id']),array('confirm'=>'Are you sure?'));?>
+			<?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
 </table>
+
 <p><?php echo $this->Html->link("Add Item", array('action' => 'add')); ?></p>
+
+
+<script>
+$(function() {
+	$('a.delete').click(function(e) {
+		if (confirm('sure?')) {
+			$.post('Raiber_Project/items/delete/'+$(this).data('post-id'), {} , function(res) {
+				$('#post_'+res.id).fadeOut();
+			}, "json");
+		}
+		return false;
+	});
+});
+</script>
+
+

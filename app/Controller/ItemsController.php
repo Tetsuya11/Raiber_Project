@@ -63,15 +63,17 @@ class ItemsController extends AppController{
 		   	if($this->request->is('get')){
 		   		throw new MethodNotAllowedException();
 		   	}
-		   	if($this->Item->delete($id)){
-		   		$this->Session->setFlash(__('The post with id: %s has been deleted.',h($id)));
+		   	if ($this->request->is('ajax')) {
+		   		if ($this->Post->delete($id)) {
+		   			$this->autoRender = false;
+		   			$this->autoLayout = false;
+		   			$response = array('id' => $id);
+		   			$this->header('Content-Type: application/json');
+		   			echo json_encode($response);
+		   			exit();
+		   		}
 		   	}
-		   	else{
-		   		$this->Session->setFlash(__('The post with id %s could not be deleted.',h($id)));
-		   	}
-
-		   	return $this->redirect(array('action' =>'index'));
-
+		   	$this->redirect(array('action'=>'index'));
 	   }
 
 
