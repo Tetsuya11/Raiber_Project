@@ -1,4 +1,7 @@
 <?php $this->assign('title','Raiber  アイテム追加画面'); ?>
+
+<p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
+
 <h1>Add Item</h1>
 <?php
 	echo $this->Form->create('Item');

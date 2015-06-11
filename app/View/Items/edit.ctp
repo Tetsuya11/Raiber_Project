@@ -1,4 +1,7 @@
 <?php $this->assign('title','Raiber  アイテム編集画面'); ?>
+
+<p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
+
 <h1>Edit Item</h1>
 <?php
 
