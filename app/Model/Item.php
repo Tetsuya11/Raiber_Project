@@ -6,7 +6,7 @@ class Item extends AppModel {
         'title' => array(
             'rule' => 'notEmpty'
         ),
-        'body' => array(
+        'discription' => array(
             'rule' => 'notEmpty'
         )
     );
