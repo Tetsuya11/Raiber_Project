@@ -3,14 +3,16 @@ App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
-    public $useTable = false;    
+    // public $useTable = false;    
 
-    public $_schema = array(
-        'name' => array('type' => 'string', 'length' => 255),
-        'email' => array('type' => 'string', 'length' => 255),
-        'pasword' => array('type' => 'string', 'length' => 255),
-        'picture' => array('type' => 'file'),
-    );
+    public $hasMany = array('Post','Item');
+
+    // public $_schema = array(
+    //     'name' => array('type' => 'string', 'length' => 255),
+    //     'email' => array('type' => 'string', 'length' => 255),
+    //     'pasword' => array('type' => 'string', 'length' => 255),
+    //     'picture' => array('type' => 'file'),
+    // );
 
     public $validate = array(
         'username' => array(

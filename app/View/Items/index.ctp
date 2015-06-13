@@ -35,7 +35,7 @@
 		</td>
 
 		<td>
-
+			<?php echo $item['User']['id']; ?>
 		</td>
 
 		<td>
