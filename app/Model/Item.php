@@ -4,7 +4,7 @@ class Item extends AppModel {
 
     public $hasMany = 'Post';
 
-    public $belongsTo = 'User';
+    //public $belongsTo = 'User';
 
 	// var $name = 'Item';
  //    var $belongsTo = array(

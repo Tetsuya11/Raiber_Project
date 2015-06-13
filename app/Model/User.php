@@ -5,7 +5,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
     // public $useTable = false;    
 
-    public $hasMany = array('Post','Item');
+    public $hasMany = array('Post');
 
     // public $_schema = array(
     //     'name' => array('type' => 'string', 'length' => 255),
