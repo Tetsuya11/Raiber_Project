@@ -32,6 +32,8 @@ class ItemsController extends AppController{
 		            } else {$this->Session->setFlash(__('投稿できませんでした Unable to add your post.')); }
 		            
 		        }
+
+			$this->Item->recursive=1;
 	    }
 
 
