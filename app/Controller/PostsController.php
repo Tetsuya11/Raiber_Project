@@ -10,6 +10,7 @@ App::uses('AppController', 'Controller');//クラスのローディング
 
 		public $helpers = array('Html', 'Form','Session');
 		public $components = array('Session');
+		public $uses = array('Post','User');
 
 	
 
@@ -34,7 +35,7 @@ App::uses('AppController', 'Controller');//クラスのローディング
 		            $this->Post->create();
 		            if ($this->Post->save($this->request->data)) {
 		                $this->Session->setFlash(__('投稿完了！ Your post has been saved.'));
-		                return $this->redirect(array('action' => 'index'));
+		                return $this->redirect(array('action' => 'items'));
 		            }
 		            $this->Session->setFlash(__('投稿できませんでした Unable to add your post.'));
 		        }

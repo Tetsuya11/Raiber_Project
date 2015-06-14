@@ -54,7 +54,7 @@ class UsersController extends AppController {
             case '登録する':
                 if ($this->sendUser($this->request->data['User'])) {
                     $this->Session->setFlash('登録を受け付けました。');
-                    $this->redirect('/add_confirm');
+                    $this->redirect(array('action' => 'login'));
                 } else {
                     $this->Session->setFlash('エラーが発生しました。');
                 }
