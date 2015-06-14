@@ -14,16 +14,16 @@ class User extends AppModel {
 
     public $validate = array(
         'username' => array(
-            'required' => array(
+            'notEmpty' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'A username is required'
-            )
-        ),
-        'password' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
+                'message' => '未入力です。',
+                'required' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 255),
+                'message' => '255文字以内で入力してくだい。',
+                'required' => true,
+            ),
         ),
         'email' => array(
             'notEmpty' => array(
@@ -42,7 +42,32 @@ class User extends AppModel {
                 'required' => true,
             ),
         ),
+        'password' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                'message' => '未入力です。',
+                'required' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 255),
+                'message' => '255文字以内で入力してくだい。',
+                'required' => true,
+            ),
+        ),
+        'body' => array(
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                'message' => '未入力です。',
+                'required' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 3000),
+                'message' => '3000文字以内で入力してくだい。',
+                'required' => true,
+            ),
+        ),
     );
+
 
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
