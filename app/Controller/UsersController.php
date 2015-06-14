@@ -61,7 +61,7 @@ class UsersController extends AppController {
                 break;
         }
     }
-
+    
     private function sendContact($content) {
         App::uses('CakeEmail', 'Network/Email');
         $email = new CakeEmail('contact');
