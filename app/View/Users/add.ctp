@@ -30,5 +30,5 @@ echo $this->Form->input('picture', array(
         )
     );
  
-echo $this->Form->submit('Confirm', array('username' => 'confirm'));
+echo $this->Form->submit('Confirm', array('username' => 'add_confirm'));
 echo $this->Form->end();
