@@ -1,14 +1,18 @@
-<!-- app/View/Users/add.ctp -->
-<div class="users form">
-<?php echo $this->Form->create('User'); ?>
-    <fieldset>
-        <legend><?php echo __('Sign Up'); ?></legend>
-        	<?php 
-        		echo $this->Form->input('username');
-        		echo $this->Form->input('password');
-    			echo $this->Form->submit('画像を追加');
-    			echo $this->Form->end();
-    		?>
-    </fieldset>
-<?php echo $this->Form->end(__('アカウントを作成する')); ?>
+<?php echo $this->Session->flash(); ?>
+ 
+<?php echo $this->Form->create('User', array(
+    'type' => 'file', 'enctype' => 'multipart/formdata')); ?>
+<div>
+<?php echo $this->Form->input('username', array('type' => 'text', 'label' => 'お名前', 'maxlength' => 255)); ?>
 </div>
+<div>
+<?php echo $this->Form->input('email', array('type' => 'email', 'label' => 'メールアドレス', 'maxlength' => 255)); ?>
+</div>
+<div>
+<?php echo $this->Form->input('password', array('type' => 'password', 'label' => 'パスワード', 'maxlength' => 255)); ?>
+</div>
+<div>
+<?php echo $this->Form->input('picture', array('type' => 'file', 'label' => 'プロフィール写真', 'multiple')); ?>
+</div>
+<?php echo $this->Form->submit('確認する', array('name' => 'confirm', 'action' => 'add_confirm')); ?>
+<?php echo $this->Form->end(); ?>
