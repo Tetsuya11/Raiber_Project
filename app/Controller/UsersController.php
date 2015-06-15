@@ -47,7 +47,7 @@ class UsersController extends AppController {
             return;
         }
 
-        switch ($this->request->data['User']['status']) {
+        switch ($this->request->data['User']['status']) {//statusを書くことで、
             case '確認する':
                 $this->redirect(array('action' => 'add_confirm'));
                 break;
@@ -74,6 +74,13 @@ class UsersController extends AppController {
     }
 
     public function add_confirm() {
+        if ($_POST['User'] == 'confirm') {
+            $this->render('confirm');
+        } else {
+            if ($this->User->save($this->data)) {
+                $this->flash('Your account has been saved.', '/users');
+            }
+        }
     
     }
 
