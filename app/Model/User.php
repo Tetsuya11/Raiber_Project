@@ -56,18 +56,6 @@ class User extends AppModel {
                 'required' => true,
             ),
         ),
-        'body' => array(
-            'notEmpty' => array(
-                'rule' => array('notEmpty'),
-                'message' => '未入力です。',
-                'required' => true,
-            ),
-            'maxLength' => array(
-                'rule' => array('maxLength', 3000),
-                'message' => '3000文字以内で入力してくだい。',
-                'required' => true,
-            ),
-        ),
     );
 
 

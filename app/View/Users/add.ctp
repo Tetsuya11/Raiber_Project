@@ -24,11 +24,10 @@ echo $this->Form->input('password', array(
         )
     );
  
-echo $this->Form->input('picture', array(
-        'type' => 'file',
-        'label' => 'Picture',
-        )
-    );
+echo $this->Form->create('picture', array(
+        'type' => 'file', 'enctype' => 'multipart/form-data', 'url' => '/upload'));
+     $this->Form->input('picture', array(
+        'type' => 'file', 'label' => 'Picture',));
  
 echo $this->Form->submit('Confirm', array('username' => 'add_confirm'));
 echo $this->Form->end();

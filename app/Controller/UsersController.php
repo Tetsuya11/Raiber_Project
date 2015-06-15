@@ -21,12 +21,12 @@ class UsersController extends AppController {
     public function logout() {
         $this->redirect($this->Auth->logout());
     }
-
+    /*
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
-
+    */
     public function view($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
@@ -71,6 +71,10 @@ class UsersController extends AppController {
             ->viewVars($user)
             ->template('user', 'user')
             ->send();
+    }
+
+    public function add_confirm() {
+        $this->set->
     }
 
     public function edit($id = null) {
