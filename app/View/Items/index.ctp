@@ -7,7 +7,6 @@
 		<th>Image</th>
 		<th>Title</th>
 		<th>Discription</th>
-		<th>User</th>
 		<th>Category</th>
 		<th>Created</th>
 		<th>Edit/Deleat</th>
@@ -16,7 +15,7 @@
 <?php foreach ($items as $item): ?>
 	<tr id="item_<?php echo h($item['Item']['id']); ?>">
 		<td>
-			<?php echo $item['Item']['id']; ?>
+
 		</td>
 
 		<td>
@@ -31,15 +30,11 @@
 		</td>
 		     
 		<td>
-
+			<?php echo $item['Item']['discription'];?>
 		</td>
 
 		<td>
-			<?php echo $item['User']['id']; ?>
-		</td>
-
-		<td>
-
+			<?php echo $item['Category']['name'];?>
 		</td>
 
 		<td>

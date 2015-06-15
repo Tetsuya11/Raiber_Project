@@ -4,7 +4,7 @@ class ItemsController extends AppController{
 
 		public $helpers = array('Html','Form','Session');
 		public $components = array('Session');
-		public $uses = array('Item','Post','User');//ItemモデルとPostモデルを両方使えるようにする
+		public $uses = array('Item','Post');//ItemモデルとPostモデルを両方使えるようにする
 
 
 		public function index() {
@@ -32,8 +32,6 @@ class ItemsController extends AppController{
 		            } else {$this->Session->setFlash(__('投稿できませんでした Unable to add your post.')); }
 		            
 		        }
-
-			$this->Item->recursive=1;
 	    }
 
 

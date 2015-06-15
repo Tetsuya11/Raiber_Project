@@ -34,7 +34,6 @@ App::uses('AppController', 'Controller');//クラスのローディング。よ�
 class AppController extends Controller {
 
     var $components = array(
-        'DebugKit.Toolbar',
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
@@ -51,7 +50,8 @@ class AppController extends Controller {
                     'passwordHasher' => 'Blowfish'
                 )
             )
-        )
+        ),
+        //'DebugKit.Toolbar',
     );
 
     //public function beforeFilter() {

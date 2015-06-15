@@ -13,3 +13,4 @@ echo $this->Form->input('image2',array('type'=>'file'));
 echo $this->Form->input('image3',array('type'=>'file'));
 echo $this->Form->input('category');
 echo $this->Form->end('Save Post');
+?>

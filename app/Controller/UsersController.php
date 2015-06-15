@@ -5,7 +5,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         // ユーザー自身による登録とログアウトを許可する
-        $this->Auth->allow('add', 'add_confirm', 'add_success', 'logout');
+        $this->Auth->allow('add', 'logout');
     }
 
     public function login() {
@@ -21,12 +21,12 @@ class UsersController extends AppController {
     public function logout() {
         $this->redirect($this->Auth->logout());
     }
-    
+
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
-    
+
     public function view($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
@@ -35,6 +35,7 @@ class UsersController extends AppController {
         $this->set('user', $this->User->read(null, $id));
     }
 
+<<<<<<< HEAD
     public function add() {//初回登録画面
         if (!$this->request->is('post') || !$this->request->data) {
             return;
@@ -87,6 +88,19 @@ class UsersController extends AppController {
     public function add_success() {
 
     }
+=======
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved'));
+                $this->redirect(array('action' => 'login'));
+            } else {
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+            }
+        }
+    }
+>>>>>>> 2b001b4f5a40addf9197fff98f21834e0cd890cd
 
     public function edit($id = null) {
         $this->User->id = $id;
