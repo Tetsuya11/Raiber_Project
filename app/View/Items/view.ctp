@@ -16,7 +16,7 @@
 	<tr>
 		<th>ID</th>
 		<th>Message</th>
-		<th>User_name</th>
+		<th>User_name </th>
 		<th>Created</th>
 	</tr>
 
