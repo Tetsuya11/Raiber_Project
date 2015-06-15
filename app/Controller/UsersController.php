@@ -5,7 +5,7 @@ class UsersController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         // ユーザー自身による登録とログアウトを許可する
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('add', 'add_confirm', 'add_success', 'logout');
     }
 
     public function login() {
@@ -21,12 +21,12 @@ class UsersController extends AppController {
     public function logout() {
         $this->redirect($this->Auth->logout());
     }
-    /*
+    
     public function index() {
         $this->User->recursive = 0;
         $this->set('users', $this->paginate());
     }
-    */
+    
     public function view($id = null) {
         $this->User->id = $id;
         if (!$this->User->exists()) {
@@ -47,14 +47,14 @@ class UsersController extends AppController {
             return;
         }
 
-        switch ($this->request->data) {//dataの中身は？
+        switch ($this->request->data['User']['status']) {
             case '確認する':
-                $this->render('add_confirm');
+                $this->redirect(array('action' => 'add_confirm'));
                 break;
             case '登録する':
                 if ($this->sendUser($this->request->data['User'])) {
                     $this->Session->setFlash('登録を受け付けました。');
-                    $this->redirect(array('action' => 'login'));
+                    $this->redirect(array('action' => 'add_confirm'));
                 } else {
                     $this->Session->setFlash('エラーが発生しました。');
                 }
@@ -64,7 +64,7 @@ class UsersController extends AppController {
     
     private function sendContact($content) {
         App::uses('CakeEmail', 'Network/Email');
-        $email = new CakeEmail('contact');
+        $email = new CakeEmail('user');
  
         return $email
             ->from(array($user['email'] => $user['username']))
@@ -74,7 +74,11 @@ class UsersController extends AppController {
     }
 
     public function add_confirm() {
-        $this->set->
+    
+    }
+
+    public function add_success() {
+
     }
 
     public function edit($id = null) {

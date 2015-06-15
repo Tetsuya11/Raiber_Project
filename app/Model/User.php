@@ -56,7 +56,29 @@ class User extends AppModel {
                 'required' => true,
             ),
         ),
-    );
+        'picture'=>array(
+            'extension' => array(
+            //ここの拡張子だけ受け付ける
+                'rule' => array('extension',array('jpg','jpeg','gif','png')),
+                'message' => array( '画像ではありません'),
+                'allowEmpty' => true,
+            ),
+            'mimetype' => array( 
+                'rule' => array( 'mimeType', array( 
+                    'image/jpeg', 'image/png', 'image/gif') // MIMEタイプを配列で定義
+            ),
+            'message' => array( 'MIME type エラー')
+            ),
+            'size' => array(
+                'maxFileSize' => array( 
+                    'rule' => array( 'fileSize', '<=', '10MB'), 
+                    'message' => array( 'ファイルサイズがオーバーしています')),
+                'minFileSize' => array( 
+                    'rule' => array( 'fileSize', '>', 0),
+                    'message' => array('ファイルサイズが足りていません')),
+                ),
+            ),
+        );
 
 
     public function beforeSave($options = array()) {

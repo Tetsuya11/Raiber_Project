@@ -1,7 +1,8 @@
 <?php
 echo $this->Session->flash();
  
-echo $this->Form->create('User');
+echo $this->Form->create('User', array(
+        'type' => 'file', 'enctype' => 'multipart/form-data'));
  
 echo $this->Form->input('username', array(
         'type' => 'text',
@@ -24,10 +25,8 @@ echo $this->Form->input('password', array(
         )
     );
  
-echo $this->Form->create('picture', array(
-        'type' => 'file', 'enctype' => 'multipart/form-data', 'url' => '/upload'));
-     $this->Form->input('picture', array(
-        'type' => 'file', 'label' => 'Picture',));
- 
+echo $this->Form->input('picture', array(
+        'type' => 'file', 'label' => 'Picture', 'multipul'));
+echo $this->Form->hidden('status',array('value' => '確認する'));
 echo $this->Form->submit('Confirm', array('username' => 'add_confirm'));
 echo $this->Form->end();
