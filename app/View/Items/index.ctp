@@ -30,11 +30,11 @@
 		</td>
 		     
 		<td>
-
+			<?php echo $item['Item']['discription'];?>
 		</td>
 
 		<td>
-
+			<?php echo $item['Category']['name'];?>
 		</td>
 
 		<td>
