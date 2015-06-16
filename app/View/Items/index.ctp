@@ -19,7 +19,7 @@
 		</td>
 
 		<td>
-			<?php echo $this->Html->link('<img src="/Raiber_Project/item_img/'.$item['Item']['image1'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?>
+			<?php echo $this->Html->link('<img src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?>
 		</td>
 
 		<td>

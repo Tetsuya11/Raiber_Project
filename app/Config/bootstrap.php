@@ -115,6 +115,8 @@ CakeLog::config('error', array(
 ));
 CakePlugin::load('DebugKit');
 
+CakePlugin::load('upload_pack');
+
 /*
 //認証用プラグイン
 CakePlugin::load('Opauth', array('routes' => true, 'bootstrap' => true));
