@@ -1,4 +1,5 @@
 <dl>
+<?php session_start(); ?>
 <?php foreach ((array)$_SESSION['User'] as $name => $val): ?>
     <dt><?php echo h($name); ?></dt>
     <dd><?php echo h($val); ?></dd>
