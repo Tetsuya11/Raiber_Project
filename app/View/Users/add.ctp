@@ -1,7 +1,9 @@
 <?php echo $this->Session->flash(); ?>
  
 <?php echo $this->Form->create('User', array(
-    'type' => 'file', 'enctype' => 'multipart/formdata')); ?>
+    'type' => 'file', 'enctype' => 'multipart/formdata'));
+      echo $this->Form->hidden('User', array(
+      'status' => '確認する')); ?>
 <div>
 <?php echo $this->Form->input('username', array('type' => 'text', 'label' => 'お名前', 'maxlength' => 255)); ?>
 </div>
