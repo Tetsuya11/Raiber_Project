@@ -32,8 +32,8 @@ App::uses('AppController', 'Controller');//クラスのローディング。よ�
  */
 
 class AppController extends Controller {
+    Public $components = array(
 
-    var $components = array(
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
@@ -48,13 +48,38 @@ class AppController extends Controller {
             'authenticate' => array(
                 'Form' => array(
                     'passwordHasher' => 'Blowfish'
+                ),
+            ),
+        'authorize' => array('Controller'),
+
+            'flash' => array(
+                'element' => 'alert',
+                'key' => 'auth',
+                'params' => array(
+                    'plugin' => 'BoostCake',
+                    'class' => 'alert-error'
                 )
             )
-        ),
-        'DebugKit.Toolbar',
+        )
     );
 
-    //public function beforeFilter() {
-        //$this->Auth->allow('index', 'view');
-    //}
+    public function isAuthorized($user) {
+        if (isset($user['role']) && $user['role'] === 'admin') {
+            return true;
+        }
+
+        // デフォルトは拒否
+        return false;
+    }
+
+    public function beforeFilter() {
+        $this->Auth->allow('index', 'view');
+    }
+
+    public $helpers = array(
+        'Session',
+        'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
+        'Form' => array('className' => 'BoostCake.BoostCakeForm'),
+        'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+    );
 }
