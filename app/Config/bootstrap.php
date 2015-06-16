@@ -117,7 +117,7 @@ CakePlugin::load('BoostCake');
 
 CakePlugin::load('DebugKit');
 
-//CakePlugin::load('upload_pack');
+CakePlugin::load('upload_pack');
 
 /*
 //認証用プラグイン
