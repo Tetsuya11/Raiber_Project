@@ -22,13 +22,21 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
+		<?php echo $title_for_layout; ?>
 		<?php echo $this->fetch('title'); ?>
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-
+		echo $this->Html->script('//code.jquery.
+			com/jquery-1.10.2.min.js');
+		echo $this->Html->css('//netdna.bootstrapcdn.
+			com/bootstrap/3.1.0/css/bootstrap.min.css');
+		echo $this->Html->css('//netdna.bootstrapcdn.
+			com/bootstrap/3.1.0/css/bootstrap-glyphicons.css');
+		echo $this->Html->script('//netdna.bootstracdn.com/bootstrap/3.1.0/js/bootstrap.min.js');
+		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

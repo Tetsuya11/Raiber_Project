@@ -2,6 +2,10 @@
 // app/Controller/UsersController.php
 class UsersController extends AppController {
 
+    public $components = array('Auth');
+
+    public $helpers = array('Form', 'Html', 'Js', 'Time');
+
     public $uses = array('User');
 
     public function beforeFilter() {
@@ -57,7 +61,7 @@ class UsersController extends AppController {
             case '登録する':
                 if ($this->sendUser($this->request->data['User'])) {
                     $this->Session->setFlash('登録を受け付けました。');
-                    $this->redirect();
+                    $this->redirect('/');
                 } else {
                     $this->Session->setFlash('エラーが発生しました。');
                 }
@@ -77,16 +81,9 @@ class UsersController extends AppController {
     }
 
     public function add_confirm() {
-        if (isset($_POST['User'])) {
-            $_POST['User'] == 'confirm';
-            $this->redirect();
-        } else {
-            if ($this->User->save($this->data)) {
-                $this->flash('Your account has been saved.', '/users');
-            }
-        }
+            
     }
-
+    
     public function add_success() {
 
     }

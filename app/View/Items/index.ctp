@@ -3,6 +3,7 @@
 
 <table>
 	<tr>
+		
 		<th>ID</th>
 		<th>Image</th>
 		<th>Title</th>
@@ -51,6 +52,7 @@
 
 <p><?php echo $this->Html->link("Add Item", array('action' => 'add')); ?></p>
 
+<p><?php echo $this->Html->link("Categories",array('controller'=> 'Categories','action'=> 'index'));?></p>
 
 <script>
 $(function() {
