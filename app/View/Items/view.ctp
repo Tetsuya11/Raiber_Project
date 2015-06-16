@@ -16,7 +16,7 @@
 	<tr>
 		<th>ID</th>
 		<th>Message</th>
-		<th>User_id</th>
+		<th>Username</th>
 		<th>Created</th>
 	</tr>
 
@@ -25,7 +25,7 @@
 		<tr>
 			<td><?php echo $post['id']; ?></td>
 			<td><?php echo $post['message']; ?></td>
-			<td><?php echo $post['user_id']; ?></td>
+			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>
 		</tr>
 	<?php endforeach; ?>
