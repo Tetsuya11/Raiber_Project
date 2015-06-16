@@ -55,7 +55,9 @@ class UsersController extends AppController {
 
         switch ($this->request->data['User']['status']) {//statusを書くことで、
             case '確認する':
-                $_SESSION['User'] = $this->request->data['User'];
+                if (isset($_SESSION['User'])) {
+                    $_SESSION['User'] = $this->request->data['User'];//セッション変数に入力された値が格納されてるので、リクエストで呼び出す。
+                }
                 $this->redirect(array('action' => 'add_confirm'));
                 break;
             case '登録する':
@@ -81,7 +83,9 @@ class UsersController extends AppController {
     }
 
     public function add_confirm() {
-            
+        if (isset($_SESSION['User'])) {
+            $_SESSION['User'] = $this->request->data['User'];//セッション変数に入力された値が格納されてるので、リクエストで呼び出す。
+        }
     }
     
     public function add_success() {
