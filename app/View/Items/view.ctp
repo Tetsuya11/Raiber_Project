@@ -2,7 +2,7 @@
 
 <h2><?php echo h($item['Item']['title']); ?></h2>
 
-<p><?php echo '<img src="/Raiber_Project/item_img/'.$item['Item']['image1'].'">'?>
+<p><?php echo '<img src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">'?>
 <p><?php echo h($item['Item']['discription']); ?></p>
 
 <p>タイムライン</p>
