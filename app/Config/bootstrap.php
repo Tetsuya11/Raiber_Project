@@ -115,7 +115,7 @@ CakeLog::config('error', array(
 ));
 CakePlugin::load('BoostCake');
 
-CakePlugin::load('upload_pack');
+//CakePlugin::load('upload_pack');
 
 /*
 //認証用プラグイン
