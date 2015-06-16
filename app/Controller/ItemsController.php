@@ -18,6 +18,8 @@ class ItemsController extends AppController{
 	            throw new NotFoundException(__('Invalid post'));
 	        }
 
+	        $this->Item->recursive=2;
+
 	        $item = $this->Item->findById($id);
 	        if (!$item) {
 	            throw new NotFoundException(__('Invalid post'));

@@ -7,7 +7,7 @@ class Post extends AppModel {
        ),
     );
 
-    public $belongsTo = 'Item';
+    public $belongsTo = array('Item','User');
 }
 
 
