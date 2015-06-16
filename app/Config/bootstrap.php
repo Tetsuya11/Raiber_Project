@@ -115,6 +115,8 @@ CakeLog::config('error', array(
 ));
 CakePlugin::load('BoostCake');
 
+CakePlugin::load('DebugKit');
+
 //CakePlugin::load('upload_pack');
 
 /*

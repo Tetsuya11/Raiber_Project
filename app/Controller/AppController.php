@@ -33,7 +33,7 @@ App::uses('AppController', 'Controller');//クラスのローディング。よ�
 
 class AppController extends Controller {
     Public $components = array(
-
+        'DebugKit.Toolbar',
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
