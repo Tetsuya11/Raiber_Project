@@ -51,12 +51,13 @@ class UsersController extends AppController {
 
         switch ($this->request->data['User']['status']) {//statusを書くことで、
             case '確認する':
+                $_SESSION['User'] = $this->request->data['User'];
                 $this->redirect(array('action' => 'add_confirm'));
                 break;
             case '登録する':
                 if ($this->sendUser($this->request->data['User'])) {
                     $this->Session->setFlash('登録を受け付けました。');
-                    $this->redirect(array('action' => 'add_confirm'));
+                    $this->redirect();
                 } else {
                     $this->Session->setFlash('エラーが発生しました。');
                 }
@@ -76,14 +77,14 @@ class UsersController extends AppController {
     }
 
     public function add_confirm() {
-        if ($_POST['User'] == 'confirm') {
-            $this->render('confirm');
+        if (isset($_POST['User'])) {
+            $_POST['User'] == 'confirm';
+            $this->redirect();
         } else {
             if ($this->User->save($this->data)) {
                 $this->flash('Your account has been saved.', '/users');
             }
         }
-    
     }
 
     public function add_success() {
