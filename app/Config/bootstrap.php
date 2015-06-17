@@ -1,4 +1,3 @@
-
 <?php
 /**
  * This file is loaded automatically by the app/webroot/index.php file after core.php
@@ -117,7 +116,7 @@ CakePlugin::load('BoostCake');
 
 CakePlugin::load('DebugKit');
 
-CakePlugin::load('upload_pack');
+CakePlugin::load('UploadPack');
 
 /*
 //認証用プラグイン
