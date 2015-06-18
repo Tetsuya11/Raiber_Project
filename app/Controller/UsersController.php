@@ -40,15 +40,43 @@ class UsersController extends AppController {
         }
         $this->set('user', $this->User->read(null, $id));
     }
+
     //新規会員の追加
-    public function add_user() {//初回登録画面
-        
+    public function add_user() {
+        //
+        if(!$this->request->data){
+            $this->render();
+            return;
+        }
     }
+
     //確認画面
     public function add_confirm() {
+        //前のページで入力された内容だけを表示するための記述？
         $this->params['xformHelperConfirmFlag'] = true;
 
-    } 
+        //入力データをセット
+        $this->User->set($this->request->data);
+
+        //入力内容を検査
+        if($this->User->validates()){
+
+            //モデルの状態をリセット
+            $this->User->create();
+
+            //入力済みデータをモデルにセット
+            $user = array('User' => $this->request->data['User']);
+
+            //データを保存
+            $this->User->save($user);
+
+            //サンクス画面を表示
+            $this->render('add_success');
+
+        }
+
+    }
+
     //Eメール送信機能
     public function send() {
         $email = new CakeEmail('default');
@@ -72,10 +100,12 @@ class UsersController extends AppController {
              // メール送信失敗の処理
         }
     }
-    //確認画面
+
+    //サンクスページ
     public function add_success() {
 
     }
+
     //マイページ
     public function mypage() {
 

@@ -37,7 +37,7 @@ class AppController extends Controller {
         'Session',
         'Auth' => array(
             'loginRedirect' => array(
-                'controller' => 'posts',
+                'controller' => 'items',
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
@@ -62,17 +62,17 @@ class AppController extends Controller {
             )
         )
     );
-
+    /*
     public function isAuthorized($user) {
-        // if (isset($user['role']) && $user['role'] === 'admin') {
-        //     return true;
-        // }
+        if (isset($user['role']) && $user['role'] === 'admin') {
+             return true;
+        }
 
         // デフォルトは拒否
         //return false;
         return true;
     }
-
+    */
     public function beforeFilter() {
         $this->Auth->allow();
     }
