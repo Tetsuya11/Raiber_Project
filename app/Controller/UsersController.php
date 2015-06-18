@@ -1,17 +1,17 @@
 <?php
-// app/Controller/UsersController.php
+App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
+
 class UsersController extends AppController {
 
     public $components = array('Auth');
 
     public $helpers = array('Form', 'Html');
 
-    public $uses = array('User');
-
     public function beforeFilter() {
         parent::beforeFilter();
         // ユーザー自身による登録とログアウトを許可する
-        $this->Auth->allow('add', 'add_confirm', 'add_success', 'logout');
+        $this->Auth->allow('add_user', 'add_confirm', 'add_success', 'logout');
     }
 
     public function login() {
@@ -40,57 +40,41 @@ class UsersController extends AppController {
         }
         $this->set('user', $this->User->read(null, $id));
     }
-
-    public function add() {//初回登録画面
-        if (!$this->request->is('post') || !$this->request->data) {
-            return;
-        }
-
-        $this->User->set($this->request->data);
-
-        if (!$this->User->validates()) {//入力データの保存ではなく、妥当性チェックとしてのバリデーション
-            $this->Session->setFlash('入力内容に不備があります。');
-            return;
-        }
-
-        switch ($this->request->data['User']['status']) {//statusを書く->
-            case '確認する':
-                $this->Session->write('User', $this->request->data['User']);//セッション変数に入力された値が格納されてるので、リクエストで呼び出す。
-                $this->redirect(array('action' => 'confirm'));
-                break;
-            case '登録する':
-                if ($this->sendUser($this->request->data['User'])) {
-                    $this->Session->setFlash('登録を受け付けました。');
-                    $this->redirect('/');
-                } else {
-                    $this->Session->setFlash('エラーが発生しました。');
-                }
-                break;
-        }
+    //新規会員の追加
+    public function add_user() {//初回登録画面
+        
     }
-    
-    private function sendContact($content) {
-        App::uses('CakeEmail', 'Network/Email');
-        $email = new CakeEmail('user');
+    //確認画面
+    public function add_confirm() {
+
+    } 
+    //Eメール送信機能
+    public function send() {
+        $email = new CakeEmail('default');
  
-        return $email
-            ->from(array($user['email'] => $user['username']))
-            ->viewVars($user)
-            ->template('user', 'user')
-            ->send();
+        $email->config(array(
+            'template' => 'contacts',
+            'viewVars' => array(
+                'name' => $this->request->data['User']['username'],
+                'email' => $this->request->data['User']['email'],
+                'password' => $this->request->data['User']['password'],
+            ),
+            'to' => 'brn0612@gmail.com',
+            'subject' => 'お問い合わせ',
+        )
+        );
+ 
+        if ($email->send()) {
+            $this->redirect('add_success');
+        } else {
+             // メール送信失敗の処理
+        }
     }
-
-    public function confirm() {
-        $this->set('User',$this->Session->read('User'));//Userを$_SESSIONに代入
-        if (!empty($this->Session->read('User'))) {
-            if (($this->User->save()));
-            }
-    }
-    
+    //確認画面
     public function add_success() {
 
     }
-
+    //マイページ
     public function mypage() {
 
     }
