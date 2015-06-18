@@ -18,8 +18,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $title_for_layout; ?>
@@ -29,13 +33,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->meta('icon');
 
 		echo $this->Html->css('cake.generic');
-		echo $this->Html->script('//code.jquery.
-			com/jquery-1.10.2.min.js');
-		echo $this->Html->css('//netdna.bootstrapcdn.
-			com/bootstrap/3.1.0/css/bootstrap.min.css');
-		echo $this->Html->css('//netdna.bootstrapcdn.
-			com/bootstrap/3.1.0/css/bootstrap-glyphicons.css');
-		echo $this->Html->script('//netdna.bootstracdn.com/bootstrap/3.1.0/js/bootstrap.min.js');
+
+		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('bootstrap');
+
+		// jQuery CDN
+        echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
+
+		// Twitter Bootstrap 3.0 CDN
+        echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css');
+        echo $this->Html->css('//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-glyphicons.css');
+        echo $this->Html->script('//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js');
 		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
@@ -44,9 +53,20 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="">Raiber</a>
+		</div>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="">New membership</a></li>
+			<li><a href="">My page</a></li>
+			<li><a href="">login</a></li>
+		</ul>
+	</nav>
+
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<!-- <h1><?php //echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1> -->   <!-- 初期cakephp -->
 		</div>
 		<div id="content">
 
@@ -66,14 +86,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 		<?php echo $this->element('sql_dump'); ?>
-<script>
-$(function() {
-	setTimeout(function() {
-		$('#flashMessage').fadeOut("slow");
-	}, 1500);
-});
+	<script>
+	$(function() {
+		setTimeout(function() {
+			$('#flashMessage').fadeOut("slow");
+		}, 1500);
+	});
 
-</script>
+	</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 	</div>
 </body>
 </html>
