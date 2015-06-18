@@ -2,7 +2,7 @@
 
 <h2><?php echo h($item['Item']['title']); ?></h2>
 
-<p><?php echo '<img src="/Raiber_Project/item_img/'.$item['Item']['image1'].'">'?>
+<p><?php echo '<img src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">'?>
 <p><?php echo h($item['Item']['discription']); ?></p>
 
 <p>タイムライン</p>
@@ -18,6 +18,7 @@
 		<th>Message</th>
 		<th>Username</th>
 		<th>Created</th>
+		<th>Delete</th>
 	</tr>
 
 
@@ -27,6 +28,12 @@
 			<td><?php echo $post['message']; ?></td>
 			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>
+			<td><?php echo $this->Html->link('マンゴー', array(
+				'controller'=>'Posts','action' => 'delete',$post['id'])); 
+			debug($post['id']);
+			//'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ?>
+			</td>
 		</tr>
+
 	<?php endforeach; ?>
 </table>
