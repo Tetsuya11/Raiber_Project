@@ -22,7 +22,7 @@ class User extends AppModel {
                 'message' => 'An email address is required'
                 )
         ),
-        'image'=>array(
+        'picture'=>array(
             'rule1' => array(
                 //拡張子の指定
                 'rule' => array('extension',array('jpg','jpeg','gif','png')),
