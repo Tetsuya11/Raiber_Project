@@ -6,7 +6,7 @@ class UsersController extends AppController {
 
     public $components = array('Auth');
 
-    public $helpers = array('Form', 'Html');
+    public $helpers = array('Form', 'Html', 'Xform.Xformjp');
 
     public function beforeFilter() {
         parent::beforeFilter();
@@ -46,6 +46,7 @@ class UsersController extends AppController {
     }
     //確認画面
     public function add_confirm() {
+        $this->params['xformHelperConfirmFlag'] = true;
 
     } 
     //Eメール送信機能
@@ -58,9 +59,10 @@ class UsersController extends AppController {
                 'name' => $this->request->data['User']['username'],
                 'email' => $this->request->data['User']['email'],
                 'password' => $this->request->data['User']['password'],
+                'picture' => $this->request->data['User']['picture'],
             ),
             'to' => 'brn0612@gmail.com',
-            'subject' => 'お問い合わせ',
+            'subject' => 'ご登録ありがとうございます',
         )
         );
  

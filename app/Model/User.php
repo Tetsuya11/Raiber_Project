@@ -5,13 +5,7 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 class User extends AppModel {
     
     public $hasMany = 'Post';
-    /*
-    public $_scheme = array(
-        'name' => array('type' => 'string', 'length' => 255),
-        'email' => array('type' => 'email', 'length' => 255),
-        'password' => array('type' => 'password', 'length' => 255),
-    );
-    */
+
     public $validate = array(
         'login' => array(
             'alphaNumeric' => array(
@@ -25,7 +19,7 @@ class User extends AppModel {
             ),
         ),
         'password' => array(
-            'rule' => array('minLength', '4'),
+            'rule' => array('minLength', 4),
             'message' => 'Minimum 4 characters long'
         ),
         'name' => array(

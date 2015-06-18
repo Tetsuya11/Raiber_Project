@@ -118,6 +118,8 @@ CakePlugin::load('DebugKit');
 
 CakePlugin::load('UploadPack');
 
+CakePlugin::load('Xform');
+
 CakePlugin::loadAll();
 
 /*

@@ -1,27 +1,10 @@
-<dl>
-<?php foreach ((array)$User as $name => $val): ?>
-    <dt><?php echo h($name); ?></dt>
-    <dd><?php
-    	if ($name !== 'picture') {
-    		echo h($name);
-    		//debug($val); 
-    		}
-    	?>
-    </dd>
-<?php endforeach; ?>
-</dl>
-<br />
-
 <?php
-	echo $this->Form->create('User');
- 
-	foreach ((array)$User as $name => $val) {//(array)を追記して$_SESSIONを強制的に配列の形に変える
-		if ($name != 'picture') {
-		    echo $this->Form->hidden($name, array('value' => $val));
-		}
-	}
-	echo $this->Form->submit('修正する', array(
-		'name' => 'confirm', 'action' => 'add'));
-	echo $this->Form->submit('登録する', array('name' => 'confirm'));
- 	echo $this->Form->end();
+//外部ファイル読み込み
+//view/elements/users_add_user.ctp
+echo $this->element(__("users_add_user"));
 ?>
+<?php echo $this->xform->create('User', array('action' => 'add_success'));
+//ここにHiddenでPostデータを出力 or セッションでPostデータを管理 ?>
+<?php echo $this->xform->submit('送信', array('name' => 'success')); ?>
+<?php echo $this->xform->submit('戻る', array('name' => 'back')); ?>
+<?php echo $this->xform->end();?>
