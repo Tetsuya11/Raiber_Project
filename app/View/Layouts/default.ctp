@@ -18,8 +18,12 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<?php echo $this->Html->charset(); ?>
 	<title>
 		<?php echo $title_for_layout; ?>
@@ -46,7 +50,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
@@ -54,12 +57,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div class="navbar-header">
 			<a class="navbar-brand" href="">Raiber</a>
 		</div>
-		<ul class="nav navbar-nav">
-			<li><a href="">Link1</a></li>
-			<li><a href="">Link2</a></li>
-		</ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="">Link3</a></li>
+			<li><a href="">New membership</a></li>
+			<li><a href="">My page</a></li>
+			<li><a href="">login</a></li>
 		</ul>
 	</nav>
 
@@ -85,14 +86,16 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</p>
 		</div>
 		<?php echo $this->element('sql_dump'); ?>
-<script>
-$(function() {
-	setTimeout(function() {
-		$('#flashMessage').fadeOut("slow");
-	}, 1500);
-});
+	<script>
+	$(function() {
+		setTimeout(function() {
+			$('#flashMessage').fadeOut("slow");
+		}, 1500);
+	});
 
-</script>
+	</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 	</div>
 </body>
 </html>
