@@ -13,9 +13,8 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 
 	
 
-		public function beforeFilter() {
-			$this->Auth->allow();
-		}
+		//public function beforeFilter() {
+			//$this->Auth->allow();}
 
 		// public function add() {
 		// 	if (!empty($this->data)) {
@@ -56,10 +55,10 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 			 	if($this->Post->delete($id)) {
 			 		$this->Session->setFlash('Deleted!');
 			 		
-			 	}
 			 	$this->redirect(array('action'=>'view'));
 		}
 	}
+}
 
 
 

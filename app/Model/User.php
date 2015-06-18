@@ -17,11 +17,23 @@ class User extends AppModel {
                 'message' => 'A password is required'
             )
         ),
-        'role' => array(
-            'valid' => array(
-                'rule' => array('inList', array('admin', 'author')),
-                'message' => 'Please enter a valid role',
-                'allowEmpty' => false
+        'email' => array(
+            'required' => array(
+                'rule' => 'email',
+                'message' => 'An email address is required'
+                )
+        ),
+        'picture'=>array(
+            'rule1' => array(
+                //拡張子の指定
+                'rule' => array('extension',array('jpg','jpeg','gif','png')),
+                'message' => 'A picture is required',
+                'allowEmpty' => true,
+            ),
+            'rule2' => array(
+                //画像サイズの制限
+                'rule' => array('fileSize', '<=', '500000'),
+                'message' => 'Under 500000',
             )
         )
     );

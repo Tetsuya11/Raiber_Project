@@ -1,5 +1,5 @@
 <?php
 echo '登録完了しました';
-$html->link('/posts/view');
-$html->link('/users/mypage');
+echo $this->Html->link('商品一覧へ', '/items/index/');
+echo $this->Html->link('マイページへ', '/users/mypage/');
 ?>
