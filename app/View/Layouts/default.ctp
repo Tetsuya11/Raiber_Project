@@ -53,7 +53,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="">Raiber</a>
 		</div>
