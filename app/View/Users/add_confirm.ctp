@@ -1,6 +1,6 @@
 <dl>
 <?php foreach ((array)$User as $name => $val): ?>
-    <dt><?php echo h($name)?></dt>
+    <dt><?php echo h($name); ?></dt>
     <dd><?php
     	if ($name !== 'picture') {
     		echo h($name);

@@ -16,5 +16,5 @@
 <div>
 <?php echo $this->Form->input('picture', array('type' => 'file', 'label' => 'プロフィール写真', 'multiple')); ?>
 </div>
-<?php echo $this->Form->submit('確認する', array('name' => 'confirm', 'action' => 'add_confirm')); ?>
+<?php echo $this->Form->submit('確認する', array('name' => 'confirm', 'action' => 'confirm')); ?>
 <?php echo $this->Form->end(); ?>

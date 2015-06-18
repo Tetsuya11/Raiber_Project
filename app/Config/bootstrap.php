@@ -118,6 +118,8 @@ CakePlugin::load('DebugKit');
 
 CakePlugin::load('UploadPack');
 
+CakePlugin::loadAll();
+
 /*
 //認証用プラグイン
 CakePlugin::load('Opauth', array('routes' => true, 'bootstrap' => true));

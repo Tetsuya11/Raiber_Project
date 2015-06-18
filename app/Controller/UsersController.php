@@ -56,7 +56,7 @@ class UsersController extends AppController {
         switch ($this->request->data['User']['status']) {//statusを書く->
             case '確認する':
                 $this->Session->write('User', $this->request->data['User']);//セッション変数に入力された値が格納されてるので、リクエストで呼び出す。
-                $this->redirect(array('action' => 'add_confirm'));
+                $this->redirect(array('action' => 'confirm'));
                 break;
             case '登録する':
                 if ($this->sendUser($this->request->data['User'])) {
@@ -80,8 +80,13 @@ class UsersController extends AppController {
             ->send();
     }
 
-    public function add_confirm() {
+    public function confirm() {
         $this->set('User',$this->Session->read('User'));//Userを$_SESSIONに代入
+        if (!empty($this->Session->read('User'))) {
+            if (($this->User->save())) {
+                $this->redirect(array('action' => 'add_success'));
+            }
+        }
     }
     
     public function add_success() {
