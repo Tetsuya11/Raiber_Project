@@ -1,6 +1,6 @@
 <?php
 
-App::uses('AppController', 'Controller');//クラスのローディング
+App::uses('AppController', 'Controller','Session');//クラスのローディング
 
  class PostsController extends AppController{
 // 		var $name = "Posts";
@@ -8,14 +8,13 @@ App::uses('AppController', 'Controller');//クラスのローディング
 // 		function index(){
 // 			$this->set("posts",$this->Post->findAll(null,null,));
 
-		public $helpers = array('Html', 'Form','Session');
+		public $helpers = array('Html', 'Form');
 		public $components = array('Session');
 
 	
 
-		// public function beforeFilter() {
-		// 	$this->Auth->allow('index');
-		// }
+		//public function beforeFilter() {
+			//$this->Auth->allow();}
 
 		// public function add() {
 		// 	if (!empty($this->data)) {
@@ -45,8 +44,21 @@ App::uses('AppController', 'Controller');//クラスのローディング
 				} else {
 					$this->Session->setFlash(_('ログインしていません。'));
 				}
-
 		}
+
+		public function delete($id) {
+	    if($this->request->is('get')) {
+	        throw new MethodNotAllowedException();
+	    }
+			 		
+			 	//下はモデル（データベースから削除する為の記述）
+			 	if($this->Post->delete($id)) {
+			 		$this->Session->setFlash('Deleted!');
+			 		
+			 	$this->redirect(array('action'=>'view'));
+		}
+	}
 }
+
 
 
