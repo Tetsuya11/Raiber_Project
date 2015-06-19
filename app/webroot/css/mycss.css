@@ -1,10 +1,18 @@
 .main{
   background-color:#FFF0E4;
-  height:600px;
-  width:1300;
+  /*height:600px;
+  width:1300;*/
 }
 
 .footer{
   background-color:#FCFFC0;
-  height:200px;
+  /*height:200px;*/
+}
+
+.navbar {
+    margin-bottom: 0; / 追記 */
+}
+
+.carousel-inner img{
+    width: 100%;
 }

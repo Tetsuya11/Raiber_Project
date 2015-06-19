@@ -1,6 +1,6 @@
 <div class="main">
   <div class="container">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:500px;">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:780px;">
         <!-- Indicators -->
         <ol class="carousel-indicators">
           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -40,10 +40,15 @@
           <span class="sr-only">Next</span>
         </a>
     </div>
+
+    <div>
+      <p>出てこいBootStrap!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+      <p>出てこいBootStrap!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+      <p>出てこいBootStrap!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+      <p>出てこいBootStrap!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+      <p>出てこいBootStrap!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</p>
+    </div>
   </div>
-
-  <p>出てこいBootStrap!!!</p>
-
 </div>
 
 <div class="footer">
