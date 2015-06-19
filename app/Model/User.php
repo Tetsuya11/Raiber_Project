@@ -3,25 +3,53 @@ App::uses('AppModel', 'Model');
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
+    
     public $hasMany = 'Post';
+
     public $validate = array(
-        'username' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A username is required'
-            )
+        'login' => array(
+            'alphaNumeric' => array(
+                'rule'     => 'alphaNumeric',
+                'required' => true,
+                'message'  => 'Letters and numbers only'
+            ),
+            'between' => array(
+                'rule' => array('between', 3, 15),
+                'message' => 'Between 3 to 15 characters'
+            ),
         ),
         'password' => array(
-            'required' => array(
+            'rule' => array('minLength', 4),
+            'message' => 'Minimum 4 characters long'
+        ),
+        'name' => array(
+            'notEmpty' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'A password is required'
-            )
+                'message' => '未入力です。',
+                'required' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 255),
+                'message' => '255文字以内で入力してくだい。',
+                'required' => true,
+            ),
         ),
         'email' => array(
-            'required' => array(
-                'rule' => 'email',
-                'message' => 'An email address is required'
-                )
+            'notEmpty' => array(
+                'rule' => array('notEmpty'),
+                'message' => '未入力です。',
+                'required' => true,
+            ),
+            'email' => array(
+                'rule' => array('email'),
+                'message' => 'メールアドレス以外が入力されています。',
+                'required' => true,
+            ),
+            'maxLength' => array(
+                'rule' => array('maxLength', 255),
+                'message' => '255文字以内で入力してくだい。',
+                'required' => true,
+            ),
         ),
         'picture'=>array(
             'rule1' => array(

@@ -5,7 +5,10 @@ class ItemsController extends AppController{
 		public $helpers = array('Html','Form','Session','UploadPack.Upload');
 		public $components = array('Session');
 		public $uses = array('Item','Post','User');//ItemモデルとPostモデルを両方使えるようにする
+<<<<<<< HEAD
+=======
 		// var $helpers = array('UploadPack.Upload');
+>>>>>>> 7ffa0d40834c696f1c9f3e804a46d0ec72a4b2f0
 
 
 		public function index() {

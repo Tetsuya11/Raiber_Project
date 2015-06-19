@@ -1,17 +1,17 @@
 <?php
-// app/Controller/UsersController.php
+App::uses('AppController', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
+
 class UsersController extends AppController {
 
     public $components = array('Auth');
 
-    public $helpers = array('Form', 'Html');
-
-    public $uses = array('User');
+    public $helpers = array('Form', 'Html', 'Xform.Xformjp');
 
     public function beforeFilter() {
         parent::beforeFilter();
         // ユーザー自身による登録とログアウトを許可する
-        $this->Auth->allow('add', 'add_confirm', 'add_success', 'logout');
+        $this->Auth->allow('add_user', 'add_confirm', 'add_success', 'logout');
     }
 
     public function login() {
@@ -41,58 +41,72 @@ class UsersController extends AppController {
         $this->set('user', $this->User->read(null, $id));
     }
 
-    public function add() {//初回登録画面
-        if (!$this->request->is('post') || !$this->request->data) {
+    //新規会員の追加
+    public function add_user() {
+        //
+        if(!$this->request->data){
+            $this->render();
             return;
         }
+    }
 
+    //確認画面
+    public function add_confirm() {
+        //前のページで入力された内容だけを表示するための記述？
+        $this->params['xformHelperConfirmFlag'] = true;
+
+        //入力データをセット
         $this->User->set($this->request->data);
 
-        if (!$this->User->validates()) {//入力データの保存ではなく、妥当性チェックとしてのバリデーション
-            $this->Session->setFlash('入力内容に不備があります。');
-            return;
+        //入力内容を検査
+        if($this->User->validates()){
+
+            //モデルの状態をリセット
+            $this->User->create();
+
+            //入力済みデータをモデルにセット
+            $user = array('User' => $this->request->data['User']);
+
+            //データを保存
+            $this->User->save($user);
+
+            //サンクス画面を表示
+            $this->render('add_success');
+
         }
 
-        switch ($this->request->data['User']['status']) {//statusを書く->
-            case '確認する':
-                $this->Session->write('User', $this->request->data['User']);//セッション変数に入力された値が格納されてるので、リクエストで呼び出す。
-                $this->redirect(array('action' => 'confirm'));
-                break;
-            case '登録する':
-                if ($this->sendUser($this->request->data['User'])) {
-                    $this->Session->setFlash('登録を受け付けました。');
-                    $this->redirect('/');
-                } else {
-                    $this->Session->setFlash('エラーが発生しました。');
-                }
-                break;
-        }
     }
-    
-    private function sendContact($content) {
-        App::uses('CakeEmail', 'Network/Email');
-        $email = new CakeEmail('user');
+
+    //Eメール送信機能
+    public function send() {
+        $email = new CakeEmail('default');
  
-        return $email
-            ->from(array($user['email'] => $user['username']))
-            ->viewVars($user)
-            ->template('user', 'user')
-            ->send();
-    }
-
-    public function confirm() {
-        $this->set('User',$this->Session->read('User'));//Userを$_SESSIONに代入
-        if (!empty($this->Session->read('User'))) {
-            if (($this->User->save())) {
-                $this->redirect(array('action' => 'add_success'));
-            }
+        $email->config(array(
+            'template' => 'contacts',
+            'viewVars' => array(
+                'name' => $this->request->data['User']['username'],
+                'email' => $this->request->data['User']['email'],
+                'password' => $this->request->data['User']['password'],
+                'picture' => $this->request->data['User']['picture'],
+            ),
+            'to' => 'brn0612@gmail.com',
+            'subject' => 'ご登録ありがとうございます',
+        )
+        );
+ 
+        if ($email->send()) {
+            $this->redirect('add_success');
+        } else {
+             // メール送信失敗の処理
         }
     }
-    
+
+    //サンクスページ
     public function add_success() {
 
     }
 
+    //マイページ
     public function mypage() {
 
     }
