@@ -37,6 +37,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('bootstrap');
+		echo $this->Html->css('mycss');
 
 		// jQuery CDN
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
@@ -67,14 +68,32 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<!-- <h1><?php //echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1> -->   <!-- 初期cakephp -->
+			<!-- <nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="">Raiber</a>
+				</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="">New membership</a></li>
+					<li><a href="">My page</a></li>
+					<li><a href="">login</a></li>
+				</ul>
+			</nav> -->
 		</div>
+
 		
 		<div id="content">
+
+
+
+		<div id="content" style="padding-top:50px">
+
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
+
+
 
 		<div id="footer">
 			<?php echo $this->Html->link(
