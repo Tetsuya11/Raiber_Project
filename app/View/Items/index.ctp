@@ -1,7 +1,24 @@
 <?php $this->assign('title','Raiber  商品一覧 Item lists'); ?>
 <h1>商品一覧  Item lists</h1>
 
-<table>
+	<table class="table-hover">
+		<tr>
+			<th>id</th>
+			<th>Name</th>
+		</tr>
+	<?php foreach ($categories as $category) :?>
+	    <tr>
+	    	<td><?php echo $category['Category']['id']; ?></td>
+
+	    	<td><?php echo $this->Html->link($category['Category']['name'],array('controller'=>'Categories','action'=>'view',$category['Category']['id'])); ?></td>
+	    </tr>
+	<?php endforeach; ?>
+	<?php unset($category); ?>
+
+
+</table>
+
+
 	<tr>
 		
 		<th>ID</th>
@@ -43,8 +60,13 @@
 		</td>
 
 		<td>
+			<div >
+			
 			<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
+			</div>
+		<div>
 			<?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?>
+		</div>
 		</td>
 	</tr>
 <?php endforeach; ?>
