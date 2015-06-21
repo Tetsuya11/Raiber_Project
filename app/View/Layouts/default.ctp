@@ -37,7 +37,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->Html->css('cake.generic');
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('bootstrap');
-		//echo $this->Html->css('mycss');
+		echo $this->Html->css('mycss');
 
 		// jQuery CDN
         echo $this->Html->script('//code.jquery.com/jquery-1.10.2.min.js');
@@ -54,7 +54,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="">Raiber</a>
 		</div>
@@ -80,13 +80,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</nav> -->
 		</div>
 
+		
+		<div id="content">
+
+
 
 		<div id="content" style="padding-top:50px">
+
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
+
 
 
 		<div id="footer">

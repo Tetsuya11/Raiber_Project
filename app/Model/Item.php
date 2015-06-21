@@ -1,6 +1,7 @@
 <?php
 
 class Item extends AppModel {
+    //public $hasOne ='Category';
 
 	public $hasMany = 'Post';
 	public $belongsTo = 'Category';

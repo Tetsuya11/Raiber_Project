@@ -1,6 +1,8 @@
+<?php $this->assign('title','Raiber  Top Page'); ?>
+
 <div class="main">
   <div class="container">
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; height:500px;">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" style="width:100%; margin-bottom:400px">
         <!-- Indicators -->
         <ol class="carousel-indicators">
           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -40,10 +42,28 @@
           <span class="sr-only">Next</span>
         </a>
     </div>
+
+    <div class="words">
+      <p class="words">私たちにはお金だけではなく</p>
+      <p class="words">もっと素晴らしいものが</p>
+      <p class="words_border">相手がどうしても欲しいと思うものがたくさんある</p>
+      <p class="words_english">we have also other wonderful things</p>
+      <p class="words_english">other than money</p>
+    </div>
+
+    <div class="row" style="margin-top:90px; background-color:#00a1e9; margin-top:370px">
+
+      <div class="howto">
+        <p class="what">Raiberとは</p>
+        <p style="color:#ffffff;">What’s Raiber?</p>
+
+      
+        <div class="col-sm-4" style="background-color: blue; height: 400px;">青</div>
+        <div class="col-sm-4" style="background-color: red; height: 400px;">赤</div>
+        <div class="col-sm-4" style="background-color: yellow; height: 400px;">黄色</div>
+      </div>
+    </div>
   </div>
-
-  <p>出てこいBootStrap!!!</p>
-
 </div>
 
 <div class="footer">

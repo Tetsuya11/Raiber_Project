@@ -1,10 +1,51 @@
 .main{
-  background-color:#FFF0E4;
-  height:600px;
-  width:1300;
+  background-color: #FFF0E4;
+  height: 3000px;
+  width: 1300;
 }
 
 .footer{
-  background-color:#FCFFC0;
-  height:200px;
+  background-color: #FCFFC0;
+  height: 200px;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.carousel-inner img{
+    width: 100%;
+}
+
+.words{
+	text-align: center;
+}
+
+p.words{
+	font-size: 20px;
+	margin-bottom: 40px; 
+	font-family: "cursive",cursive;
+}
+
+p.words_border{
+	font-size: 20px;
+	margin-bottom: 100px; 
+	font-family: "cursive",cursive;
+}
+
+p.words_english{
+	font-size: 30px;
+	margin-top: 60px; 
+	font-family: "cursive",cursive;
+}
+
+.howto{
+	font-size: 30px;
+	text-align: center;
+	margin-top:100px;
+}
+
+.what{
+	font-size: 50px;
+	color:#ffff00;
 }
