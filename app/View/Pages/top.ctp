@@ -109,9 +109,10 @@
         </div>
       </div>
 
-      <div class="btn-group btn-group-lg">
-        <p><a  class="btn btn-default" href="http://192.168.33.10/Raiber_Project/items">ENTER</a></p>
-      </div>
+        <!-- <p><a  class="btn btn-warning btn-lg" href="http://192.168.33.10/Raiber_Project/items">ENTER</a></p> -->
+        <form action="http://192.168.33.10/Raiber_Project/items">
+          <button class="button" type="submit">ENTER</button>
+        </form>
 
     </div>
   </div>
