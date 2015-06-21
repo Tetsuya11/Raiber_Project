@@ -5,6 +5,7 @@ echo $this->element(__("users_add_user"));
 ?>
 <?php echo $this->xform->create('User', array('action' => 'add_success'));
 //ここにHiddenでPostデータを出力 or セッションでPostデータを管理 ?>
-<?php echo $this->xform->submit('送信', array('name' => 'success')); ?>
+<?php echo $this->xform->submit(array(
+'label' => '登録する', 'name' => 'success')) ;?>
 <?php //echo $this->Html->link('戻る', $referer); ?>
-<?php echo $this->xform->end();?>
+<?php echo $this->xform->end() ;?>

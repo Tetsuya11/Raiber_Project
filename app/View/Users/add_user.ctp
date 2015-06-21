@@ -4,5 +4,5 @@
 echo $this->element("users_add_user");
 ?>
 
-<?php echo $this->xform->submit('確認', array('name' => 'confirm')); ?>
-<?php echo $this->xform->end();?>
+<?php echo $this->xform->submit('確認する', array('name' => 'confirm')); ?>
+<?php echo $this->xform->end(); ?>
