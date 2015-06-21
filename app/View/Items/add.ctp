@@ -4,7 +4,7 @@
 
 <h1>Add Item</h1>
 <?php
-	echo $this->Form->create('Item',array('type'=>'file'));
+	echo $this->Form->create('Item',array('type'=>'file'));//Itemモデル使用
 	echo $this->Form->input('title');
 	echo $this->Form->input('discription', array('rows' => '3'));
 	//echo $this->Upload->uploadImage($item, 'image1', array('style' => 'thumb'));

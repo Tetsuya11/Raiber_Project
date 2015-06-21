@@ -1,11 +1,13 @@
 <?php $this->assign('title','Raiber  商品一覧 Item lists'); ?>
-<h1>商品一覧  Item lists</h1>
+<h1 style="color:red;">商品一覧  Item lists</h1>
 
-	<table class="table-hover">
-		<tr>
-			<th>id</th>
-			<th>Name</th>
-		</tr>
+	<table class="table-hover" >
+		<div class="row">
+  			<div class="col-md-1">
+				<th>id</th>
+				<th>Name</th>
+			</tr>
+	
 	<?php foreach ($categories as $category) :?>
 	    <tr>
 	    	<td><?php echo $category['Category']['id']; ?></td>
@@ -14,11 +16,14 @@
 	    </tr>
 	<?php endforeach; ?>
 	<?php unset($category); ?>
+			</div>
+
+		
 
 
-</table>
 
 
+		<div class="col-sm-3" style="background-color: green;color:white;">
 	<tr>
 		
 		<th>ID</th>
@@ -30,10 +35,11 @@
 		<th>Edit/Deleat</th>
 	</tr>
 
+
 <?php foreach ($items as $item): ?>
 	<tr id="item_<?php echo h($item['Item']['id']); ?>">
 		<td>
-
+			<?php echo ''?>
 		</td>
 
 		<td>
@@ -70,11 +76,11 @@
 		</td>
 	</tr>
 <?php endforeach; ?>
-</table>
-
-<p><?php echo $this->Html->link("Add Item", array('action' => 'add')); ?></p>
-
-<p><?php echo $this->Html->link("Categories",array('controller'=> 'Categories','action'=> 'index'));?></p>
+</div>
+<button class="btn btn-default" type="submit">
+  <?php echo $this->Html->link("Add Item", array('action' => 'add')); ?>	
+</button>
+<p><?php //echo $this->Html->link("Categories",array('controller'=> 'Categories','action'=> 'index'));?></p>
 
 <script>
 $(function() {
@@ -88,5 +94,12 @@ $(function() {
 	});
 });
 </script>
+
+</div>
+
+</table>
+
+    
+   
 
 
