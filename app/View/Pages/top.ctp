@@ -53,15 +53,67 @@
 
     <div class="row" style="margin-top:90px; background-color:#00a1e9; margin-top:370px">
 
-      <div class="howto">
-        <p class="what">Raiberとは</p>
-        <p style="color:#ffffff;">What’s Raiber?</p>
+        <div class="howto">
+          <p class="what">Raiberとは</p>
+          <p style="color:#ffffff; margin-bottom:120px">What’s Raiber?</p>
 
-      
-        <div class="col-sm-4" style="background-color: blue; height: 400px;">青</div>
-        <div class="col-sm-4" style="background-color: red; height: 400px;">赤</div>
-        <div class="col-sm-4" style="background-color: yellow; height: 400px;">黄色</div>
+        
+          <div class="col-sm-4" style="height: 450px;">
+            <div class="site-logo">
+            　<div class="site-info">
+            　　<h1>STEP1</h1>
+            　</div>
+            </div>
+            <div class="text" style="padding-top:30px;">
+              <p>掲示板に交換に出す物を投稿</p>
+              <p>または欲しい物を探します</p>
+            </div>
+            <div class="text-mini" style="padding-top:30px;">
+              <p>Posting or Searching</p>
+              <p>at bulletin board</p>
+            </div>
+          </div>
+
+          <div class="col-sm-4" style="height: 450px;">
+            <div class="site-logo">
+            　<div class="site-info">
+            　　<h1>STEP2</h1>
+            　</div>
+            </div>
+            <div class="text" style="padding-top:30px;">
+              <p>商品ページで交換条件を</p>
+              <p>交渉します</p>
+            </div>
+            <div class="text-mini" style="padding-top:30px;">
+              <p>Negotiating about the terms</p>
+              <p>in item page</p>
+            </div>
+          </div>
+          
+          <div class="col-sm-4" style="height: 450px;">
+            <div class="site-logo">
+            　<div class="site-info">
+            　　<h1>STEP3</h1>
+            　</div>
+            </div>
+            <div class="text" style="padding-top:30px;">
+              <p>交渉で決めた場所で</p>
+              <p>交換成立</p>
+            </div>
+            <div class="text-mini" style="padding-top:30px;">
+              <p>Bartering at the place where</p>
+              <p>is decided by negotiation</p>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+        <!-- <p><a  class="btn btn-warning btn-lg" href="http://192.168.33.10/Raiber_Project/items">ENTER</a></p> -->
+        <form action="/Raiber_Project/items/index">
+          <button class="button" type="submit">ENTER</button>
+        </form>
+
     </div>
   </div>
 </div>
