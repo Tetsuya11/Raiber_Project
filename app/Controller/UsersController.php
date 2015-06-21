@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $components = array('Auth');
+    public $components = array('Auth', 'Session');
 
     public $helpers = array('Form', 'Html', 'Xform.Xformjp');
 
@@ -43,38 +43,25 @@ class UsersController extends AppController {
 
     //新規会員の追加
     public function add_user() {
-        //
-        if(!$this->request->data){
-            $this->render();
-            return;
-        }
+        $this->User->set(($this->data));
+        $this->Session->write('User', $this->data);
     }
 
     //確認画面
     public function add_confirm() {
         //前のページで入力された内容だけを表示するための記述？
         $this->params['xformHelperConfirmFlag'] = true;
+    }
 
-        //入力データをセット
-        $this->User->set($this->request->data);
-
-        //入力内容を検査
-        if($this->User->validates()){
-
-            //モデルの状態をリセット
-            $this->User->create();
-
-            //入力済みデータをモデルにセット
-            $user = array('User' => $this->request->data['User']);
-
-            //データを保存
-            $this->User->save($user);
-
-            //サンクス画面を表示
-            $this->render('add_success');
-
+    //サンクスページ
+    public function add_success() {
+        if ($this->request->is('post')) {
+            if ($this->User->save($this->Session->read('User'))) {
+                $this->Session->setFlash('登録が完了しました！');
+            } else {
+                $this->Session->setFlash('登録に失敗しました！');
+            }
         }
-
     }
 
     //Eメール送信機能
@@ -99,11 +86,6 @@ class UsersController extends AppController {
         } else {
              // メール送信失敗の処理
         }
-    }
-
-    //サンクスページ
-    public function add_success() {
-
     }
 
     //マイページ

@@ -10,6 +10,7 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 
 		public $helpers = array('Html', 'Form');
 		public $components = array('Session');
+		//public $uses = array('Item')
 
 	
 
@@ -54,11 +55,11 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 			 	//下はモデル（データベースから削除する為の記述）
 			 	if($this->Post->delete($id)) {
 			 		$this->Session->setFlash('Deleted!');
-			 		
-			 	$this->redirect(array('action'=>'view'));
+			 		}
+			 	return $this->redirect(array('controller'=>'Items','action' => 'view', $item['Item']['id']));
 		}
 	}
-}
+
 
 
 

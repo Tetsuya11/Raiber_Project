@@ -80,13 +80,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			</nav> -->
 		</div>
 
+		
+		<div id="content">
+
+
 
 		<div id="content" style="padding-top:50px">
+
 
 			<?php echo $this->Session->flash(); ?>
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
+
 
 
 		<div id="footer">

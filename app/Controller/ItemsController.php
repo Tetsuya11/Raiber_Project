@@ -4,13 +4,19 @@ class ItemsController extends AppController{
 
 		public $helpers = array('Html','Form','Session','UploadPack.Upload');
 		public $components = array('Session');
-		public $uses = array('Item','Post','User');//ItemモデルとPostモデルを両方使えるようにする
+
+		public $uses = array('Item','Post','User','Category');//ItemモデルとPostモデルを両方使えるようにする
+
+		
+
 
 
 
 		public function index() {
         $this->set('items', $this->Item->find('all'));
 
+		$this->set('categories', $this->Category->find('all'));
+        
     	}
 
 
