@@ -1,20 +1,18 @@
-<?php echo $this->Session->flash(); ?>
- 
-<?php echo $this->Form->create('User', array(
-    'type' => 'file', 'enctype' => 'multipart/formdata'));
-      echo $this->Form->hidden('status', array(
-      'value' => '確認する')); ?>
-<div>
-<?php echo $this->Form->input('username', array('type' => 'text', 'label' => 'お名前', 'maxlength' => 255)); ?>
+<div class='users form'>
+    <?php 
+        echo $this->Form->create(array(
+        //データを保存するためにモデルの状態をリセットする
+            'action' => 'thanks', 'enctype' => 'multipart/form-data')); 
+    ?>
+    <fieldset>
+        <legend><?php echo __('ユーザー登録をしてください。'); ?></legend>
+        <?php 
+            echo $this->Form->input('username');
+            echo $this->Form->input('email');
+            echo $this->Form->input('password');
+            //echo $this->Form->input('picture', array(
+                //'type' => 'file'));
+        ?>
+    </fieldset>
+<?php echo $this->Form->end(__('Submit')); ?>
 </div>
-<div>
-<?php echo $this->Form->input('email', array('type' => 'email', 'label' => 'メールアドレス', 'maxlength' => 255)); ?>
-</div>
-<div>
-<?php echo $this->Form->input('password', array('type' => 'password', 'label' => 'パスワード', 'maxlength' => 255)); ?>
-</div>
-<div>
-<?php echo $this->Form->input('picture', array('type' => 'file', 'label' => 'プロフィール写真', 'multiple')); ?>
-</div>
-<?php echo $this->Form->submit('確認する', array('name' => 'confirm', 'action' => 'add_confirm')); ?>
-<?php echo $this->Form->end(); ?>
