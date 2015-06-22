@@ -14,7 +14,8 @@ class UsersController extends AppController {
                     ),
                     'logoutRedirect' => array(
                         'action' => 'login'
-                    )
+                    ),
+                    'Session'
                 );
     
     public function beforeFilter() {
