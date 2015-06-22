@@ -8,38 +8,42 @@ class User extends AppModel {
 
     public $validate = array(
         'username' => array(
-            'required' => array(
-                'rule' => array('notEmpty'),
-                'message' => 'A username is required'
-            )
+                'rule1' => array(
+                    'rule' => array('notEmpty'),
+                        'message' => 'A username is required'
+                ),
+                'rule2' => array(
+                    'rule' => array('isUnique'),
+                        'message' => 'Please choose other name'
         ),
         'email' => array(
             'rule' => 'email',
             'required' => true,
             'allowEmpty' => false,
-            'message' => 'メールアドレスの形式で必ず入力して下さい'
+            'message' => 'Please enter your email'
         ),
         'password' => array(
             'required' => array(
                 'rule' => array('notEmpty'),
-                'message' => 'A password is required'
+                'message' => 'Please enter your password'
             )
         ),
-        'image'=>array(
+        'picture'=>array(
             'rule1' => array(
                 //拡張子の指定
                 'rule' => array('extension',array('jpg','jpeg','gif','png')),
-                'message' => '画像ではありません。',
+                'message' => 'Please enter your picture',
                 'allowEmpty' => true,
             ),
             'rule2' => array(
                 //画像サイズの制限
                 'rule' => array('fileSize', '<=', '500000'),
-                'message' => '画像サイズは500KB以下でお願いします',
+                'message' => 'File size is under 500KB',
             )
         ),   
     );
-
+    
+    //パスワードハッシュ化
     public function beforeSave($options = array()) {
         if (isset($this->data[$this->alias]['password'])) {
             $passwordHasher = new BlowfishPasswordHasher();

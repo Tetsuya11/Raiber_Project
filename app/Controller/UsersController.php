@@ -3,6 +3,19 @@ App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
+
+    public $components = array(
+                    'Auth' => array(
+                        'allowActions' => array('add', 'login')
+                    ),
+                    //ログイン後の飛び先をアイテム一覧に指定
+                    'loginRedirect' => array(
+                        'controller' => 'items', 'action' => 'index'
+                    ),
+                    'logoutRedirect' => array(
+                        'action' => 'login'
+                    )
+                );
     
     public function beforeFilter() {
         parent::beforeFilter();
@@ -11,10 +24,14 @@ class UsersController extends AppController {
 
     public function login() {
         if ($this->request->is('post')) {
+            //Authコンポーネントのログイン処理を呼び出す
             if ($this->Auth->login()) {
+                //ログイン成功
                 $this->redirect($this->Auth->redirect());
             } else {
-                $this->Session->setFlash(__('Invalid username or password, try again'));
+                //ログイン失敗
+                $this->Session->setFlash(__('Invalid username or password, try again'
+                    , 'default', array(), 'auth'));
             }
         }
     }
@@ -23,10 +40,6 @@ class UsersController extends AppController {
         $this->redirect($this->Auth->logout());
     }
 
-    public function index() {
-        $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
-    }
 
     public function view($id = null) {
         $this->User->id = $id;
@@ -41,10 +54,24 @@ class UsersController extends AppController {
             $this->User->create();
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'thanks'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
+        }
+    }
+
+    public function thanks() {
+        //入力されたデータよりテーブルを読み込む
+        $record = $this->User->read(null, $this->data['User']['id']);
+        //controllerからviewに値を受け渡す
+        $this->set('data', $record);
+    }
+
+    public function mypage() {
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
         }
     }
 
