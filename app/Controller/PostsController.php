@@ -56,7 +56,7 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 			 	if($this->Post->delete($id)) {
 			 		$this->Session->setFlash('Deleted!');
 			 		}
-			 	return $this->redirect(array('controller'=>'Items','action' => 'view', $item['Item']['id']));
+			 	return $this->redirect(array('controller'=>'items','action' => 'view', $this->data['Post']['id']));
 		}
 	}
 

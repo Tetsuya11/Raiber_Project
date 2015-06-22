@@ -28,12 +28,13 @@
 			<td><?php echo $post['message']; ?></td>
 			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>
-			<td><button type="button" class="btn btn-primary btn-lg">
-				<?php echo $this->Form->postlink('マンゴー', array(
-				'controller'=>'Posts','action'=>'delete',$post['id'])); 
-			//debug($post['id']);
-			//'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ?></button>
-			</td>
+		<div class="form-group">
+			<label class="control-label" for="email">
+			<!-- <td><?php //echo $this->Form->postlink('マンゴー', array(
+				//'controller'=>'Posts','action'=>'delete',$post['id'])); ?>
+			debug($post['id']);
+			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ
+			</td> -->
 		</tr>
 	<?php endforeach; ?>
 </table>
