@@ -45,10 +45,10 @@ class UsersController extends AppController {
             // Authコンポーネントのログイン処理を呼び出す。
             if($this->Auth->login()){
                 // ログイン処理成功
-                $this->redirect('認証に成功しました。', array('controller' => 'items', 'action' => 'index'));
+                $this->redirect(array('controller' => 'items', 'action' => 'index'));
             }else{
                 // ログイン処理失敗
-                $this->redirect('認証に失敗しました。', array('login'));
+                $this->redirect(array('action' => 'login'));
             }
         }
     }
