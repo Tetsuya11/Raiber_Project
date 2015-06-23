@@ -58,11 +58,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div class="navbar-header">
 			<a class="navbar-brand" href="http://192.168.33.10/Raiber_Project/pages/top">Raiber</a>
 		</div>
+		<!-- ドロップダウンメニュー -->
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="">New membership</a></li>
-			<li><a href="">My page</a></li>
-			<li><a href="">login</a></li>
-		</ul>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					Account<span class="caret"></span>
+				</a>
+				<!-- メニュー配置 -->
+				<ul class="dropdown-menu">
+					<li><a href="">New membership</a></li>
+					<li class="divider"></li>
+					<li><a href="">My page</a></li>
+					<li class="divider"></li>
+					<li><a href="">login</a></li>
+				</ul>
+			</li>
+		</ul>	
 	</nav>
 
 	<div id="container">

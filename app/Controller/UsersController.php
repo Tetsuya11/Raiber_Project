@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $components = array(
+    public $var = array(
                     'Auth' => array(
                         'allowActions' => array('add', 'login')
                     ),
@@ -71,9 +71,6 @@ class UsersController extends AppController {
 
     public function mypage() {
         $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
-        }
     }
 
     public function edit($id = null) {
