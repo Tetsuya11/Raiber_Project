@@ -73,8 +73,8 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => '127.0.0.1',
 		'login' => 'root',
-		'password' => 'tetu1129',
-		'database' => 'raiber_project',
+		'password' => 'baron0522',
+		'database' => 'Raiber_Project',
 		'prefix' => '',
 		'encoding' => 'utf8',
 	);

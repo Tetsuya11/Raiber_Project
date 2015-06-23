@@ -50,8 +50,6 @@ class AppController extends Controller {
                     'passwordHasher' => 'Blowfish'
                 ),
             ),
-        'authorize' => array('Controller'),
-
             'flash' => array(
                 'element' => 'alert',
                 'key' => 'auth',
@@ -62,17 +60,7 @@ class AppController extends Controller {
             )
         )
     );
-    /*
-    public function isAuthorized($user) {
-        if (isset($user['role']) && $user['role'] === 'admin') {
-             return true;
-        }
 
-        // デフォルトは拒否
-        //return false;
-        return true;
-    }
-    */
     public function beforeFilter() {
         $this->Auth->allow();
     }
@@ -83,4 +71,7 @@ class AppController extends Controller {
         'Form' => array('className' => 'BoostCake.BoostCakeForm'),
         'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
     );
+
+    
+
 }

@@ -3,8 +3,9 @@
 class Item extends AppModel {
     //public $hasOne ='Category';
 
+    public $belongsTo = array('User', 'Category');
 	public $hasMany = 'Post';
-	public $belongsTo = 'Category';
+    
 	public $validate = array(
         'title' => array(
             'rule' => 'notEmpty'

@@ -1,7 +1,9 @@
 <?php
 class Post extends AppModel {
+
+    public $belongsTo = array('User', 'Category');
 	public $hasMany = 'Comment';
-	public $belongsTo = 'Category';//全てのpostはそれぞれのcategoryに帰属するという意味。
+    
 	public $validate = array(
         'title' => array(
             'rule' => 'notEmpty'

@@ -4,34 +4,43 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $components = array('Auth', 'Session');
-
-    public $helpers = array('Form', 'Html', 'Xform.Xformjp');
-
+    public $components = array(
+                    'Auth' => array(
+                        'allowActions' => array('add', 'login')
+                    ),
+                    //ログイン後の飛び先をアイテム一覧に指定
+                    'loginRedirect' => array(
+                        'controller' => 'items', 'action' => 'index'
+                    ),
+                    'logoutRedirect' => array(
+                        'action' => 'login'
+                    ),
+                    'Session'
+                );
+    
     public function beforeFilter() {
         parent::beforeFilter();
-        // ユーザー自身による登録とログアウトを許可する
-        $this->Auth->allow('add_user', 'add_confirm', 'add_success', 'logout');
+        $this->Auth->allow('add', 'logout');
     }
 
     public function login() {
         if ($this->request->is('post')) {
+            //Authコンポーネントのログイン処理を呼び出す
             if ($this->Auth->login()) {
-                $this->redirect($this->Auth->redirect(array('controller' => 'items', 'action' => 'index')));
+                //ログイン成功
+                $this->redirect($this->Auth->redirect());
             } else {
-                $this->Session->setFlash(__('Invalid username or password, try again'));
+                //ログイン失敗
+                $this->Session->setFlash(__('Invalid username or password, try again'
+                    , 'default', array(), 'auth'));
             }
         }
     }
-    
+
     public function logout() {
         $this->redirect($this->Auth->logout());
     }
 
-    public function index() {
-        $this->User->recursive = 0;
-        $this->set('users', $this->paginate());
-    }
 
     public function view($id = null) {
         $this->User->id = $id;
@@ -41,56 +50,30 @@ class UsersController extends AppController {
         $this->set('user', $this->User->read(null, $id));
     }
 
-    //新規会員の追加
-    public function add_user() {
-        $this->User->set(($this->data));
-        $this->Session->write('User', $this->data);
-    }
-
-    //確認画面
-    public function add_confirm() {
-        //前のページで入力された内容だけを表示するための記述？
-        $this->params['xformHelperConfirmFlag'] = true;
-    }
-
-    //サンクスページ
-    public function add_success() {
+    public function add() {
         if ($this->request->is('post')) {
-            if ($this->User->save($this->Session->read('User'))) {
-                $this->Session->setFlash('登録が完了しました！');
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('The user has been saved'));
+                $this->redirect(array('action' => 'thanks'));
             } else {
-                $this->Session->setFlash('登録に失敗しました！');
+                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
         }
     }
 
-    //Eメール送信機能
-    public function send() {
-        $email = new CakeEmail('default');
- 
-        $email->config(array(
-            'template' => 'contacts',
-            'viewVars' => array(
-                'name' => $this->request->data['User']['username'],
-                'email' => $this->request->data['User']['email'],
-                'password' => $this->request->data['User']['password'],
-                'picture' => $this->request->data['User']['picture'],
-            ),
-            'to' => 'brn0612@gmail.com',
-            'subject' => 'ご登録ありがとうございます',
-        )
-        );
- 
-        if ($email->send()) {
-            $this->redirect('add_success');
-        } else {
-             // メール送信失敗の処理
-        }
+    public function thanks() {
+        //入力されたデータよりテーブルを読み込む
+        $record = $this->User->read(null, $this->data['User']['id']);
+        //controllerからviewに値を受け渡す
+        $this->set('data', $record);
     }
 
-    //マイページ
     public function mypage() {
-
+        $this->User->id = $id;
+        if (!$this->User->exists()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
     }
 
     public function edit($id = null) {
@@ -125,4 +108,5 @@ class UsersController extends AppController {
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'index'));
     }
+
 }
