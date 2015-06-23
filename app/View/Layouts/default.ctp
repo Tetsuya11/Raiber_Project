@@ -56,7 +56,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="pages/top">Raiber</a>
+			<a class="navbar-brand" href="/Raiber_Project/pages/top">Raiber</a>
 		</div>
 		<!-- ドロップダウンメニュー -->
 		<ul class="nav navbar-nav navbar-right" >
