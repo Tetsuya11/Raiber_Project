@@ -18,7 +18,7 @@ class ItemsController extends AppController{
 
 		public function index($param1 = null) {
 			//認証情報取得
-			$user_data = $this->Auth->user();
+			$user_data = $this->Auth->user('username');
 			if (is_null($user_data)) {
 				$user_data['User']['username'] = 'guest';
 			}
@@ -56,11 +56,11 @@ class ItemsController extends AppController{
 		            
 		    }
 		    //認証情報取得
-		    $user_data = $this->Auth->user();
+		    $user_data = $this->Auth->user('username');
 			if (is_null($user_data)) {
 				$user_data['User']['username'] = 'guest';
 			}
-			$this->set("user_data", $user_data);
+			$this->set('user_data', $user_data);
 
 	    }
 
@@ -75,6 +75,14 @@ class ItemsController extends AppController{
 	            $this->Session->setFlash(__('Unable to add your post.'));
 	        }
 	        $this->set('categories', $this->Category->find('list'));//listでCategoryからidとnameを取ることができる
+
+	        //認証情報取得
+		    $user_data = $this->Auth->user('username');
+			if (is_null($user_data)) {
+				$user_data['User']['username'] = 'guest';
+			}
+			$this->set('user_data', $user_data);
+
 	    }
 
 	    public function edit($id = null){
