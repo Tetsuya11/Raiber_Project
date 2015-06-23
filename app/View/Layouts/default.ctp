@@ -56,7 +56,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 <body>
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="http://192.168.33.10/Raiber_Project/pages/top">Raiber</a>
+			<a class="navbar-brand" href="pages/top">Raiber</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="">New membership</a></li>

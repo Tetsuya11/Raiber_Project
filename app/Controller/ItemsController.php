@@ -3,16 +3,28 @@
 class ItemsController extends AppController{
 
 		public $helpers = array('Html','Form','Session','UploadPack.Upload');
-		public $components = array('Session');
+		public $components = array(
+								'Session',
+								'Auth'
+							);
 
 		public $uses = array('Item','Post','User','Category');//ItemモデルとPostモデルを両方使えるようにする
 
 		
+		public function beforefilter() {
+			$this->Auth->allow('index');
+		}
 
 
 
-
-		public function index() {
+		public function index($param1 = null) {
+		//認証情報取得
+		$user_data = $this->Auth->user();
+		if (is_null($user_data)) {
+			$user_data['User']['username'] = 'guest';
+		}
+		$this->set("user_data", $user_data);
+		
         $this->set('items', $this->Item->find('all'));
 
 		$this->set('categories', $this->Category->find('all'));
@@ -53,6 +65,7 @@ class ItemsController extends AppController{
 	            }
 	            $this->Session->setFlash(__('Unable to add your post.'));
 	        }
+	        $this->set('categories', $this->Category->find('list'));//listでCategoryからidとnameを取ることができる
 	    }
 
 	    public function edit($id = null){

@@ -24,7 +24,7 @@
 
 	<?php foreach($item['Post'] as $post) :?>
 		<tr>
-			<td><?php echo $post['id']; ?></td>
+			<td><?php// echo $post['id']; ?></td>
 			<td><?php echo $post['message']; ?></td>
 			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>

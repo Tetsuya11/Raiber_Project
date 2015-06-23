@@ -1,9 +1,11 @@
 <?php $this->assign('title','Raiber  商品一覧 Item lists'); ?>
 <h1 style="color:red;">商品一覧  Item lists</h1>
 
-	<table class="table-hover" >
+	
+		
 		<div class="row">
-  			<div class="col-md-1">
+  			<div style='float:left;'class="col-md-2">
+  				<table class="table-hover" >
 				<th>id</th>
 				<th>Name</th>
 			</tr>
@@ -16,6 +18,7 @@
 	    </tr>
 	<?php endforeach; ?>
 	<?php unset($category); ?>
+			</table>
 			</div>
 
 		
@@ -23,9 +26,9 @@
 
 
 
-		<div class="col-sm-3" style="background-color: green;color:white;">
+		<div style='float:right;'class="col-sm-10" >
+	<table>
 	<tr>
-		
 		<th>ID</th>
 		<th>Image</th>
 		<th>Title</th>
@@ -34,12 +37,13 @@
 		<th>Created</th>
 		<th>Edit/Deleat</th>
 	</tr>
-
+       
 
 <?php foreach ($items as $item): ?>
+
 	<tr id="item_<?php echo h($item['Item']['id']); ?>">
 		<td>
-			<?php echo ''?>
+			
 		</td>
 
 		<td>
@@ -67,19 +71,23 @@
 
 		<td>
 			<div >
-			
-			<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
+				<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
 			</div>
-		<div>
-			<?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?>
-		</div>
+		
+			<div>
+				<?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?>
+			</div>
+
 		</td>
 	</tr>
 <?php endforeach; ?>
+</table>
 </div>
+
 <button class="btn btn-default" type="submit">
   <?php echo $this->Html->link("Add Item", array('action' => 'add')); ?>	
 </button>
+
 <p><?php //echo $this->Html->link("Categories",array('controller'=> 'Categories','action'=> 'index'));?></p>
 
 <script>
@@ -93,9 +101,8 @@ $(function() {
 		return false;
 	});
 });
-</script>
 
-</div>
+</script>
 
 </table>
 
