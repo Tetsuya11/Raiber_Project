@@ -4,19 +4,14 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
-    public $hasMany = 'item';
-    
-    public $hasMany = 'Post';
+    public $hasMany = array('Comment', 'Item', 'Post');
 
     public $validate = array(
         'username' => array(
-                'rule1' => array(
-                    'rule' => array('notEmpty'),
-                        'message' => 'A username is required'
-                ),
-                'rule2' => array(
-                    'rule' => array('isUnique'),
-                        'message' => 'Please choose other name'
+            'rule1' => array(
+                'rule' => array('notEmpty'),
+                    'message' => 'A username is required'
+            )            
         ),
         'email' => array(
             'rule' => 'email',
@@ -42,7 +37,7 @@ class User extends AppModel {
                 'rule' => array('fileSize', '<=', '500000'),
                 'message' => 'File size is under 500KB',
             )
-        ),   
+        )   
     );
     
     //パスワードハッシュ化
