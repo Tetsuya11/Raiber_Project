@@ -48,7 +48,7 @@ class ItemsController extends AppController{
 	        if ($this->request->is('post')) {
 		            $this->Post->create();
 
-		            $this->request->data['Item']['user_id'] = $this->Auth->user('id');
+		            $this->request->data['Post']['user_id'] = $this->Auth->user('id');
 
 		            if ($this->Post->save($this->request->data)) {
 		                $this->Session->setFlash(__('投稿完了！ Your post has been saved.'));
