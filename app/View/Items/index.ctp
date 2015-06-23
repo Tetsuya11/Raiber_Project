@@ -3,23 +3,26 @@
 
 	
 		
-		<div class="row">
+		<div class="row ">
+			
   			<div style='float:left;'class="col-md-2">
-  				<table class="table-hover" >
-				<th>id</th>
-				<th>Name</th>
-			</tr>
-	
-	<?php foreach ($categories as $category) :?>
+  				
+  				<table>
+  				<ul class="nav nav-tabs nav-stacked">
+	<td><?php echo "Categories";?> </td>
+	<?php foreach ($categories as $category) :?> 
 	    <tr>
-	    	<td><?php echo $category['Category']['id']; ?></td>
+			    
 
 	    	<td><?php echo $this->Html->link($category['Category']['name'],array('controller'=>'Categories','action'=>'view',$category['Category']['id'])); ?></td>
 	    </tr>
 	<?php endforeach; ?>
 	<?php unset($category); ?>
+			
 			</table>
+		</ul>
 			</div>
+		
 
 		
 
@@ -84,11 +87,13 @@
 </table>
 </div>
 
-<button class="btn btn-default" type="submit">
-  <?php echo $this->Html->link("Add Item", array('action' => 'add')); ?>	
-</button>
 
-<p><?php //echo $this->Html->link("Categories",array('controller'=> 'Categories','action'=> 'index'));?></p>
+  <?php echo $this->Html->link("<button class=\"btn btn-default\" type=\"submit\">Add Item</button>", array('action' => 'add'),array('escape'=>false)); ?>	
+
+
+
+
+
 
 <script>
 $(function() {
@@ -105,7 +110,7 @@ $(function() {
 </script>
 
 </table>
-
+</div>
     
    
 

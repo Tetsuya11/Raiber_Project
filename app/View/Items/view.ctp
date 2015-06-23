@@ -3,6 +3,11 @@
 <h2><?php echo h($item['Item']['title']); ?></h2>
 
 <p><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">'?>
+
+<p><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image2_file_name'].'">'?>
+
+<p><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image3_file_name'].'">'?>
+
 <p><?php echo h($item['Item']['discription']); ?></p>
 
 <p>タイムライン</p>
