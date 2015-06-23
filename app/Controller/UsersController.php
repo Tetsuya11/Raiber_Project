@@ -8,14 +8,8 @@ class UsersController extends AppController {
                     'Auth' => array(
                         'allowActions' => array('add', 'login')
                     ),
-                    //ログイン後の飛び先をアイテム一覧に指定
-                    'loginRedirect' => array(
-                        'controller' => 'items', 'action' => 'index'
-                    ),
-                    'logoutRedirect' => array(
-                        'action' => 'login'
-                    ),
-                    'Session'
+                    'Session',
+                    'Form'
                 );
     
     public function beforeFilter() {
