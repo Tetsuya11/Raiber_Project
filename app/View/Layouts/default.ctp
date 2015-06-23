@@ -60,10 +60,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 		<!-- ドロップダウンメニュー -->
 		<ul class="nav navbar-nav navbar-right" >
-			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">ようこそ <?php echo $userName; ?> さん</h5></li>
+			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">ようこそ <?php echo $user_data; ?> さん</h5></li>
 			        <li class="dropdown">
 			        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
-			        		<img src="" style=""><?php echo 'ユーザー';?><span class="caret" ></span>
+			        		<img src="" style=""><?php echo 'Account';?><span class="caret" ></span>
 			        	</a>
 			        	<ul class="dropdown-menu" role="menu">
 				            <!-- <li><a href="">Login</a></li> -->

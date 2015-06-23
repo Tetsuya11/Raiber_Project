@@ -3,18 +3,10 @@ App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
-
-    public $var = array(
-                    'Auth' => array(
-                        'allowActions' => array('add', 'login')
-                    ),
-                    'Session',
-                    'Form'
-                );
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout');
+        $this->Auth->allow('login', 'add', 'logout');
     }
 
     public function login() {
@@ -35,15 +27,6 @@ class UsersController extends AppController {
         $this->redirect($this->Auth->logout());
     }
 
-
-    public function view($id = null) {
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        $this->set('user', $this->User->read(null, $id));
-    }
-
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
@@ -56,15 +39,39 @@ class UsersController extends AppController {
         }
     }
 
+    /*// 送信処理
+    public function send() {
+        $email = new CakeEmail('raiber');
+ 
+        $email->config(array(
+            'template' => 'users',
+            'viewVars' => array(
+                'name' => $this->request->data['User']['username'],
+                'email' => $this->request->data['User']['email'],
+                'password' => $this->request->data['User']['password'],
+            ),
+            'to' => 'to@example.com',
+            'subject' => 'ご登録ありがとうございます！ Thank you!',
+        ));
+ 
+        if ($email->send()) {
+            $this->redirect('thanks');
+        } else {
+             // メール送信失敗の処理
+        }
+    }
+    */
     public function thanks() {
-        //入力されたデータよりテーブルを読み込む
-        $record = $this->User->read(null, $this->data['User']['id']);
-        //controllerからviewに値を受け渡す
-        $this->set('data', $record);
+        
     }
 
     public function mypage() {
-        $this->User->id = $id;
+        //認証情報取得
+            $user_data = $this->Auth->user('username');
+            if (is_null($user_data)) {
+                $user_data['User']['username'] = 'guest';
+            }
+            $this->set('user_data', $user_data);
     }
 
     public function edit($id = null) {
@@ -83,6 +90,12 @@ class UsersController extends AppController {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
         }
+
+        $user_data = $this->Auth->user('username');
+            if (is_null($user_data)) {
+                $user_data['User']['username'] = 'guest';
+            }
+            $this->set('user_data', $user_data);
     }
 
     public function delete($id = null) {
@@ -98,6 +111,12 @@ class UsersController extends AppController {
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'index'));
+
+        $user_data = $this->Auth->user('username');
+            if (is_null($user_data)) {
+                $user_data['User']['username'] = 'guest';
+            }
+            $this->set('user_data', $user_data);
     }
 
 }

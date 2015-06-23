@@ -62,7 +62,15 @@ class AppController extends Controller {
     );
 
     public function beforeFilter() {
-        $this->Auth->allow();
+        $this->Auth->allow('login', 'logout', 'add');
+
+        if (is_null($this->Auth->user('username'))) {
+            $this->set('user_data', 'ゲスト');
+        } else {
+            $this->set('user_data', $this->Auth->user('username'));
+        }
+
+        $this->set('user_data', $user_data);
     }
     
     public $helpers = array(

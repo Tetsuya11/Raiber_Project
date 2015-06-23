@@ -91,11 +91,9 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-	public $contact = array(
+	public $raiber = array(
 		'transport' => 'Mail',
-		'form' => array('mail@example.com' => 'My Site'),
-		'to' => 'mail@example.com',
-		'subject' => 'お問い合わせ'
+		'from' => array('brn0612@gmail.com' => 'Raiber')
 	);
 
 	public $gmail = array(
