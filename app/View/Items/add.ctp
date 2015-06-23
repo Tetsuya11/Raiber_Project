@@ -2,7 +2,7 @@
 
 <p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
 
-<h1><?php echo $user_data['User']['username']; ?>さんがAdd Itemや！</h1>
+<h1><?php echo $user_data['User']['username']; ?> さんがAdd Itemや！</h1>
 <?php
 	echo $this->Form->create('Item',array('type'=>'file'));//Itemモデル使用
 	echo $this->Form->input('title');
