@@ -2,10 +2,15 @@
 <div class="users form">
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-        <legend><?php echo __('Add User'); ?></legend>
-        <?php echo $this->Form->input('username');
-        echo $this->Form->input('email');
-        echo $this->Form->input('password');
+        <legend><?php echo __('新規登録 Sign Up'); ?></legend>
+        <?php 
+        echo $this->Form->input('username');
+        echo $this->Form->input('email', array(
+        	'maxlength' => '255', 'type' => 'email'));
+        echo $this->Form->input('password', array(
+        	'maxlength' => '255', 'type' => 'password'));
+        echo $this->Form->input('password_confirm', array(
+        	'maxlength' => '255', 'type' => 'password'));
         echo $this->Form->input('picture', array(
             'type' => 'file'));
     ?>
