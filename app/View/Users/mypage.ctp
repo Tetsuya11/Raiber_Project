@@ -24,7 +24,7 @@
     <div role="tabpanel" class="tab-pane active" id="my item lists">
       <?php foreach($myitems as $item): ?>
       <li><?php echo h($item['Item']['title']); ?></li>
-      <li><?php echo h($item['Item']['picture']); ?>
+      <li><?php echo $this->Html->link('<img width=160px height=130px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image1_file_name']).'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?></li>
     <?php endforeach; ?>
       </div>
     <div role="tabpanel" class="tab-pane active" id="trades">
