@@ -71,7 +71,7 @@ class AppController extends Controller {
             $this->set('user_data', $this->Auth->user('username'));
         }
         //送信する変数名とその内容を設定
-        $this->set('user_data', $user_data);
+       
     }
     
     public $helpers = array(

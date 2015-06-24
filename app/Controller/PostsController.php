@@ -47,7 +47,7 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 				}
 		}
 
-		public function delete($id) {
+		public function delete($id,$item_id) {
 	    if($this->request->is('get')) {
 	        throw new MethodNotAllowedException();
 	    }
@@ -56,7 +56,7 @@ App::uses('AppController', 'Controller','Session');//クラスのローディン
 			 	if($this->Post->delete($id)) {
 			 		$this->Session->setFlash('Deleted!');
 			 		}
-			 	return $this->redirect(array('controller'=>'items','action' => 'view', $this->data['Post']['id']));
+			 	return $this->redirect(array('controller'=>'items','action' => 'view', $item_id));
 		}
 	}
 
