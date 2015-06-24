@@ -77,6 +77,8 @@ class ItemsController extends AppController{
 	    public function add() {
 	        if ($this->request->is('post')) {
 	            $this->Item->create();
+
+	            $this->request->data['Item']['user_id'] = $this->Auth->user('id');
 	            if ($this->Item->save($this->request->data)) {
 	                $this->Session->setFlash(__('Your post has been saved.'));
 	                return $this->redirect(array('action' => 'index'));
