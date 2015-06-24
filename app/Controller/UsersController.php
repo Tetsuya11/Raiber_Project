@@ -17,7 +17,7 @@ class UsersController extends AppController {
             return true;
         }
 
-        //投稿のオーナーは編集や削除ができる
+        //投稿のオーナーはプロフィールの編集や削除ができる
         if (in_array($this->action, array('edit', 'delete'))) {
             $userId = (int) $this->request->params['pass'][0];
             if ($this->User->isOwnedBy($userId, $user['id'])) {
