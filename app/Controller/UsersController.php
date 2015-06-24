@@ -3,10 +3,12 @@ App::uses('AppController', 'Controller');
 App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
+
+    public $uses = array('User', 'Item');
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'add', 'logout');
+        $this->Auth->allow('login', 'add', 'logout', 'cancel_comp');
     }
 
     public function login() {
@@ -14,7 +16,8 @@ class UsersController extends AppController {
             //Authコンポーネントのログイン処理を呼び出す
             if ($this->Auth->login()) {
                 //ログイン成功
-                $this->redirect($this->Auth->redirect());
+                $this->redirect($this->Auth->redirect(array(
+                    'controller' => 'items', 'action' => 'index')));
             } else {
                 //ログイン失敗
                 $this->Session->setFlash(__('Invalid username or password, try again'
@@ -66,12 +69,20 @@ class UsersController extends AppController {
     }
 
     public function mypage() {
-        //認証情報取得
-            $user_data = $this->Auth->user('username');
-            if (is_null($user_data)) {
-                $user_data['User']['username'] = 'guest';
-            }
-            $this->set('user_data', $user_data);
+            
+        if (is_null($this->Auth->user('username'))) {
+            $this->set('user_data', 'ゲスト');
+        } else {
+            $this->set('user_data', $this->Auth->user('username'));
+        }
+        //送信する変数名とその内容を設定
+        $this->set('user_data', $user_data);
+        //出品アイテム取得
+        $myitems = $this->Item->find('all', array(
+            'conditions' => array('user_id'=>$this->Auth->user('id'))));
+
+        $this->set('user_data', $user_data);
+        $this->set('myitems', $myitems);
     }
 
     public function edit($id = null) {
@@ -90,15 +101,9 @@ class UsersController extends AppController {
             $this->request->data = $this->User->read(null, $id);
             unset($this->request->data['User']['password']);
         }
-
-        $user_data = $this->Auth->user('username');
-            if (is_null($user_data)) {
-                $user_data['User']['username'] = 'guest';
-            }
-            $this->set('user_data', $user_data);
     }
 
-    public function delete($id = null) {
+    public function cancel($id = null) {
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -106,17 +111,15 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
-            $this->redirect(array('action' => 'index'));
+            $this->Session->setFlash(__('User was canceled'));
+            $this->redirect(array('action' => 'cancel_comp'));
         }
         $this->Session->setFlash(__('User was not deleted'));
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('action' => 'mypage'));
 
-        $user_data = $this->Auth->user('username');
-            if (is_null($user_data)) {
-                $user_data['User']['username'] = 'guest';
-            }
-            $this->set('user_data', $user_data);
     }
 
+    public function cancel_comp() {
+        echo '退会が完了しました。';
+    }
 }

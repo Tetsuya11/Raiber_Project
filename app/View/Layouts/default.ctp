@@ -63,7 +63,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">ようこそ <?php echo $user_data; ?> さん</h5></li>
 			        <li class="dropdown">
 			        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
-			        		<img src="" style=""><?php echo 'Account';?><span class="caret" ></span>
+			        		<img src="" style=""><?php echo 'Account'; ?><span class="caret" ></span>
 			        	</a>
 			        	<ul class="dropdown-menu" role="menu">
 				            <!-- <li><a href="">Login</a></li> -->
@@ -72,7 +72,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				            <li class="divider"></li>
 				            <li><?php echo $this->Html->link("新規登録", array('controller' => 'users','action' => 'add')); ?></li>
 				            <li><?php echo $this->Html->link("マイページ", array('controller' => 'users','action' => 'mypage')); ?></li>
-				            <li><?php echo $this->Html->link("退会", array('controller' => 'users','action' => 'delete')); ?></li>
+				            <li><?php echo $this->Html->link("退会", array('controller' => 'users','action' => 'cancel')); ?></li>
 			          	</ul>
 			        </li>
 			    </ul>

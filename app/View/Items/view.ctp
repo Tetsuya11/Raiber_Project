@@ -2,11 +2,12 @@
 
 <h2><?php echo h($item['Item']['title']); ?></h2>
 
-<th><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">'?></th>
 
-<th><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image2_file_name'].'">'?></th>
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image1_file_name']).'">'?></th>
 
-<th><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image3_file_name'].'">'?></th>
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image2_file_name']).'">'?></th>
+
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image3_file_name']).'">'?></th>
 
 <p><?php echo h($item['Item']['discription']); ?></p>
 
