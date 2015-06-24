@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $uses = array('User', 'Item');
+    public $uses = array('User', 'Item', 'Category');
     
     public function beforeFilter() {
         parent::beforeFilter();
@@ -69,19 +69,18 @@ class UsersController extends AppController {
     }
 
     public function mypage() {
-            
+        //ユーザー識別   
         if (is_null($this->Auth->user('username'))) {
             $this->set('user_data', 'ゲスト');
         } else {
             $this->set('user_data', $this->Auth->user('username'));
         }
+        $this->set('user_data', $user_data);//変数名は揃えましょう
         //送信する変数名とその内容を設定
         $this->set('user_data', $user_data);
         //出品アイテム取得
         $myitems = $this->Item->find('all', array(
             'conditions' => array('user_id'=>$this->Auth->user('id'))));
-
-        $this->set('user_data', $user_data);
         $this->set('myitems', $myitems);
     }
 

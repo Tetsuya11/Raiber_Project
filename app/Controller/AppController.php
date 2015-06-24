@@ -63,7 +63,7 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         //Authコンポーネント
-        $this->Auth->allow('login', 'logout', 'add', 'cancel_comp');
+        $this->Auth->allow('login', 'logout', 'add', 'cancel_comp', 'thanks');
         //ログインユーザーとゲストの区別
         if (is_null($this->Auth->user('username'))) {
             $this->set('user_data', 'ゲスト');
