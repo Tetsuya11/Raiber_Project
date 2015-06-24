@@ -46,7 +46,7 @@ class PagesController extends AppController {
  */	
 	public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('top');
+        $this->Auth->allow('top', 'display');
     }
 	
 	public function display() {
