@@ -57,9 +57,18 @@ class AppController extends Controller {
                     'plugin' => 'BoostCake',
                     'class' => 'alert-error'
                 )
-            )
+            ),
+            'authorize' => array('Controller')
         )
     );
+
+    public function isAuthorized($user) {
+        if (isset($user['role']) && $user['role'] == 'admin') {
+            return true;
+        }
+
+        return false;
+    }
 
     public function beforeFilter() {
         //Authコンポーネント
