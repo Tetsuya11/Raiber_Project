@@ -14,7 +14,7 @@ class ItemsController extends AppController{
 		public $paginate = array(
         'Item' =>array(
         'limit' => 5,
-        'order' => array('id' => 'asc')
+        'order' => array('id' => 'asc'),
         )
     );
 		public function beforefilter() {
@@ -25,15 +25,15 @@ class ItemsController extends AppController{
 
 		public function index($param1 = null) {
 			//認証情報取得
-			$this->set('Item',$this->paginate());
-			
+			$this->set('items',$this->paginate());
+
 			$user_data = $this->Auth->user('username');
 			if (is_null($user_data)) {
 				$user_data['User']['username'] = 'guest';
 			}
 			$this->set("user_data", $user_data);
 			
-	        $this->set('items', $this->Item->find('all'));
+	        //$this->set('items', $this->Item->find('all'));
 
 			$this->set('categories', $this->Category->find('all'));
 	        

@@ -2,11 +2,11 @@
 
 <h2><?php echo h($item['Item']['title']); ?></h2>
 
-<p><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">'?>
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image1_file_name'].'">'?></th>
 
-<p><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image2_file_name'].'">'?>
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image2_file_name'].'">'?></th>
 
-<p><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image3_file_name'].'">'?>
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/item_img/'.$item['Item']['image3_file_name'].'">'?></th>
 
 <p><?php echo h($item['Item']['discription']); ?></p>
 
@@ -35,11 +35,10 @@
 			<td><?php echo $post['created']; ?></td>
 		<div class="form-group">
 			<label class="control-label" for="email">
-			<!-- <td><?php //echo $this->Form->postlink('マンゴー', array(
-				//'controller'=>'Posts','action'=>'delete',$post['id'])); ?>
-			debug($post['id']);
-			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ
-			</td> -->
+			<td><?php echo $this->Form->postlink('マンゴー', array(
+				'controller'=>'Posts','action'=>'delete',$post['id'])); ?>
+		     
+			</td> 
 		</tr>
 	<?php endforeach; ?>
 </table>
