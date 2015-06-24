@@ -11,6 +11,22 @@ class UsersController extends AppController {
         $this->Auth->allow('login', 'add', 'logout', 'cancel_comp');
     }
 
+    public function isAuthorized($user) {
+        // 登録済みユーザーは投稿できる
+        if ($this->action === 'add') {
+            return true;
+        }
+
+        //投稿のオーナーは編集や削除ができる
+        if (in_array($this->action, array('edit', 'delete'))) {
+            $userId = (int) $this->request->params['pass'][0];
+            if ($this->User->isOwnedBy($userId, $user['id'])) {
+                return true;
+            }
+        }
+        return parent::isAuthorized($user);
+    }
+
     public function login() {
         if ($this->request->is('post')) {
             //Authコンポーネントのログイン処理を呼び出す
@@ -100,6 +116,7 @@ class UsersController extends AppController {
     }
 
     public function cancel($id = null) {
+
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -112,7 +129,6 @@ class UsersController extends AppController {
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'mypage'));
-
     }
 
     public function cancel_comp() {
