@@ -1,5 +1,5 @@
 <?php $this->assign('title','Raiber  マイページ Mypage'); ?>
-<h1 style="color:red;">
+<h1 style="color:blue;">
   <?php echo $user_data; ?> さんのマイページ My Page
 </h1>
 
@@ -16,14 +16,20 @@
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="negotiation">
-      <?php echo '交渉履歴'; ?>
+      <?php echo ''; ?>
     </div>
     <div role="tabpanel" class="tab-pane active" id="favorites">
-      <?php echo 'お気に入り'; ?>
+      <?php echo ''; ?>
     </div>
     <div role="tabpanel" class="tab-pane active" id="my item lists">
-      <?php echo ''; ?></div>
-    <div role="tabpanel" class="tab-pane active" id="trades">...</div>
+      <?php foreach($myitems as $item): ?>
+      <li><?php echo h($item['Item']['title']); ?></li>
+      <li><?php echo h($item['Item']['picture']); ?>
+    <?php endforeach; ?>
+      </div>
+    <div role="tabpanel" class="tab-pane active" id="trades">
+      <?php ?>
+    </div>
   </div>
 
 </div>
