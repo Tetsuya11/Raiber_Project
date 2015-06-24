@@ -47,7 +47,7 @@
       <p class="words">私たちにはお金だけではなく</p>
       <p class="words">もっと素晴らしいものが</p>
       <p class="words_border">相手がどうしても欲しいと思うものがたくさんある</p>
-      <p class="words_english">we have also other wonderful things</p>
+      <p class="words_english">we have wonderful things</p>
       <p class="words_english">other than money</p>
     </div>
 

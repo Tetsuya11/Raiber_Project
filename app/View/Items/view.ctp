@@ -20,7 +20,7 @@
 ?>
 <table>
 	<tr>
-		<th>ID</th>
+		<!-- <th>ID</th> -->
 		<th>Message</th>
 		<th>Username</th>
 		<th>Created</th>
@@ -30,7 +30,7 @@
 
 	<?php foreach($item['Post'] as $post) :?>
 		<tr>
-			<td><?php// echo $post['id']; ?></td>
+			<!-- <td><?php// echo $post['id']; ?></td> -->
 			<td><?php echo $post['message']; ?></td>
 			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>
@@ -38,8 +38,12 @@
 			<label class="control-label" for="email">
 			<td><?php echo $this->Form->postlink('マンゴー', array(
 				'controller'=>'Posts','action'=>'delete',$post['id'])); ?>
+
 		     
-			</td> 
+			</td> 			<!-- debug($post['id']);
+			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ -->
+			</td>
+
 		</tr>
 	<?php endforeach; ?>
 </table>
