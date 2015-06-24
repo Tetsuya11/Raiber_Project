@@ -5,7 +5,7 @@
 <h1>Edit Item</h1>
 <?php
 
-echo $this->Form->create('Item');
+echo $this->Form->create('Item',array('type'=>'file'));
 echo $this->Form->input('title');
 echo $this->Form->input('discription',array('row'=>'3'));
 echo $this->Form->input('image1',array('type'=>'file'));
