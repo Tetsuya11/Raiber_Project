@@ -27,7 +27,7 @@
 		<div style='float:right;'class="col-sm-10" >
 	<table>
 	<tr>
-		<th>ID</th>
+		<!-- <th>ID</th> -->
 		<th>Image</th>
 		<th>Title</th>
 		<th>Discription</th>
@@ -39,9 +39,9 @@
 <?php foreach ($items as $item): ?>
 
 	<tr id="item_<?php echo h($item['Item']['id']); ?>">
-		<td>
+		<!-- <td>
 			
-		</td>
+		</td> -->
 
 		<td>
 			<?php echo $this->Html->link('<img width=160px height=130px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image1_file_name']).'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?>
