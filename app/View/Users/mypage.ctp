@@ -1,6 +1,6 @@
 <?php $this->assign('title','Raiber  マイページ Mypage'); ?>
 <h1 style="color:blue;">
-  <?php echo $user_data; ?> さんのマイページ My Page
+  <?php print $user_data; ?> さんのマイページ My Page
 </h1>
 
 <div>
