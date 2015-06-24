@@ -3,23 +3,21 @@
 
 	
 		
-		<div class="row">
+		<div class="row ">
+			
   			<div style='float:left;'class="col-md-2">
-  				<table class="table-hover" >
-				<th>id</th>
-				<th>Name</th>
-			</tr>
-	
-	<?php foreach ($categories as $category) :?>
-	    <tr>
-	    	<td><?php echo $category['Category']['id']; ?></td>
+  				
+  				<ul class="nav nav-tabs nav-stacked">
+	<li><?php echo "Categories";?> </li>
+	<?php foreach ($categories as $category) :?> 
+			    
 
-	    	<td><?php echo $this->Html->link($category['Category']['name'],array('controller'=>'Categories','action'=>'view',$category['Category']['id'])); ?></td>
-	    </tr>
+	    	<li><?php echo $this->Html->link($category['Category']['name'],array('controller'=>'Categories','action'=>'view',$category['Category']['id'])); ?></li>
 	<?php endforeach; ?>
 	<?php unset($category); ?>
-			</table>
+			</ul>
 			</div>
+		
 
 		
 
@@ -37,7 +35,6 @@
 		<th>Created</th>
 		<th>Edit/Deleat</th>
 	</tr>
-       
 
 <?php foreach ($items as $item): ?>
 
@@ -82,14 +79,25 @@
 	</tr>
 <?php endforeach; ?>
 </table>
+
+
+
+  <?php echo $this->Html->link("<button class=\"btn btn-default\" type=\"submit\">Add Item</button>", array('action' => 'add'),array('escape'=>false)); ?>	
+
+<td>
+<nav>
+  <ul class="pagination">
+    <li href=<?php echo $this->Paginator->prev('', array('action' => '/'), null, array('class' => 'prev disabled')); ?> </li>
+
+    <li class="active"><?php echo $this->Paginator->numbers(array('separator' => '')) ?><span class="sr-only">(current)</span></li>
+    
+    <li href=<?php echo $this->Paginator->next('', array(), null, array('class' => 'next disabled')); ?><span aria-hidden="true"></span></li>
+  </ul>
+</nav>
+
+
+</td>
 </div>
-
-<button class="btn btn-default" type="submit">
-  <?php echo $this->Html->link("Add Item", array('action' => 'add')); ?>	
-</button>
-
-<p><?php //echo $this->Html->link("Categories",array('controller'=> 'Categories','action'=> 'index'));?></p>
-
 <script>
 $(function() {
 	$('a.delete').click(function(e) {
@@ -105,7 +113,7 @@ $(function() {
 </script>
 
 </table>
-
+</div>
     
    
 

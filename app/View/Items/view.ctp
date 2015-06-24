@@ -2,7 +2,13 @@
 
 <h2><?php echo h($item['Item']['title']); ?></h2>
 
-<p><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image1_file_name']).'">'?>
+
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image1_file_name']).'">'?></th>
+
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image2_file_name']).'">'?></th>
+
+<th><?php echo '<img width=300px height=270px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image3_file_name']).'">'?></th>
+
 <p><?php echo h($item['Item']['discription']); ?></p>
 
 <p>タイムライン</p>
@@ -14,7 +20,7 @@
 ?>
 <table>
 	<tr>
-		<th>ID</th>
+		<!-- <th>ID</th> -->
 		<th>Message</th>
 		<th>Username</th>
 		<th>Created</th>
@@ -24,17 +30,20 @@
 
 	<?php foreach($item['Post'] as $post) :?>
 		<tr>
-			<td><?php// echo $post['id']; ?></td>
+			<!-- <td><?php// echo $post['id']; ?></td> -->
 			<td><?php echo $post['message']; ?></td>
 			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>
 		<div class="form-group">
 			<label class="control-label" for="email">
-			<!-- <td><?php //echo $this->Form->postlink('マンゴー', array(
-				//'controller'=>'Posts','action'=>'delete',$post['id'])); ?>
-			debug($post['id']);
-			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ
-			</td> -->
+			<td><?php echo $this->Form->postlink('マンゴー', array(
+				'controller'=>'Posts','action'=>'delete',$post['id'])); ?>
+
+		     
+			</td> 			<!-- debug($post['id']);
+			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ -->
+			</td>
+
 		</tr>
 	<?php endforeach; ?>
 </table>
