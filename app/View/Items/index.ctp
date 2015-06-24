@@ -89,7 +89,7 @@
   <ul class="pagination">
     <li href=<?php echo $this->Paginator->prev('', array('action' => '/'), null, array('class' => 'prev disabled')); ?> </li>
 
-    <li class="active"><?php echo $this->Paginator->numbers(array('separator' => '')) ?><span class="sr-only">(current)</span></li>
+    <li class="active"><?php echo $this->Paginator->numbers(array('separator' => '')); ?><span class="sr-only">(current)</span></li>
     
     <li href=<?php echo $this->Paginator->next('', array(), null, array('class' => 'next disabled')); ?><span aria-hidden="true"></span></li>
   </ul>
