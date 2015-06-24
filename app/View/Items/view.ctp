@@ -38,6 +38,7 @@
 			<td><?php echo $post['created']; ?></td>
 		<div class="form-group">
 			<label class="control-label" for="email">
+			
 			<td><?php echo $this->Form->postlink('マンゴー', array(
 				'controller'=>'Posts','action'=>'delete',$post['id'],$item['Item']['id'])); ?>
 
