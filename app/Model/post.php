@@ -2,7 +2,6 @@
 class Post extends AppModel {
 
     public $belongsTo = array('User', 'Category');
-	public $hasMany = 'Comment';
     
 	public $validate = array(
         'title' => array(
