@@ -9,6 +9,10 @@ class CategoriesController extends AppController{
 
 		}
 
+		public function beforefilter() {
+			$this->Auth->allow('view');
+		}
+
 		public function view($id = null){
 			if(!$id){
 				throw new NotFoundException(__('Invalid category'));
