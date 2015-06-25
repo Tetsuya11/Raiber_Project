@@ -79,7 +79,6 @@ class AppController extends Controller {
         } else {
             $this->set('user_data', $this->Auth->user('username'));
         }
-        //送信する変数名とその内容を設定
        
     }
     
