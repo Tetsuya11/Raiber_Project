@@ -36,7 +36,11 @@ class Item extends AppModel {
                         )
                     )
                 )
-        );
+    );
+
+    public function isOwnedBy($item, $user) {
+        return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
+    }
 
 }
 

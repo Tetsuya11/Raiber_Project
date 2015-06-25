@@ -88,7 +88,7 @@ class UsersController extends AppController {
         }
         //出品アイテム取得
         $myitems = $this->Item->find('all', array(
-            'conditions' => array('user_id' => $this->Auth->user('id'))));
+            'conditions' => array('Item.user_id' => $this->Auth->user('id'))));
         $this->set('myitems', $myitems);
     }
 
