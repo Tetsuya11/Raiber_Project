@@ -12,11 +12,6 @@ class UsersController extends AppController {
     }
 
     public function isAuthorized($user) {
-        // 登録済みユーザーは投稿できる
-        if ($this->action === 'add') {
-            return true;
-        }
-
         //投稿のオーナーはプロフィールの編集や削除ができる
         if (in_array($this->action, array('edit', 'delete', 'mypage'))) {
             $userId = (int) $this->request->params['pass'][0];
@@ -105,7 +100,7 @@ class UsersController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'index'));
+                $this->redirect(array('action' => 'mypage'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
