@@ -110,8 +110,18 @@ class UsersController extends AppController {
         }
     }
 
-    public function cancel($id = null) {
-
+    public function delete($id = null) {
+        $user = $this->Auth->user();
+        $this->User->id = $user['id'];
+        if (!$this->User->exist()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->User->delete()) {
+            $this->Auth->logout();
+            $this->Session->setFlash('This user was deleted');
+            $this->redirect(array('action' => 'delete_comp'));
+        }
+        /*
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -124,9 +134,10 @@ class UsersController extends AppController {
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'mypage'));
+        */
     }
 
-    public function cancel_comp() {
+    public function delete_comp() {
         echo '退会が完了しました。';
     }
 }
