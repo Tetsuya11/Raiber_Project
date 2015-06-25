@@ -12,11 +12,28 @@ class ItemsController extends AppController{
 		
 
 		public $paginate = array(
-        'Item' =>array(
-        'limit' => 5,
-        'order' => array('id' => 'asc'),
-        )
-    );
+        	'Item' =>array(
+        	'limit' => 5,
+        	'order' => array('id' => 'asc'),
+        	)
+    	);
+
+		public function isAuthorized($user) {
+			//会員のみ投稿できる
+			if ($this->action === 'add') {
+				return true;
+			}
+
+			//投稿のオーナーのみ編集や削除ができる
+			if (in_array($this->action, array('edit', 'delete'))) {
+				$itemId = (int) $this->request->params['pass'][0];
+				if ($this->Item->isOwnedBy($itemId, $user['id'])) {
+					return true;
+				}
+			}
+			return parent::isAuthorized($user);
+		}
+
 		public function beforefilter() {
 			$this->Auth->allow('index', 'view');
 		}
