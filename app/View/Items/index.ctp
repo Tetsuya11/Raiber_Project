@@ -30,6 +30,7 @@
 		<!-- <th>ID</th> -->
 		<th>Image</th>
 		<th>Title</th>
+		<th>Name</th>
 		<th>Discription</th>
 		<th>Category</th>
 		<th>Created</th>
@@ -52,6 +53,10 @@
 			//debug($item);
 			echo $this->Html->link($item['Item']['title'],array('action' => 'view', $item['Item']['id']));
 			?>
+		</td>
+
+		<td>
+			<?php echo $item['User']['username'];?>
 		</td>
 		     
 		<td>

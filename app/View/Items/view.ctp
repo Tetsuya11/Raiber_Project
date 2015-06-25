@@ -43,9 +43,9 @@
 				'controller'=>'Posts','action'=>'delete',$post['id'],$item['Item']['id'])); ?>
 
 		     
-			</td> 			<!-- debug($post['id']);
-			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ -->
-			</td>
+			<!-- </td> 			debug($post['id']);
+			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ
+			</td> -->
 
 		</tr>
 	<?php endforeach; ?>
