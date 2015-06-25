@@ -22,6 +22,18 @@ class Item extends AppModel {
                     'styles' => array(
                             'thumb' => '85×85'   //リサイズしたいサイズを書く
                         )
+                    ),
+                'image2' => array(
+                    'quality' => 95,        //画質指定、デフォルトでは75
+                    'styles' => array(
+                            'thumb' => '85×85'   //リサイズしたいサイズを書く
+                        )
+                    ),
+                'image3' => array(
+                    'quality' => 95,        //画質指定、デフォルトでは75
+                    'styles' => array(
+                            'thumb' => '85×85'   //リサイズしたいサイズを書く
+                        )
                     )
                 )
     );

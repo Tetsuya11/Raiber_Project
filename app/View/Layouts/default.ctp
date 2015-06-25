@@ -61,18 +61,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<!-- ドロップダウンメニュー -->
 		<ul class="nav navbar-nav navbar-right" >
 			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">ようこそ <?php echo $user_data; ?> さん</h5></li>
+			        <li><?php echo $this->Html->link("<button class=\"btn btn-default\" type=\"submit\">Add Item</button>", 
+			        array('action' => 'add'),array('escape'=>false)); ?></li>
 			        <li class="dropdown">
 			        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
 			        		<img src="" style=""><?php echo 'Account'; ?><span class="caret" ></span>
 			        	</a>
 			        	<ul class="dropdown-menu" role="menu">
 				            <!-- <li><a href="">Login</a></li> -->
-				            <li><?php echo $this->Html->link("Login", array('controller' => 'users', 'action' => 'login')); ?></li>
+				            <li><?php echo $this->Html->link("Login", array('controller' => 'users','action' => 'login')); ?></li>
 				            <li><?php echo $this->Html->link("Logout", array('controller' => 'users','action' => 'logout')); ?></li>
-				            <li class="divider"></li>
 				            <li><?php echo $this->Html->link("新規登録", array('controller' => 'users','action' => 'add')); ?></li>
 				            <li><?php echo $this->Html->link("マイページ", array('controller' => 'users','action' => 'mypage')); ?></li>
-				            <li><?php echo $this->Html->link("退会", array('controller' => 'users','action' => 'cancel')); ?></li>
+				            <li></li>
 			          	</ul>
 			        </li>
 			    </ul>
