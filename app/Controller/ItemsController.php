@@ -78,6 +78,8 @@ class ItemsController extends AppController{
 	        if ($this->request->is('post')) {
 	            $this->Item->create();
 
+	            move_uploaded_file($_FILES['picture']['tmp_name'], '/user_img/'.$_FILES['picture']['name']);
+
 	            $this->request->data['Item']['user_id'] = $this->Auth->user('id');
 	            if ($this->Item->save($this->request->data)) {
 	                $this->Session->setFlash(__('Your post has been saved.'));

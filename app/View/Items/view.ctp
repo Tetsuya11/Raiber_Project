@@ -32,7 +32,7 @@
 	<?php foreach($item['Post'] as $post) :?>
 		<tr>
 			<!-- <td><?php// echo $post['id']; ?></td> -->
-			<td><?php echo '<img src= "/'.$post['User']['picture'].'">'?></td>
+			<td><?php echo '<img src= "/Raiber_Project/user_img/'.$post['User']['picture'].'">'?></td>
 			<td><?php echo $post['message']; ?></td>
 			<td><?php echo $post['User']['username']; ?></td>
 			<td><?php echo $post['created']; ?></td>
