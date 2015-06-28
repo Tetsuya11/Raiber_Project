@@ -85,7 +85,6 @@
             </div>
             <div class="text-mini" style="padding-top:30px;">
               <p>Negotiating about the terms</p>
-              <p>in item page</p>
             </div>
           </div>
           
@@ -100,8 +99,7 @@
               <p>交換成立</p>
             </div>
             <div class="text-mini" style="padding-top:30px;">
-              <p>Bartering at the place where</p>
-              <p>is decided by negotiation</p>
+              <p>Bartering</p>
             </div>
           </div>
 
