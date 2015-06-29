@@ -21,7 +21,7 @@
         <?php endforeach; ?>
       </div>
       <div class="tab-pane fade" id="tab2">
-        <p>コンテンツ2</p>
+        <p></p>
       </div>
       <div class="tab-pane fade" id="tab3">
         <p>コンテンツ3</p>
