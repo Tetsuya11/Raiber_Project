@@ -8,7 +8,7 @@
       <li class="active"><a href="#tab1" data-toggle="tab">Your items</a></li>
       <li><a href="#tab2" data-toggle="tab">Your favorites</a></li>
       <li><a href="#tab3" data-toggle="tab">Negotiations</a></li>
-      <li><a href="#tab4" data-toggle="tab">
+      <li><a href="#tab4" data-toggle="tab">Trades</a></li>
     </ul>
     <!-- / タブ-->
     <div id="myTabContent" class="tab-content">
@@ -22,6 +22,12 @@
       </div>
       <div class="tab-pane fade" id="tab2">
         <p>コンテンツ2</p>
+      </div>
+      <div class="tab-pane fade" id="tab3">
+        <p>コンテンツ3</p>
+      </div>
+      <div class="tab-pane fade" id="tab4">
+        <p>コンテンツ4</p>
       </div>
     </div>
   </div>
