@@ -44,8 +44,10 @@ class UsersController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
+
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
+                move_uploaded_file($this->data['User']['picture']['tmp_name'], '/Raiber_Project/user_img/'.$this->data['User']['picture']['name']);
                 $this->redirect(array('action' => 'thanks'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
