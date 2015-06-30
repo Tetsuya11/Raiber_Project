@@ -85,10 +85,6 @@
 <?php endforeach; ?>
 </table>
 
-
-
-  <?php echo $this->Html->link("<button class=\"btn btn-default\" type=\"submit\">Add Item</button>", array('action' => 'add'),array('escape'=>false)); ?>	
-
 <td>
 <nav>
   <ul class="pagination">
