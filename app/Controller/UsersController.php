@@ -44,8 +44,10 @@ class UsersController extends AppController {
     public function add() {
         if ($this->request->is('post')) {
             $this->User->create();
+
             if ($this->User->save($this->request->data)) {
                 $this->Session->setFlash(__('The user has been saved'));
+                move_uploaded_file($this->data['User']['picture']['tmp_name'], '/Raiber_Project/user_img/'.$this->data['User']['picture']['name']);
                 $this->redirect(array('action' => 'thanks'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
@@ -93,7 +95,6 @@ class UsersController extends AppController {
     }
 
     public function edit($id = null) {
-        $this->User->id = $id;
         if (!$this->User->exists()) {
             throw new NotFoundException(__('Invalid user'));
         }
@@ -110,8 +111,18 @@ class UsersController extends AppController {
         }
     }
 
-    public function cancel($id = null) {
-
+    public function delete($id = null) {
+        $user = $this->Auth->user();
+        $this->User->id = $user['id'];
+        if (!$this->User->exist()) {
+            throw new NotFoundException(__('Invalid user'));
+        }
+        if ($this->User->delete()) {
+            $this->Auth->logout();
+            $this->Session->setFlash('This user was deleted');
+            $this->redirect(array('action' => 'delete_comp'));
+        }
+        /*
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -124,9 +135,10 @@ class UsersController extends AppController {
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'mypage'));
+        */
     }
 
-    public function cancel_comp() {
+    public function delete_comp() {
         echo '退会が完了しました。';
     }
 }

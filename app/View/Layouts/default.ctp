@@ -60,14 +60,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		</div>
 		<!-- ドロップダウンメニュー -->
 		<ul class="nav navbar-nav navbar-right" >
+
 			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">ようこそ <?php echo $user_data; ?> さん</h5></li>
 			        
 			        <ul class="btn-group">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
+
+			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">Welcome to Raiber, <?php echo $user_data; ?> !</h5></li>
+			  
+			        <li class="dropdown">
+			        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
+
 			        		<img src="" style=""><?php echo 'Account'; ?><span class="caret" ></span>
 			        	</a>
 			        	<ul class="dropdown-menu" role="menu">
 				            <!-- <li><a href="">Login</a></li> -->
+
 				            <li><?php echo $this->Html->link("Login", array('controller' => 'users','action' => 'login')); ?></li>
 				            <li><?php echo $this->Html->link("Logout", array('controller' => 'users','action' => 'logout')); ?></li>
 				            <li><?php echo $this->Html->link("新規登録", array('controller' => 'users','action' => 'add')); ?></li>
@@ -84,6 +92,19 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				  
 
 				    
+=======
+				            <li><?php echo $this->Html->link("Login", array(
+				            'controller' => 'users','action' => 'login')); ?></li>
+				            <li><?php echo $this->Html->link("Logout", array(
+				            'controller' => 'users','action' => 'logout')); ?></li>
+				            <li><?php echo $this->Html->link("Sign up", array(
+				            'controller' => 'users','action' => 'add')); ?></li>
+				            <li><?php echo $this->Html->link("My page", array(
+				            'controller' => 'users','action' => 'mypage')); ?></li>
+			          	</ul>
+			        </li>
+			    </ul>
+>>>>>>> c55faab8696301c94c3378b517010a89aa400297
 	</nav>
 
 	<div id="container">
