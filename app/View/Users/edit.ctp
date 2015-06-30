@@ -6,4 +6,4 @@ echo $this->Form->input('email', array('type' => 'email'));
 echo $this->Form->input('password', array('type' => 'password'));
 echo $this->Form->input('picture', array('type' => 'file'));
 echo $this->Form->end('Updata', array('action' => 'mypage'));
-?>
+?>      
