@@ -61,10 +61,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<!-- ドロップダウンメニュー -->
 		<ul class="nav navbar-nav navbar-right" >
 
-			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">ようこそ <?php echo $user_data; ?> さん</h5></li>
-			        
-			        <ul class="btn-group">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
 
 			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">Welcome to Raiber, <?php echo $user_data; ?> !</h5></li>
 			  
@@ -76,24 +72,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			        	<ul class="dropdown-menu" role="menu">
 				            <!-- <li><a href="">Login</a></li> -->
 
-				            <li><?php echo $this->Html->link("Login", array('controller' => 'users','action' => 'login')); ?></li>
-				            <li><?php echo $this->Html->link("Logout", array('controller' => 'users','action' => 'logout')); ?></li>
-				            <li><?php echo $this->Html->link("新規登録", array('controller' => 'users','action' => 'add')); ?></li>
-				            <li><?php echo $this->Html->link("マイページ", array('controller' => 'users','action' => 'mypage')); ?></li>
-				        </ul>
-				    </ul>
-				        <ul class="btn-group">
-				        <ul class="nav nav-pills" role="menu">
-				    			<a href="#" class="active"><?php echo $this->Html->link("Add Item", array('controller' => 'items','action' => 'add')); ?></a>
-				   			</ul>
-				    	</ul>
-				 
-			    	
-				  
-
-				    
-=======
-				            <li><?php echo $this->Html->link("Login", array(
+				           <li><?php echo $this->Html->link("Login", array(
 				            'controller' => 'users','action' => 'login')); ?></li>
 				            <li><?php echo $this->Html->link("Logout", array(
 				            'controller' => 'users','action' => 'logout')); ?></li>
@@ -101,10 +80,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				            'controller' => 'users','action' => 'add')); ?></li>
 				            <li><?php echo $this->Html->link("My page", array(
 				            'controller' => 'users','action' => 'mypage')); ?></li>
-			          	</ul>
-			        </li>
-			    </ul>
->>>>>>> c55faab8696301c94c3378b517010a89aa400297
+				        </ul>
+				    </ul>
+				        <ul class="btn-group">
+				        <ul class="nav nav-pills" role="menu">
+				    			<a href="#" class="active"><?php echo $this->Html->link("Add Item", array('controller' => 'items','action' => 'add')); ?></a>
+				   			</ul>
+				    	</ul>
+
 	</nav>
 
 	<div id="container">
