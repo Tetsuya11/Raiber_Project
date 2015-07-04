@@ -81,12 +81,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				            <li><?php echo $this->Html->link("My page", array(
 				            'controller' => 'users','action' => 'mypage')); ?></li>
 				        </ul>
-				    </ul>
-				        <ul class="btn-group">
+				   
+				        </li>
 				        <ul class="nav nav-pills" role="menu">
 				    			<a href="#" class="active"><?php echo $this->Html->link("Add Item", array('controller' => 'items','action' => 'add')); ?></a>
-				   			</ul>
+				   			
 				    	</ul>
+				 
+	
 
 	</nav>
 
@@ -145,3 +147,4 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</div>
 </body>
 </html>
+
