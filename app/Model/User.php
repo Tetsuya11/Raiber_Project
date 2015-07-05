@@ -4,7 +4,21 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
-    public $hasMany = array('Item', 'Post', 'Category');
+    public $hasMany = array(
+        'Item',
+        'Post',
+        'Category'
+        );
+
+    public $actAs = (
+        'UploadPack.Upload' => (
+            'image' => (
+                'styles' => (
+                    'thumb' => '80×80'
+                    )
+                )
+            )
+        );
 
     public function isOwnedBy($post, $user) {
         return true;
@@ -95,8 +109,4 @@ class User extends AppModel {
         }
         return true;
     }
-
-    //論理削除
-    public $actsAs = array('SoftDelete');
-
 }

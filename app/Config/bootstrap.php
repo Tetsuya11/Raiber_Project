@@ -116,8 +116,7 @@ CakePlugin::load('BoostCake');
 
 CakePlugin::load('DebugKit');
 
-CakePlugin::load('upload_pack');
-
+CakePlugin::load('UploadPack');
 
 CakePlugin::loadAll();
 

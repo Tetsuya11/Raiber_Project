@@ -4,12 +4,15 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $uses = array('User', 'Item', 'Category');
+    public $uses = array('User', 'Item', 'Category', 'Attachment');
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'add', 'logout','delete_confirm', 'delete_comp');
+        $this->Auth->allow(
+            'login', 'add', 'logout','delete_confirm', 'delete_comp');
     }
+
+    public $helper = 'UploadPack.Upload';
 
     public function isAuthorized($user) {
         //投稿のオーナーはプロフィールの編集や削除ができる
@@ -44,41 +47,25 @@ class UsersController extends AppController {
 
     public function add() {
         if ($this->request->is('post')) {
-            $this->User->create();
-
-            if ($this->User->save($this->request->data)) {
+            $this->User->create($this->request->data);
+            if ($this->User->save()) {
                 $this->Session->setFlash(__('The user has been saved'));
-                move_uploaded_file($this->data['User']['picture']['tmp_name'], '/Raiber_Project/user_img/'.$this->data['User']['picture']['name']);
                 $this->redirect(array('action' => 'thanks'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
             }
         }
     }
-
-    /*// 送信処理
-    public function send() {
-        $email = new CakeEmail('raiber');
- 
-        $email->config(array(
-            'template' => 'users',
-            'viewVars' => array(
-                'name' => $this->request->data['User']['username'],
-                'email' => $this->request->data['User']['email'],
-                'password' => $this->request->data['User']['password'],
-            ),
-            'to' => 'to@example.com',
-            'subject' => 'ご登録ありがとうございます！ Thank you!',
-        ));
- 
-        if ($email->send()) {
-            $this->redirect('thanks');
-        } else {
-             // メール送信失敗の処理
-        }
-    }
-    */
+    
+    
     public function thanks() {
+        //ユーザー識別   
+        if (is_null($this->Auth->user('username'))) {
+            $this->set('user_data', 'ゲスト');
+        } else {
+            $this->set('user_data', $this->Auth->user('username'));
+        } 
+
         
     }
 
@@ -112,17 +99,7 @@ class UsersController extends AppController {
         }
     }
 
-    public function delete_confirm() {
-       //ユーザー識別   
-        if (is_null($this->Auth->user('username'))) {
-            $this->set('user_data', 'ゲスト');
-        } else {
-            $this->set('user_data', $this->Auth->user('username'));
-        } 
-
-    }
-
-    public function delete_comp() {
+    public function delete($id = null) {
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -131,9 +108,10 @@ class UsersController extends AppController {
         }
         if ($this->User->delete()) {
             $this->Session->setFlash(__('User deleted'));
-            $this->redirect(array('controller' => 'pages', 'action' => 'top'));
+            $this->redirect(array('action' => 'index'));
         }
         $this->Session->setFlash(__('User was not deleted'));
-        $this->redirect(array('action' => 'mypage'));
+        $this->redirect(array('controller' => 'pages', 'action' => 'top'));
     }
+
 }

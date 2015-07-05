@@ -8,9 +8,8 @@ class ItemsController extends AppController{
 								'Auth'
 							);
 
-		public $uses = array('Item','Post','User','Category');//ItemモデルとPostモデルを両方使えるようにする
+		public $uses = array('Item','Post','User','Category');
 		
-
 		public $paginate = array(
         	'Item' =>array(
         	'limit' => 5,

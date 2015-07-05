@@ -32,3 +32,17 @@
 	]
 }
 
+{
+    "name": "upload-example",
+    "repositories": [
+        {
+            "type": "pear",
+            "url": "http://pear.cakephp.org"
+        }
+    ],
+    "require": {
+        "pear-cakephp/cakephp": "2.4.*",
+        "josegonzalez/cakephp-upload": "1.0.0"
+    }
+}
+
