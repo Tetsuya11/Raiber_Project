@@ -8,12 +8,13 @@ class UsersController extends AppController {
     
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('login', 'add', 'logout', 'cancel_comp');
+        $this->Auth->allow('login', 'add', 'logout','delete_confirm', 'delete_comp');
     }
 
     public function isAuthorized($user) {
         //投稿のオーナーはプロフィールの編集や削除ができる
-        if (in_array($this->action, array('edit', 'delete', 'mypage'))) {
+        if (in_array($this->action, array(
+            'edit', 'delete_confirm', 'delete_comp', 'mypage'))) {
             $userId = (int) $this->request->params['pass'][0];
             if ($this->User->isOwnedBy($userId, $user['id'])) {
                 return true;
@@ -111,18 +112,17 @@ class UsersController extends AppController {
         }
     }
 
-    public function delete($id = null) {
-        $user = $this->Auth->user();
-        $this->User->id = $user['id'];
-        if (!$this->User->exist()) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        if ($this->User->delete()) {
-            $this->Auth->logout();
-            $this->Session->setFlash('This user was deleted');
-            $this->redirect(array('action' => 'delete_comp'));
-        }
-        /*
+    public function delete_confirm() {
+       //ユーザー識別   
+        if (is_null($this->Auth->user('username'))) {
+            $this->set('user_data', 'ゲスト');
+        } else {
+            $this->set('user_data', $this->Auth->user('username'));
+        } 
+
+    }
+
+    public function delete_comp() {
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -130,15 +130,10 @@ class UsersController extends AppController {
             throw new NotFoundException(__('Invalid user'));
         }
         if ($this->User->delete()) {
-            $this->Session->setFlash(__('User was canceled'));
-            $this->redirect(array('action' => 'cancel_comp'));
+            $this->Session->setFlash(__('User deleted'));
+            $this->redirect(array('controller' => 'pages', 'action' => 'top'));
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('action' => 'mypage'));
-        */
-    }
-
-    public function delete_comp() {
-        echo '退会が完了しました。';
     }
 }

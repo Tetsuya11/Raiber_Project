@@ -78,6 +78,7 @@ class User extends AppModel {
 
     }
 
+    //同一内容のチェック
     public function alphanumericsymbols($check){
         $value = array_values($check);
         $value = $value[0];
@@ -94,5 +95,8 @@ class User extends AppModel {
         }
         return true;
     }
+
+    //論理削除
+    public $actsAs = array('SoftDelete');
 
 }

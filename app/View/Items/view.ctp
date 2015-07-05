@@ -68,7 +68,7 @@
 			<!-- </td> 			debug($post['id']);
 			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ
 			</td> -->
-			<td><a id="bookmarkme" href="" rel="sidebar" title="bookmark this page"><img src="/img/btn.png" alt=""></a></td>
+			<td></td>
 		</tr>
 	<?php endforeach; ?>
 </table>
