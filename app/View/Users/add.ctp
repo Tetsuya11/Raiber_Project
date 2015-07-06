@@ -3,7 +3,7 @@
     <h2><?php echo __('Sign up'); ?></h2>
 
     <?php
-        
+        // フォームの開始を宣言する
         echo $this->Form->create("User", array(
          'type'=>'file', 'enctype' => 'multipart/form-data'));
         // ユーザ名
@@ -19,9 +19,10 @@
         echo $this->Form->input("password_confirm", array( 
             'maxlength' => '50', 'type' => 'password'));
         // 画像
+        echo $this->Form->input("image_file_name", array(
+            'type' => 'file'));
 
-        echo $this->Form->submit("Signup", array(
-            'name' => 'submit'));
+        echo $this->Form->submit("Signup");
 
         echo $this->Form->end();
         
