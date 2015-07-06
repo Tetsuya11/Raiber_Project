@@ -10,10 +10,11 @@ class User extends AppModel {
         'Category'
         );
 
-    public $actAs = (
-        'UploadPack.Upload' => (
-            'image' => (
-                'styles' => (
+    public $actsAs = array(
+        'Upload.Upload' => array(
+            'image' => array(
+                'quality' => 95,
+                'styles' => array(
                     'thumb' => '80×80'
                     )
                 )

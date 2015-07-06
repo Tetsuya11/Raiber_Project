@@ -4,7 +4,7 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $uses = array('User', 'Item', 'Category', 'Attachment');
+    var $uses = array('User', 'Item', 'Category');
     
     public function beforeFilter() {
         parent::beforeFilter();
@@ -12,7 +12,9 @@ class UsersController extends AppController {
             'login', 'add', 'logout','delete_confirm', 'delete_comp');
     }
 
-    public $helper = 'UploadPack.Upload';
+    var $helpers = array('Upload.Upload');
+
+    var $name = 'user';
 
     public function isAuthorized($user) {
         //投稿のオーナーはプロフィールの編集や削除ができる

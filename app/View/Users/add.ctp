@@ -5,22 +5,22 @@
     <?php
         
         echo $this->Form->create("User", array(
-         'type'=>'file'));
+         'type'=>'file', 'enctype' => 'multipart/form-data'));
         // ユーザ名
-        echo $this->Form->input("User.username", array( 
+        echo $this->Form->input("username", array( 
             'maxlength' => '255', 'type' => 'username'));
         //メールアドレス
-        echo $this->Form->input("User.email", array(
+        echo $this->Form->input("email", array(
             'maxlength' => '255', 'type' => 'email'));
         // パスワード
-        echo $this->Form->input("User.password", array( 
+        echo $this->Form->input("password", array( 
             'maxlength' => '50', 'type' => 'password'));
         // パスワード確認用
-        echo $this->Form->input("User.password_confirm", array( 
+        echo $this->Form->input("password_confirm", array( 
             'maxlength' => '50', 'type' => 'password'));
         // 画像
-        echo $this->Upload->uploadImage($user, 'User.image', array(
-            'style' => 'thumb'));
+        echo $this->Form->input($user, 'image_file_name', array(
+            'style' => 'thumb', 'type' => 'file'));
 
         echo $this->Form->submit("Signup", array(
             'name' => 'submit'));

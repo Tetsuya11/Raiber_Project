@@ -82,11 +82,12 @@ class AppController extends Controller {
        
     }
     
-    public $helpers = array(
+    var $helpers = array(
         'Session',
         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
         'Form' => array('className' => 'BoostCake.BoostCakeForm'),
-        'Paginator' => array('className' => 'BoostCake.BoostCakePaginator')
+        'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
+        'Upload.Upload'
     );
 
     
