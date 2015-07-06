@@ -24,11 +24,9 @@
       </div>
       <div class="tab-pane fade" id="tab2">
         <p>
-          <?php foreach($myFav as $fav): ?>
-            <li><?php echo h($fav['Item']['title']); ?></li>
-
+          <li><?php echo $this->Html->link('退会処理へ', array(
+          'action' => 'delete_confirm')); ?></li>
         </p>
-      <?php endforeach; ?>
       </div>
       <div class="tab-pane fade" id="tab3">
         <p>コンテンツ3</p>

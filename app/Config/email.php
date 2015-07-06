@@ -91,17 +91,24 @@ class EmailConfig {
 		//'headerCharset' => 'utf-8',
 	);
 
-	public $raiber = array(
-		'transport' => 'Mail',
-		'from' => array('brn0612@gmail.com' => 'Raiber')
-	);
-
-	public $gmail = array(
-		'transport' => 'Smtp',
-		'host' => 'ssl://smtp.gmail.com',
-		'port' => 465,
-		'username' => 'my@gmail.com',
-		'password' => 'secret'
-	);
+	// Gmailを例
+    public $gmail = array(
+        'host' => 'ssl://smtp.gmail.com',
+        'port' => 465,
+        'email' => 'username'
+        'email' => 'username@gmail.com', // ユーザ名
+        'password' => 'password',           // パスワード
+        'transport' => 'Smtp',
+        'tls' => true
+    );
+    // さくらインターネットを例
+    public $sakura = array(
+        'host' => '______.sakura.ne.jp',  // 初期ドメイン
+        'port' => 587,
+        'username' => 'username@______.sakura.ne.jp', // ユーザ名：
+        // 初期ドメインのメールアドレスもしくは、独自ドメインのメールアドレス
+        'password' => 'password',           // メールパスワード
+        'transport' => 'Smtp',
+    );
 
 }

@@ -72,14 +72,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			        	<ul class="dropdown-menu" role="menu">
 				            <!-- <li><a href="">Login</a></li> -->
 
-				           <li><?php echo $this->Html->link("Login", array(
-				            'controller' => 'users','action' => 'login')); ?></li>
+				            <li><?php echo $this->Html->link("Login", array(
+				            'controller' => 'users','action' => 'login')); ?>
+				        	</li>
 				            <li><?php echo $this->Html->link("Logout", array(
-				            'controller' => 'users','action' => 'logout')); ?></li>
+				            'controller' => 'users','action' => 'logout')); ?>
+				        	</li>
 				            <li><?php echo $this->Html->link("Sign up", array(
-				            'controller' => 'users','action' => 'add')); ?></li>
+				            'controller' => 'users','action' => 'add')); ?>
+				        	</li>
 				            <li><?php echo $this->Html->link("My page", array(
-				            'controller' => 'users','action' => 'mypage')); ?></li>
+				            'controller' => 'users','action' => 'mypage')); ?>
+				        	</li>
 				        </ul>
 				   
 				        </li>

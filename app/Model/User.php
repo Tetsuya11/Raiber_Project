@@ -4,7 +4,21 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
-    public $hasMany = array('Item', 'Post', 'Category');
+    public $hasMany = array(
+        'Item',
+        'Post',
+        'Category'
+        );
+
+    public $actAs = (
+        'UploadPack.Upload' => (
+            'image' => (
+                'styles' => (
+                    'thumb' => '80×80'
+                    )
+                )
+            )
+        );
 
     public function isOwnedBy($post, $user) {
         return true;
@@ -78,6 +92,7 @@ class User extends AppModel {
 
     }
 
+    //同一内容のチェック
     public function alphanumericsymbols($check){
         $value = array_values($check);
         $value = $value[0];
@@ -94,5 +109,4 @@ class User extends AppModel {
         }
         return true;
     }
-
 }
