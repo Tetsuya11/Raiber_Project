@@ -12,8 +12,6 @@ class UsersController extends AppController {
             'login', 'add', 'logout','delete_confirm', 'delete_comp');
     }
 
-    var $helpers = array('Upload.Upload');
-
     var $name = 'user';
 
     public function isAuthorized($user) {

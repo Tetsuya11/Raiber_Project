@@ -14,7 +14,7 @@ class Item extends AppModel {
             'rule' => 'notEmpty'
         )
     );
-
+    /*
     public $actsAs = array(
             'UploadPack.Upload' => array(    //ここでは、"_file_name"を除いたカラム名を書く
                 'image1' => array(
@@ -37,7 +37,7 @@ class Item extends AppModel {
                     )
                 )
     );
-
+    */
     public function isOwnedBy($item, $user) {
         return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }

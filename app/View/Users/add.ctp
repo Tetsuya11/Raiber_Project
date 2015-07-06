@@ -19,8 +19,6 @@
         echo $this->Form->input("password_confirm", array( 
             'maxlength' => '50', 'type' => 'password'));
         // 画像
-        echo $this->Form->input($user, 'image_file_name', array(
-            'style' => 'thumb', 'type' => 'file'));
 
         echo $this->Form->submit("Signup", array(
             'name' => 'submit'));

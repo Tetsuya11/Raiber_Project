@@ -2,7 +2,7 @@
 
 class ItemsController extends AppController{
 
-		public $helpers = array('Html','Form','Session','UploadPack.Upload');
+		public $helpers = array('Html','Form','Session');//アップロードパック一旦解除しました
 		public $components = array(
 								'Session',
 								'Auth'

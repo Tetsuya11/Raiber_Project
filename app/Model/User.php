@@ -10,17 +10,6 @@ class User extends AppModel {
         'Category'
         );
 
-    public $actsAs = array(
-        'Upload.Upload' => array(
-            'image' => array(
-                'quality' => 95,
-                'styles' => array(
-                    'thumb' => '80×80'
-                    )
-                )
-            )
-        );
-
     public function isOwnedBy($post, $user) {
         return true;
         //return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;

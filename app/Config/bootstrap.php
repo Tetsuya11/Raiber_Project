@@ -116,15 +116,6 @@ CakePlugin::load("BoostCake");
 
 CakePlugin::load("DebugKit");
 
-CakePlugin::load("Upload");
+//CakePlugin::load("Upload");
 
-CakePlugin::loadAll();
-
-/*
-//認証用プラグイン
-CakePlugin::load('Opauth', array('routes' => true, 'bootstrap' => true));
-//Facebook認証のためのストラテジー
-Configure::write('Opauth.Strategy.Facebook', array('app_id' => 'YOUR FACEBOOK APP ID', 'app_secret' => 'YOUR FACEBOOK APP SECRET'));
-//認証用のurl指定
-Configure::write('Opauth.path', '/skills/auth/');
-*/
+//CakePlugin::loadAll();
