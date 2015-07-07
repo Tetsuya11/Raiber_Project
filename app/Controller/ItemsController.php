@@ -144,6 +144,8 @@ class ItemsController extends AppController{
 			$this->set('user_data', $user_data);
 		}
 
+	}
+
 		   public function delete($id){
 		   	if($this->request->is('get')){
 		   		throw new MethodNotAllowedException();
