@@ -47,7 +47,7 @@ class UsersController extends AppController {
         //もしデータがpost送信されたら
         if ($this->request->is('post')) {
             //入力内容の保存処理
-            $file = $this->request->data['User']['image_file_name'];
+            $data = $this->request->data['User']['image_file_name'];
             $this->User->create($this->request->data);
             if ($this->User->save($this->request->data)) {
                 move_uploaded_file($data['User']['image_file_name']['tmp_name'], WWW_ROOT . 'user_img' . '');//移動先の書き方がよくわからない
