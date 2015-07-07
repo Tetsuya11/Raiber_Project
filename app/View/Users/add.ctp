@@ -1,18 +1,4 @@
 <div class="users form">
-<<<<<<< HEAD
-<?php echo $this->Form->create('User', array('type'=>'file', 'enctype' => 'multipart/form-data')); ?>
-    <fieldset>
-        <legend><?php echo __('Sign Up'); ?></legend>
-        <?php 
-        echo $this->Form->input('username');
-        echo $this->Form->input('email', array(
-        	'maxlength' => '255', 'type' => 'email'));
-        echo $this->Form->input('password', array(
-        	'maxlength' => '255', 'type' => 'password'));
-        echo $this->Form->input('password_confirm', array(
-        	'maxlength' => '255', 'type' => 'password'));
-        echo $this->Form->file('user_img', array(
-=======
 
     <h2><?php echo __('Sign up'); ?></h2>
 
@@ -34,7 +20,6 @@
             'maxlength' => '50', 'type' => 'password'));
         // 画像
         echo $this->Form->input("image_file_name", array(
->>>>>>> 1f660515247c53120f20d2aa1042cbaa19b5bede
             'type' => 'file'));
 
         echo $this->Form->submit("Signup");
