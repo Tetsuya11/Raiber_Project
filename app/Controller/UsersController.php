@@ -49,10 +49,10 @@ class UsersController extends AppController {
             $this->User->create($this->request->data);
 
             // user/addでアップロードしたファイルを$imageの中に格納
-            $image = $this->request->data['Item']['user_img'];
+            $image = $this->request->data['User']['user_img'];
 
             // usersデータベースのカラムpictureにファイル名を送る
-            $this->request->data['Item']['picture'] = $image['name'];
+            $this->request->data['User']['picture'] = $image['name'];
 
             if ($this->User->save($this->request->data)) {
 
