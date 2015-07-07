@@ -130,8 +130,7 @@ class ItemsController extends AppController{
 	    			return $this->redirect(array('action' => 'index'));
 	    		}
 	    		$this->Session->setFlash(__('Unable to updata your post.'));
-	    	}
-
+	    
 	    	if(!$this->request->data) {
 	    		$this->request->data = $item;
 	    	}

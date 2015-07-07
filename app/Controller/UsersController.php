@@ -4,6 +4,8 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
+    var $name = 'User';
+
     var $uses = array('User', 'Item', 'Category');
     
     public function beforeFilter() {
@@ -11,8 +13,6 @@ class UsersController extends AppController {
         $this->Auth->allow(
             'login', 'add', 'logout','delete_confirm', 'delete_comp');
     }
-
-    var $name = 'user';
 
     public function isAuthorized($user) {
         //投稿のオーナーはプロフィールの編集や削除ができる
@@ -46,14 +46,30 @@ class UsersController extends AppController {
     }
 
     public function add() {
+        //もしデータがpost送信されたら
         if ($this->request->is('post')) {
+<<<<<<< HEAD
+            $this->User->create();
+            //$this->request->data['User']['picture'] = $this->request->data['User']['user_img']['users'];
+
+            $path = IMAGES;
+
+=======
+            //入力内容の保存処理
+            $data = $this->request->data['User']['image_file_name'];
             $this->User->create($this->request->data);
-            if ($this->User->save()) {
+>>>>>>> 1f660515247c53120f20d2aa1042cbaa19b5bede
+            if ($this->User->save($this->request->data)) {
+                move_uploaded_file($data['User']['image_file_name'], );//移動先の書き方がよくわからない
                 $this->Session->setFlash(__('The user has been saved'));
+<<<<<<< HEAD
+                move_uploaded_file($this->request->data['User']['user_img']['tmp_name'], $path . DS . $this->request->data['User']['user_img']['name']);
+=======
+>>>>>>> 1f660515247c53120f20d2aa1042cbaa19b5bede
                 $this->redirect(array('action' => 'thanks'));
             } else {
                 $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-            }
+                }
         }
     }
     

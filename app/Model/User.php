@@ -4,6 +4,9 @@ App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
 
+    //アップロードされたユーザー画像の保存先
+    var $name = 'User';
+
     public $hasMany = array(
         'Item',
         'Post',

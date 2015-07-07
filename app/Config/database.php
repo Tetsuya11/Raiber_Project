@@ -71,9 +71,9 @@ class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
-		'host' => '127.0.0.1',
+		'host' => 'localhost',
 		'login' => 'root',
-		'password' => 'baron0522',
+		'password' => 'wa6140226',
 		'database' => 'Raiber_Project',
 		'prefix' => '',
 		'encoding' => 'utf8',
