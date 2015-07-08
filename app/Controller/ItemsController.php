@@ -95,7 +95,26 @@ class ItemsController extends AppController{
 	            $this->Item->create();
 
 	            $this->request->data['Item']['user_id'] = $this->Auth->user('id');
+
+	            // items/addでアップロードしたファイルを$imageの中に格納
+			    $image1 = $this->request->data['Item']['imageimage1'];
+			    $image2 = $this->request->data['Item']['imageimage2'];
+			    $image3 = $this->request->data['Item']['imageimage3'];
+
+			    // itemsデータベースのカラムimageにファイル名を送る
+			    $this->request->data['Item']['image1'] = $image1['name'];
+			    $this->request->data['Item']['image2'] = $image2['name'];
+			    $this->request->data['Item']['image3'] = $image3['name'];
+
 	            if ($this->Item->save($this->request->data)) {
+
+		            // 画像保存先のパス  webroot/img/item_img/イメージファイル名
+	    			$path = IMAGES.DS.'item_img' ;
+
+			      	move_uploaded_file($image1['tmp_name'], $path . DS . $image1['name']);
+			      	move_uploaded_file($image2['tmp_name'], $path . DS . $image2['name']);
+			      	move_uploaded_file($image3['tmp_name'], $path . DS . $image3['name']);
+
 	                $this->Session->setFlash(__('Your post has been saved.'));
 	                return $this->redirect(array('action' => 'index'));
 	            }
