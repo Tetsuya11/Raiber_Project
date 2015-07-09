@@ -39,7 +39,7 @@
 						<tr id="item_<?php echo h($item['Item']['id']); ?>">
 						
 								<td>
-									<?php echo $this->Html->link('<img width=160px height=130px src="/Raiber_Project/upload/items/'.$item['Item']['id'].'/'.str_replace('.','_thumb.',$item['Item']['image1_file_name']).'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?>
+									<?php echo $this->Html->link('<img width=100px height=100px src= "/Raiber_Project/img/item_img/'.$item['Item']['image1'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?></td>
 								</td>
 
 							<td class="th">
