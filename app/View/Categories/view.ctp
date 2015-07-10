@@ -6,7 +6,7 @@
 <?php foreach ($category['Item'] as $item): ?>
 	
 
-	<?php echo $this->Html->link('<img width=160px height=130px src="/Raiber_Project/item_img/'.$item['image1_file_name'].'">
+	<?php echo $this->Html->link('<img width=160px height=130px src="/Raiber_Project/img/item_img/'.$item['image1'].'">
 	',array('controller'=>'Items','action'=>'view',$item['id']),array('escape'=>false));?>
 
 
