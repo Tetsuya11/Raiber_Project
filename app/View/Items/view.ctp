@@ -49,6 +49,8 @@
 		<th>Favorite</th>
 	</tr>
 
+	<?php debug($item); ?>
+
 
 	<?php foreach($item['Post'] as $post) :?>
 		<tr>
