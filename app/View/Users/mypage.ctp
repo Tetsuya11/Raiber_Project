@@ -7,8 +7,8 @@
 <div>
     <!--タブ-->
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab1" data-toggle="tab">Your items</a></li>
-      <li><a href="#tab2" data-toggle="tab">Your favorites</a></li>
+      <li class="active"><a href="#tab1" data-toggle="tab">Items</a></li>
+      <li><a href="#tab2" data-toggle="tab">Profile</a></li>
       <li><a href="#tab3" data-toggle="tab">Negotiations</a></li>
       <li><a href="#tab4" data-toggle="tab">Trades</a></li>
     </ul>
@@ -22,14 +22,22 @@
         </p>
         <?php endforeach; ?>
       </div>
-      <div class="tab-pane fade" id="tab2">
+      <div class="tab-pane fade in active" id="tab2">
         <p>
-          <li><?php echo $this->Html->link('退会処理へ', array(
-          'action' => 'delete_confirm')); ?></li>
+          <li>
+            <?php 
+            echo $this->Html->link('Quit', array(
+              'action' => 'delete', $user['User']['id']));
+            ?>
+            <?php 
+            echo $this->Html->link('Edit', array(
+              'action' => 'edit', $user['User']['id']));
+            ?>
+          </li>
         </p>
       </div>
       <div class="tab-pane fade" id="tab3">
-        <p>コンテンツ3</p>
+        <p></p>
       </div>
       <div class="tab-pane fade" id="tab4">
         <p>コンテンツ4</p>

@@ -58,42 +58,45 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		<div class="navbar-header">
 			<a class="navbar-brand" href="/Raiber_Project/pages/top">Raiber</a>
 		</div>
-		<!-- ドロップダウンメニュー -->
-		<ul class="nav navbar-nav navbar-right" >
-
-
-			        <li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">Welcome to Raiber, <?php echo $user_data; ?> !</h5></li>
-			  
-			        <li class="dropdown">
-			        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
-
-			        		<img src="" style=""><?php echo 'Account'; ?><span class="caret" ></span>
-			        	</a>
-			        	<ul class="dropdown-menu" role="menu">
-				            <!-- <li><a href="">Login</a></li> -->
-
-				            <li><?php echo $this->Html->link("Login", array(
-				            'controller' => 'users','action' => 'login')); ?>
-				        	</li>
-				            <li><?php echo $this->Html->link("Logout", array(
-				            'controller' => 'users','action' => 'logout')); ?>
-				        	</li>
-				            <li><?php echo $this->Html->link("Sign up", array(
-				            'controller' => 'users','action' => 'add')); ?>
-				        	</li>
-				            <li><?php echo $this->Html->link("My page", array(
-				            'controller' => 'users','action' => 'mypage')); ?>
-				        	</li>
-				        </ul>
-				   
+			<ul class="nav navbar-nav navbar-right" >
+				<li style="margin-top: 6px;"><h5 style="height: 30px; width: 200px; ">Welcome to Raiber, <?php echo $user_data; ?> !</h5></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+					role="button" aria-expanded="false" id="searchbtn">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
+			        	<img src="" style=""><?php echo 'Item'; ?><span class="caret" ></span>
+			        </a>	
+					 <ul class="dropdown-menu" role="menu">
+				        <!-- <li><a href="">Login</a></li> -->
+				        <li><?php echo $this->Html->link("Add", array(
+				        'controller' => 'items','action' => 'add')); ?>
 				        </li>
-				        <ul class="nav nav-pills" role="menu">
-				    			<a href="#" class="active"><?php echo $this->Html->link("Add Item", array('controller' => 'items','action' => 'add')); ?></a>
-				   			
-				    	</ul>
-				 
-	
-
+				        <li><?php echo $this->Html->link("My Items", array(
+				        'controller' => 'users','action' => 'mypage')); ?>
+				        </li>
+				    </ul>
+				</li>
+			    <li class="dropdown">
+			        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="searchbtn">
+			        	<img src="" style=""><?php echo 'Account'; ?><span class="caret" ></span>
+			        </a>
+			        <ul class="dropdown-menu" role="menu">
+				        <!-- <li><a href="">Login</a></li> -->
+				        <li><?php echo $this->Html->link("Login", array(
+				        'controller' => 'users','action' => 'login')); ?>
+				        </li>
+				        <li><?php echo $this->Html->link("Logout", array(
+				        'controller' => 'users','action' => 'logout')); ?>
+				        </li>
+				        <li><?php echo $this->Html->link("Sign up", array(
+				        'controller' => 'users','action' => 'add')); ?>
+				        </li>
+				        <li><?php echo $this->Html->link("My page", array(
+				        'controller' => 'users','action' => 'mypage')); ?>
+				        </li>
+				    </ul>
+				</li>
+			</ul>
 	</nav>
 
 	<div id="container">
@@ -113,19 +116,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		
 		<div id="content">
-
-
-
-		<div id="content" style="padding-top:50px">
-
-
-			<?php echo $this->Session->flash(); ?>
-
-			<?php echo $this->fetch('content'); ?>
-		</div>
-
-
-
+			<div id="content" style="padding-top:50px">
+				<?php echo $this->Session->flash(); ?>
+				<?php echo $this->fetch('content'); ?>
+			</div>
 		<div id="footer">
 			<?php echo $this->Html->link(
 					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
@@ -137,18 +131,18 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 				<?php echo $cakeVersion; ?>
 			</p>
 		</div>
-		<?php echo $this->element('sql_dump'); ?>
-	<script>
-	$(function() {
-		setTimeout(function() {
-			$('#flashMessage').fadeOut("slow");
-		}, 1500);
-	});
-
-	</script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-	</div>
+			<?php echo $this->element('sql_dump'); ?>
+		<script>
+			$(function() {
+				setTimeout(function() {
+					$('#flashMessage').fadeOut("slow");
+				}, 1500);
+			});
+		</script>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/
+    	jquery.min.js">
+    	</script>
+    	<script src="js/bootstrap.min.js"></script>
+    </div>
 </body>
 </html>
-
