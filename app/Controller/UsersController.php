@@ -110,7 +110,16 @@ class UsersController extends AppController {
         }
     }
 
-    public function delete($id = null) {
+    public function delete($id = null) { // id=nullでパラメーターが備わった状態
+        $this->User->bindModel(
+            array(
+            'hasMany' => array(
+                'Item' => array('dependent' => true),
+                'Post' => array('dependent' => true)
+            )),
+            false
+        );
+
         $this->request->onlyAllow('post');
 
         $this->User->id = $id;
@@ -123,6 +132,10 @@ class UsersController extends AppController {
         }
         $this->Session->setFlash(__('User was not deleted'));
         $this->redirect(array('controller' => 'pages', 'action' => 'top'));
+    }
+
+    public function delete_comp() {
+            
     }
 
 }
