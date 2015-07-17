@@ -35,6 +35,8 @@ class AppController extends Controller {
     Public $components = array(
         'DebugKit.Toolbar',
         'Session',
+        // Authコンポーネントはユーザー名とパスワードの認証をするだけ
+        // 細かい処理（authorとadminの区別など）はisAuthorizedに記載？
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'items',
@@ -62,24 +64,34 @@ class AppController extends Controller {
         )
     );
 
+    // adminとauthorで権限を区別
+    // しかしこのままではauthorの権限が非ログインユーザーと変わらない
+    // 各コントローラーにisAuthorizedメソッドを追加して、ログインユーザーに権限を委譲する
+    // 
     public function isAuthorized($user) {
         if (isset($user['role']) && $user['role'] == 'admin') {
+            // adminユーザーならtrueが返ってくる
             return true;
         }
-
+        // authorユーザーならfalseが返ってくる
         return false;
     }
 
+    // befireFilter関数でいくつかのアクションにログインなしでアクセスできるようにする
+    // しかし各コントローラーでしていしたほうが良さげなのでコメントアウトします
+    
     public function beforeFilter() {
-        //Authコンポーネント
-        $this->Auth->allow('login', 'logout', 'add', 'cancel_comp', 'thanks');
+        //Authコンポーネント呼び出し
+        $this->Auth->allow('login', 'logout');
+        //全体に共通する変数
         //ログインユーザーとゲストの区別
         if (is_null($this->Auth->user('username'))) {
             $this->set('user_data', 'Guest');
         } else {
             $this->set('user_data', $this->Auth->user('username'));
         }
-       
+        //これはいらない模様
+        //$this->set('user_data', $user_data);
     }
     
     var $helpers = array(

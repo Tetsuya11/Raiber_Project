@@ -13,11 +13,16 @@ class User extends AppModel {
         'Category'
         );
 
+    //ユーザーは自分のユーザーデータだけ扱うことができる
+    //ログインしている時点で他のユーザーのユーザーデータにアクセスできないはずなので、意味ない？
+    /*
     public function isOwnedBy($post, $user) {
         return true;
         //return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }
+    */
 
+    //各入力内容のバリデーション
     public $validate = array(
         'username' => array(
             'rule1' => array(
@@ -72,6 +77,14 @@ class User extends AppModel {
                  'message' => '画像サイズは1000KB以下でお願いします',
               )
         ),
+        //ユーザーの権限がadminかauthorか区別する
+        'role' => array(
+            'valid' => array(
+                'rule' => array('inList', array('admin', 'author')),
+                'message' => 'Please enter a valid role',
+                'allowEmpty' => false
+            )
+        )
     );
 
     public function passwordConfirm($check){
@@ -85,7 +98,7 @@ class User extends AppModel {
 
     }
 
-    //同一内容のチェック
+    //同一パスワードのチェック
     public function alphanumericsymbols($check){
         $value = array_values($check);
         $value = $value[0];

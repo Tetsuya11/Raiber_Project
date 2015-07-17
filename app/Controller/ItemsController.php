@@ -2,7 +2,7 @@
 
 class ItemsController extends AppController{
 
-		public $helpers = array('Html','Form','Session');//アップロードパック一旦解除しました
+		public $helpers = array('Html','Form','Session');
 		public $components = array(
 								'Session',
 								'Auth'
@@ -10,6 +10,7 @@ class ItemsController extends AppController{
 
 		public $uses = array('Item','Post','User','Category');
 		
+		//ページネーション
 		public $paginate = array(
         	'Item' =>array(
         	'limit' => 5,
@@ -17,13 +18,14 @@ class ItemsController extends AppController{
         	)
     	);
 
+		//ユーザーも権限を指定する認証機構
 		public function isAuthorized($user) {
-			//会員のみ投稿できる
+			//ログインユーザーは処理に商品を追加できる
 			if ($this->action === 'add') {
 				return true;
 			}
 
-			//投稿のオーナーのみ編集や削除ができる
+			//ユーザー本人のみ自身の商品情報の編集・削除ができる
 			if (in_array($this->action, array('edit', 'delete'))) {
 				$itemId = (int) $this->request->params['pass'][0];
 				if ($this->Item->isOwnedBy($itemId, $user['id'])) {
@@ -33,6 +35,7 @@ class ItemsController extends AppController{
 			return parent::isAuthorized($user);
 		}
 
+		//会員（ログインユーザー）以外も商品一覧と商品詳細を閲覧できる
 		public function beforefilter() {
 			$this->Auth->allow('index', 'view');
 		}
@@ -40,15 +43,15 @@ class ItemsController extends AppController{
 
 
 		public function index($param1 = null) {
-			//認証情報取得
+			// ページネーション
 			$this->set('items',$this->paginate());
 
-			$user_data = $this->Auth->user('username');
-			if (is_null($user_data)) {
-				$user_data['User']['username'] = 'guest';
-			}
-			$this->set("user_data", $user_data);
-			
+			// ログインユーザーの名前を呼び出す
+			if (is_null($this->Auth->user('username'))) {
+            	$this->set('user_data', 'Guest');
+        	} else {
+            	$this->set('user_data', $this->Auth->user('username'));
+        	}
 	        //$this->set('items', $this->Item->find('all'));
 
 			$this->set('categories', $this->Category->find('all'));
@@ -80,13 +83,12 @@ class ItemsController extends AppController{
 		            } else {$this->Session->setFlash(__('投稿できませんでした Unable to add your post.')); }
 		            
 		    }
-		    //認証情報取得
-		    $user_data = $this->Auth->user('username');
-			if (is_null($user_data)) {
-				$user_data['User']['username'] = 'guest';
-			}
-			$this->set('user_data', $user_data);
-
+		    // ログインユーザーの名前を呼び出す
+			if (is_null($this->Auth->user('username'))) {
+            	$this->set('user_data', 'Guest');
+        	} else {
+            	$this->set('user_data', $this->Auth->user('username'));
+        	}
 	    }
 
 
@@ -122,13 +124,12 @@ class ItemsController extends AppController{
 	        }
 	        $this->set('categories', $this->Category->find('list'));//listでCategoryからidとnameを取ることができる
 
-	        //認証情報取得
-		    $user_data = $this->Auth->user('username');
-			if (is_null($user_data)) {
-				$user_data['User']['username'] = 'guest';
-			}
-			$this->set('user_data', $user_data);
-
+	        // ログインユーザーの名前を呼び出す
+			if (is_null($this->Auth->user('username'))) {
+            	$this->set('user_data', 'Guest');
+        	} else {
+            	$this->set('user_data', $this->Auth->user('username'));
+        	}
 	    }
 
 	    public function edit($id = null){
@@ -155,12 +156,12 @@ class ItemsController extends AppController{
 	    	}
 	        $this->set('categories', $this->Category->find('list'));//listでCategoryからidとnameを取ることができる
 	    	
-	    	//認証情報取得
-		    $user_data = $this->Auth->user('username');
-			if (is_null($user_data)) {
-				$user_data['User']['username'] = 'guest';
-			}
-			$this->set('user_data', $user_data);
+	        // ログインユーザーの名前を呼び出す
+			if (is_null($this->Auth->user('username'))) {
+            	$this->set('user_data', 'Guest');
+        	} else {
+            	$this->set('user_data', $this->Auth->user('username'));
+        	}
 		}
 
 	}

@@ -21,6 +21,10 @@
         // 画像
         echo $this->Form->file("user_img", array(
             'type' => 'file'));
+        // ユーザー権限識別
+        echo $this->Form->input('role', array(
+            'options' => array('admin' => 'Admin', 'author' => 'Author')
+        ));
 
         echo $this->Form->submit("Signup");
 

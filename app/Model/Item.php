@@ -15,7 +15,7 @@ class Item extends AppModel {
         )
     );
     
-    
+    //ユーザーが自分の商品のみ扱えるということを伝える。（どこに？）
     public function isOwnedBy($item, $user) {
         return $this->field('id', array('id' => $post, 'user_id' => $user)) !== false;
     }
