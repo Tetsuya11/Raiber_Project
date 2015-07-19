@@ -40,13 +40,6 @@ App::uses('AppController', 'Controller','Session');
 		    }
 		    $this->Session->setFlash(__('投稿できませんでした Unable to add your post.'));
 		}
-
-
-		if ($this->Auth->loggedIn()) {
-			$this->Session->setFlash(_('ログインしています。'));
-		} else {
-			$this->Session->setFlash(_('ログインしていません。'));
-			}
 	}
 
 	public function delete($id,$item_id) {
@@ -55,10 +48,16 @@ App::uses('AppController', 'Controller','Session');
 	    }
 			 		
 		//下はモデル（データベースから削除する為の記述）
-			if($this->Post->delete($id)) {
-			 	$this->Session->setFlash('Deleted!');
-			}
-			return $this->redirect(array('controller'=>'items','action' => 'view', $item_id));
+		if($this->Post->delete($id)) {
+			$this->Session->setFlash(
+					__('The post has been deleted.', h($id))
+				);
+		} else {
+			$this->Session->setFlash(
+					__('The post could not be deleted.', h($id))
+				);
+		}
+		return $this->redirect(array('controller'=>'items','action' => 'view', $item_id));
 	}
 
 
@@ -94,12 +93,6 @@ App::uses('AppController', 'Controller','Session');
 
     	return parent::isAuthorized($user);
 	}
-
-	//会員（ログインユーザー）以外も投稿内容を閲覧できる
-		public function beforefilter() {
-			$this->Auth->allow('index', 'fileup');
-		}
-
 }
 
 

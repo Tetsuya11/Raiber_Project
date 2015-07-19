@@ -1,99 +1,63 @@
 <?php $this->assign('title','Raiber  商品一覧 Item lists'); ?>
-<img class="bg" src="/Raiber_Project/item_img/20150502_6865.jpg" alt="" />
-<div id="container">
- <link rel="stylesheet" href="mycss.css">
+<!-- <div class="container"> -->
+<div class="row">
 
-<div class = "words">
-<p class="words_english">Item</p>
-
-		<div class="row ">
-			
-  			<div style='float:left;'class="col-md-2">
-  				
-  				<ul class="nav nav-tabs nav-stacked">
-	<li class="th"> <?php echo "Categories";?> </li>
-			<?php foreach ($categories as $category) :?> 
-			    
-
-	    	<li class="th"><?php echo $this->Html->link($category['Category']['name'],array('controller'=>'Categories','action'=>'view',$category['Category']['id'])); ?></li>
-	<?php endforeach; ?>
-	<?php unset($category); ?>
-			</ul>
-			</div>
-
-		<div style='float:right;'class="col-sm-10">
-				<table>
-						<tr>
-							<!-- <th>ID</th> -->
-							<th class= "th">Image</th>
-							<th class="th">Title</th>
-							<th class="th">Name</th>
-							<th class="th">Discription</th>
-							<th class="th">Category</th>
-							<th class="th">Created</th>
-							<th class="th">Edit/Deleat</th>
-						</tr>
-
-					<?php foreach ($items as $item): ?>
-
-						<tr id="item_<?php echo h($item['Item']['id']); ?>">
-						
-								<td>
-									<?php echo $this->Html->link('<img width=100px height=100px src= "/Raiber_Project/img/item_img/'.$item['Item']['image1'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?></td>
-								</td>
-
-							<td class="th">
-								<?php
-							//debug($item);
-								echo $this->Html->link($item['Item']['title'],array('action' => 'view', $item['Item']['id']));
-								?>
-							</td>
-
-							<td>
-								<?php echo $item['User']['username'];?>
-							</td>
-							     
-							<td>
-								<?php echo $item['Item']['discription'];?>
-							</td>
-
-							<td>
-								<?php echo $item['Category']['name'];?>
-							</td>
-
-							<td>
-								<?php echo $item['Item']['created']; ?>
-							</td>
-
-							<td>
-									<div >
-										<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
-									</div>
-								
-									<div>
-										<?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?>
-									</div>
-							</td>
-
-						</tr>
-				
+	<!-- カテゴリー一覧 -->
+	<div class="sidebar col-md-2">
+		<ul>
+			<li>Categories</li>
+			<?php foreach ($categories as $category): ?>
+			<li class="text-muted"><?php echo $this->Html->link($category['Category']['name'],array('action'=>'category_index',$category['Category']['id'])); ?></li>
 			<?php endforeach; ?>
-			</table>
-
-			<td>
-				<nav>
-				  <ul class="pagination">
-				    <li href=<?php echo $this->Paginator->prev('', array('action' => '/'), null, array('class' => 'prev disabled')); ?> </li>
-
-				    <li class="active"><?php echo $this->Paginator->numbers(array('separator' => '')); ?><span class="sr-only">(current)</span></li>
-				    
-				    <li href=<?php echo $this->Paginator->next('', array(), null, array('class' => 'next disabled')); ?><span aria-hidden="true"></span></li>
-				  </ul>
-				</nav>
+			<?php unset($category); ?>
+		</ul>
+	</div>
 
 
-			</td>
-		</div>
+
+
+	<!-- 商品一覧 -->
+	<div class="main col-md-10">
+		<div class="main-top">商品一覧 Item list</div>
+
+
+	<?php foreach ($items as $item): ?>
+		<ul>
+			<li id="item_<?php echo h($item['Item']['id']); ?>" class="main-item" style="height:80%;">
+				<ul>
+					<div class="row">
+						<!-- 商品画像 -->
+						<div class="col-md-4 col-sm-4 col-xs-12">
+							<li style="float:left;"><?php echo $this->Html->link('<img width=350px height=300px src= "/Raiber_Project/img/item_img/'.$item['Item']['image1'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?></li>
+						</div>
+						<!-- 商品情報 -->
+						<div class="col-md-8 col-sm-8 col-xs-12">
+								<li class="item-category" style="float:left;"><?php echo h($item['Category']['name']); ?></li>
+								<li class="item-title"><?php echo $this->Html->link(h($item['Item']['title']),array('controller'=>'items', 'action'=>'view', $item['Item']['id'])); ?></li>	
+								<li class="item-name glyphicon glyphicon-user"><?php echo h($item['User']['username']); ?></li>
+								<li class="item-created"><?php echo h($item['Item']['created']); ?></li>
+								<li class="item-edit"><?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?></li>
+								<li class="item-delete"><?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?></li>
+								<li class="item-description"><?php echo h($item['Item']['discription']); ?></li>
+						</div>
+					</div>
+				</ul>
+			</li>
+		</ul>
+	<?php endforeach; ?>
+	<?php unset($item); ?>
+
+	<!-- ページネーション -->
+	<ul class="pagination">
+		<li><?php echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled')); ?></li>
+		<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+		<li><?php echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled')); ?></li>
+	</ul>
+
+	</div>
+</div>
+
+	<!-- 削除ボタンをふわっと -->
 	<script>
 		$(function() {
 			$('a.delete').click(function(e) {
@@ -107,9 +71,3 @@
 		});
 
 	</script>
-</div>
-
-
-   
-
-

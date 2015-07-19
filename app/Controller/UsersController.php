@@ -4,12 +4,13 @@ App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
+    public $helpers = array('Html', 'Form', 'Session');
     var $uses = array('User', 'Item', 'Category');//使用するモデル
     
     // 非会員がログインと新規登録、ログアウトのページにアクセスできる許可を与える
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('logout');
+        $this->Auth->allow('add', 'logout', 'thanks');
     }
     
     public function isAuthorized($user) {
@@ -40,6 +41,7 @@ class UsersController extends AppController {
     }
 
     public function logout() {
+        $this->Session->setFlash(__('ログアウト完了 Completed logout'));
         $this->redirect($this->Auth->logout());
     }
 
@@ -56,8 +58,8 @@ class UsersController extends AppController {
 
             if ($this->User->save($this->request->data)) {
 
-                // 画像保存先のパス  webroot/img/イメージファイル名
-                $path = IMAGES;
+                // 画像保存先のパス  webroot/img/user_img/イメージファイル名
+                $path = IMAGES.DS.'user_img';
                 
                 move_uploaded_file($image['tmp_name'], $path . DS . $image['name']);
                 $this->Session->setFlash(__('The user has been saved'));
@@ -70,24 +72,10 @@ class UsersController extends AppController {
     
     
     public function thanks() {
-        //ユーザー識別   
-        if (is_null($this->Auth->user('username'))) {
-            $this->set('user_data', 'Guest');
-        } else {
-            $this->set('user_data', $this->Auth->user('username'));
-        } 
-
         
     }
 
     public function mypage($id = null) {
-        //ユーザー識別   
-        if (is_null($this->Auth->user('username'))) {
-            $this->set('user_data', 'Guest');
-        } else {
-            $this->set('user_data', $this->Auth->user('username'));
-        }
-        
         //出品アイテム取得
         $myitems = $this->Item->find('all', array(
             'conditions' => array('Item.user_id' => $this->Auth->user('id'))));

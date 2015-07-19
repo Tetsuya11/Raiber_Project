@@ -1,5 +1,5 @@
 <h1>categories</h1>
-<p><?php //echo $this->Html->link('Add Category', array('action' => 'add')); ?></p>
+
 <table>
     <tr>
         <th>Id</th>

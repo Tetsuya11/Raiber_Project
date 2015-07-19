@@ -47,6 +47,12 @@ class PagesController extends AppController {
 	public function beforeFilter() {
         parent::beforeFilter();
         $this->Auth->allow('top', 'display');
+
+        $user_data = $this->Auth->user('username');
+        if (is_null($user_data)) {
+            $user_data = 'Guest';
+        }
+        $this->set('user_data', $user_data);
     }
 	
 	public function display() {

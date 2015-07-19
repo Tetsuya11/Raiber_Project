@@ -1,16 +1,18 @@
 <p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
 
+<!-- 商品タイトル -->
 <h2><?php echo h($item['Item']['title']); ?></h2>
-
-
+<!-- 商品画像 -->
 <?php echo '<img width=400px height=370px src= "/Raiber_Project/img/item_img/'.$item['Item']['image1'].'">' ?>
 <?php echo '<img width=400px height=370px src= "/Raiber_Project/img/item_img/'.$item['Item']['image2'].'">' ?>
 <?php echo '<img width=400px height=370px src= "/Raiber_Project/img/item_img/'.$item['Item']['image3'].'">' ?>
+<!-- カテゴリー -->
+<p><?php echo $item['Category']['name']; ?>
+<!-- 商品説明 -->
+<p style="margin:40px 0px;"><?php echo h($item['Item']['discription']); ?></p>
 
 
-<p><?php echo h($item['Item']['discription']); ?></p>
-
-<p>タイムライン</p>
+<!-- メッセージ入力 -->
 <?php
 	echo $this->Form->create('Post');
 	echo $this->Form->input('message');
@@ -18,6 +20,8 @@
 	//掲示板の送信ボタンを押したときに自分のページに帰ってくるようにする
 	echo $this->Form->end('投稿');
 ?>
+
+<!-- 交渉掲示板 -->
 <table>
 	<tr>
 		<!-- <th>ID</th> -->
@@ -29,19 +33,18 @@
 		<th>Favorite</th>
 	</tr>
 
-	<?php debug($item); ?>
-
 
 	<?php foreach($item['Post'] as $post) :?>
 		<tr>
 			<!-- <td><?php// echo $post['id']; ?></td> -->
-			<td><?php echo '<img width=100px height=100px src= "/Raiber_Project/img/'.$post['User']['picture'].'">'?></td>
-			<td><?php echo $post['message']; ?></td>
-			<td><?php echo $post['User']['username']; ?></td>
-			<td><?php echo $post['created']; ?></td>
+			<td><?php echo '<img width=100px height=100px src= "/Raiber_Project/img/'.h($post['User']['picture']).'">'?></td>
+			<td><?php echo h($post['message']); ?></td>
+			<td><?php echo h($post['User']['username']); ?></td>
+			<td><?php echo h($post['created']); ?></td>
+
 		<div class="form-group">
 			<label class="control-label" for="email">
-			
+				
 			<td><?php echo $this->Form->postlink('マンゴー', array(
 				'controller'=>'Posts','action'=>'delete',$post['id'],$item['Item']['id'])); ?></td>
 

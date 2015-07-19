@@ -44,8 +44,8 @@ class AppController extends Controller {
             ),
             'logoutRedirect' => array(
                 'controller' => 'pages',
-                'action' => 'display',
-                'home'
+                'action' => 'top',
+                // 'home'
             ),
             'authenticate' => array(
                 'Form' => array(
@@ -82,16 +82,14 @@ class AppController extends Controller {
     
     public function beforeFilter() {
         //Authコンポーネント呼び出し
-        $this->Auth->allow('login', 'logout');
+        $this->Auth->allow('index', 'view', 'login', 'logout');
         //全体に共通する変数
         //ログインユーザーとゲストの区別
-        if (is_null($this->Auth->user('username'))) {
-            $this->set('user_data', 'Guest');
-        } else {
-            $this->set('user_data', $this->Auth->user('username'));
+        $user_data = $this->Auth->user('username');     //$user_dataにログインユーザーの名前を代入
+        if (is_null($user_data)) {
+            $user_data = 'Guest';                       //nullだったらGuestを表示
         }
-        //これはいらない模様
-        //$this->set('user_data', $user_data);
+        $this->set('user_data', $user_data);            //nullじゃない場合user_dataに代入
     }
     
     var $helpers = array(

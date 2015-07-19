@@ -37,14 +37,20 @@ class ItemsController extends AppController{
 
 		//会員（ログインユーザー）以外も商品一覧と商品詳細を閲覧できる
 		public function beforefilter() {
-			$this->Auth->allow('index', 'view');
+			$this->Auth->allow('index', 'view', 'category_index');
+
+			$user_data = $this->Auth->user('username');
+	        if (is_null($user_data)) {
+	            $user_data = 'Guest';
+	        }
+	        $this->set('user_data', $user_data);
 		}
 
 
 
 		public function index($param1 = null) {
-			// ページネーション
-			$this->set('items',$this->paginate());
+
+			$this->set('items', $this->Item->find('all'));
 
 			// ログインユーザーの名前を呼び出す
 			if (is_null($this->Auth->user('username'))) {
@@ -55,6 +61,9 @@ class ItemsController extends AppController{
 	        //$this->set('items', $this->Item->find('all'));
 
 			$this->set('categories', $this->Category->find('all'));
+
+			// ページネーション
+			$this->set('items',$this->paginate('Item'));
 	        
 	    }
 
@@ -83,12 +92,6 @@ class ItemsController extends AppController{
 		            } else {$this->Session->setFlash(__('投稿できませんでした Unable to add your post.')); }
 		            
 		    }
-		    // ログインユーザーの名前を呼び出す
-			if (is_null($this->Auth->user('username'))) {
-            	$this->set('user_data', 'Guest');
-        	} else {
-            	$this->set('user_data', $this->Auth->user('username'));
-        	}
 	    }
 
 
@@ -122,14 +125,9 @@ class ItemsController extends AppController{
 	            }
 	            $this->Session->setFlash(__('Unable to add your post.'));
 	        }
+
 	        $this->set('categories', $this->Category->find('list'));//listでCategoryからidとnameを取ることができる
 
-	        // ログインユーザーの名前を呼び出す
-			if (is_null($this->Auth->user('username'))) {
-            	$this->set('user_data', 'Guest');
-        	} else {
-            	$this->set('user_data', $this->Auth->user('username'));
-        	}
 	    }
 
 	    public function edit($id = null){
@@ -145,7 +143,26 @@ class ItemsController extends AppController{
 
 	    	if($this->request->is(array('post', 'put'))) {
 	    		$this->Item->id = $id;
+
+	    		// items/addでアップロードしたファイルを$imageの中に格納
+			    $image1 = $this->request->data['Item']['imageimage1'];
+			    $image2 = $this->request->data['Item']['imageimage2'];
+			    $image3 = $this->request->data['Item']['imageimage3'];
+
+			    // itemsデータベースのカラムimageにファイル名を送る
+			    $this->request->data['Item']['image1'] = $image1['name'];
+			    $this->request->data['Item']['image2'] = $image2['name'];
+			    $this->request->data['Item']['image3'] = $image3['name'];
+
 	    		if($this->Item->save($this->request->data)) {
+
+	    			// 画像保存先のパス  webroot/img/item_img/イメージファイル名
+	    			$path = IMAGES.DS.'item_img';
+
+			      	move_uploaded_file($image1['tmp_name'], $path . DS . $image1['name']);
+			      	move_uploaded_file($image2['tmp_name'], $path . DS . $image2['name']);
+			      	move_uploaded_file($image3['tmp_name'], $path . DS . $image3['name']);
+
 	    			$this->Session->setFlash(__('Your post has been updated.'));
 	    			return $this->redirect(array('action' => 'index'));
 	    		}
@@ -154,19 +171,14 @@ class ItemsController extends AppController{
 	    	if(!$this->request->data) {
 	    		$this->request->data = $item;
 	    	}
+
 	        $this->set('categories', $this->Category->find('list'));//listでCategoryからidとnameを取ることができる
 	    	
-	        // ログインユーザーの名前を呼び出す
-			if (is_null($this->Auth->user('username'))) {
-            	$this->set('user_data', 'Guest');
-        	} else {
-            	$this->set('user_data', $this->Auth->user('username'));
-        	}
 		}
 
 	}
 
-		   public function delete($id){
+		 public function delete($id){
 		   	if($this->request->is('get')){
 		   		throw new MethodNotAllowedException();
 		   	}
@@ -181,10 +193,15 @@ class ItemsController extends AppController{
 		   		}
 		   	}
 		   	$this->redirect(array('action'=>'index'));
-	   }
+	   	}
 
 
 
+	   	public function category_index($category_id = null) {
+    	$items = $this->Item->find('all', array('conditions' => array('category_id' => $category_id)));
+
+    	$this->set(compact('items'));
+    }
 
 
 
