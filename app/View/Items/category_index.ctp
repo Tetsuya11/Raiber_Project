@@ -5,7 +5,7 @@
 		<!-- <th>ID</th> -->
 		<th>Image</th>
 		<th>Title</th>
-		<th>Name</th>
+		<th>User</th>
 		<th>Discription</th>
 		<th>Category</th>
 		<th>Created</th>
