@@ -238,6 +238,17 @@ img.bg {
 	padding: 30px;
 }
 
+
+/*items/add*/
+.item_add {
+	background-color: #33ccff;
+	border: solid 1px black;
+	padding: 30px;
+	margin: 0px 50px 25px;
+}
+
+
+
 /** containers **/
 div.form,
 div.index,

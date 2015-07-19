@@ -2,7 +2,10 @@
 
 <p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
 
-<h1><?php echo $user_data; ?> さんがAdd Itemや！</h1>
+<h1 style="margin:30px 0px 45px 50px;"><?php echo $user_data; ?> さんがAdd Itemや！</h1>
+
+
+<div class="item_add">
 <?php
 	echo $this->Form->create('Item',array('type'=>'file','enctype'=>'multipart/form-data'));//Itemモデル使用
 	echo $this->Form->input('title');
@@ -13,3 +16,4 @@
 	echo $this->Form->input('category_id',array('options'=>$categories));
 	echo $this->Form->end('Save Post');
 ?>
+</div>
