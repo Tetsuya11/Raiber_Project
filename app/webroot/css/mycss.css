@@ -35,88 +35,82 @@ ul {
 
 
 /*pages/top*/
-.carousel-inner img{
-    width: 100%;
-}
-
-.words{
+.one {
 	text-align: center;
-}
-
-p.words{
-	font-size: 20px;
-	margin-bottom: 40px; 
+	margin: 23% 0%;
 	font-family: "cursive",cursive;
 }
 
-p.words_border{
-	font-size: 20px;
-	margin-bottom: 100px; 
-	font-family: "cursive",cursive;
+.one p {
+	padding: 3% 0%;
 }
 
-p.words_english{
-	font-size: 30px;
-	margin-top: 60px; 
-	font-family: "cursive",cursive;
+.ja {
+	margin-bottom: 10%;
+	font-size: 2em;
 }
 
-.howto{
-	font-size: 30px;
-	text-align: center;
-	margin-top:100px;
+.en {
+	font-size: 2.5em;
 }
 
-.what{
-	font-size: 50px;
-	color:#ffff00;
+.two {
+	background-color: #00a1e9;
+	height: 58em;
+	text-align:center;
+	padding-top: 7%;
 }
 
-.site-logo {
-	 /* サイズ指定 */        
-	 width:170px;
-	 height:170px;
-	 /* 背景色 */
-	 background-color:#66ffff;
-	 /* 角を丸くする */
-	 border-radius: 50%;
-	 border-radius: 50%;
-	 border-radius: 50%;
-	 margin-left: 90px
+.two-top {
+	margin-bottom: 8%;
 }
 
-.site-info {
-	padding-bottom:68px;  /*真ん中にまで文字を下ろす*/ 
+.two-top h2 {
+	font-size: 3.5em;
+	margin-bottom: 3%;
+	color: #ffff00;
 }
 
-.site-logo h1{
-	font-size:33px;
-	 text-align: center; /* 中央寄せ */
-	 color: #fff; /* 文字を白色に */
-	 /*margin-bottom: 20px; /* h1とpの余白をリセット */
-	 background-color: rgba(0,0,255,0);
+.two-top p {
+	font-size: 2.4em;
+	color: #ffffff;
 }
 
-.text{
-	font-size: 18px;
-	color: #dedede;
+.two-content h3 {
+	font-size: 2em;
+	color: #ffffff;
+	opacity: 0.93;
+	margin-left: 28%;
+	padding-top: 19%;
+	/* サイズ指定 */        
+	width:6.3em;
+	height:6.3em;
+	/* 背景色 */
+	background-color: rgb(55,255,255);
+	/* 角を丸くする */
+	border-radius: 50%;
+	border-radius: 50%;
+	border-radius: 50%;
 }
 
-.text-mini{
-	font-size: 20px;
-	color: #dedede;
+.two-content p {
+	font-size: 1.3em;
+	margin-left: auto;
 }
 
-.button{
+.content-ja {
+	margin-top: 10%;
+}
+
+
+
+.button {
 	font-size: 60px;
 	color: #fff;
 	background-color: #ff840a;
+	margin: 30% 40% 20%;
 	padding: 10px 50px;
-	/*margin-left: 420px;
-	margin-top: 250px;*/
-	-moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+	border-radius: 7%;
 }
 
 .button:hover{

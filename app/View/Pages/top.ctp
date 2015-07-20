@@ -42,39 +42,63 @@
     </div>
 
 
-<div style="color:red; font-size:50px;">Topページ</div>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
-<p>こんにちは！</p>
+<div class="one">
+  <div class="ja">
+    <p>私たちにはお金だけではなく</p>
+    <p>もっと素晴らしいものが</p>
+    <p>相手がどうしても欲しいと思うものがたくさんある</p>
+  </div>
+  <div class="en">
+    <p>We have many wonderful things</p>
+    <p>other than money</p>
+  </div>
+</div>
+
+
+
+<div class="two">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="two-top">
+        <h2>Raiberとは？</h2>
+        <p>What's Raiber?</p>
+      </div>
+
+      <div class="two-content">
+        <div class="step-one col-md-4 col-sm-4 col-sm-12">
+          <h3>STEP1</h3>
+            <div class="content-ja">
+              <p>掲示板に交換に出す物を投稿</p>
+              <p>または欲しい物を探します</p>
+            </div>
+            <div class="content-en">
+              <p>Posting or Searching</p>
+            </div>
+        </div>
+        <div class="step-two col-md-4 col-sm-4 col-sm-12">
+          <h3>STEP2</h3>
+            <div class="content-ja">
+              <p>商品ページで交換条件を</p>
+              <p>交渉します</p>
+            </div>
+            <div class="content-en">
+              <p>Negotiating</p>
+            </div>
+        </div>
+        <div class="step-three col-md-4 col-sm-4 col-sm-12">
+          <h3>STEP3</h3>
+            <div class="content-ja">
+              <p>交渉で決めた場所で</p>
+              <p>交換成立</p>
+            </div>
+            <div class="content-en">
+              <p>Bartering</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <form action="/Raiber_Project/items/index/">
   <button class="button">ENTER</button>
