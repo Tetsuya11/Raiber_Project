@@ -79,9 +79,10 @@ ul {
 .two-content h3 {
 	font-size: 2em;
 	color: #ffffff;
+	line-height: 6.3em;
 	opacity: 0.93;
 	margin-left: 28%;
-	padding-top: 19%;
+	/*padding-top: 19%;*/
 	/* サイズ指定 */        
 	width:6.3em;
 	height:6.3em;
