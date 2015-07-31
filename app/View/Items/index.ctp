@@ -12,10 +12,6 @@
 				<?php unset($category); ?>
 			</ul>
 		</div>
-
-
-
-
 		<!-- 商品一覧 -->
 		<div class="main col-md-10">
 			<div class="main-top">商品一覧 Item list</div>
@@ -53,7 +49,6 @@
 			<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
 			<li><?php echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled')); ?></li>
 		</ul>
-
 		</div>
 	</div>
 </div>
