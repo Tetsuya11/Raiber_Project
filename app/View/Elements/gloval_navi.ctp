@@ -14,7 +14,7 @@
       </button>
         
       <!--ロゴ表示の指定-->
-      <a class="navbar-brand" href="/Raiber/tops/index"></a>
+      <a class="navbar-brand" href="/Raiber_Project/tops/index"></a>
     </div>
       
       <!--スマホ用の画面幅が小さいときの表示を非表示にする-->

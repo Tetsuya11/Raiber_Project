@@ -17,7 +17,7 @@ class ItemsController extends AppController {
 
 	public function index() {
 		// Itemにページネーションを使用
-		$this->paginate = array('Item' => array('limit' => 2, 'conditions' => array('status' => '0')));
+		$this->paginate = array('Item' => array('limit' => 5, 'conditions' => array('status' => '0')));
 		$items = $this->Paginator->paginate('Item');
 		$this->set('items', $this->paginate());
 		// カテゴリー
