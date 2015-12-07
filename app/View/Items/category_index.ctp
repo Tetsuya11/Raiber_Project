@@ -1,49 +1,71 @@
-<p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
-
-<table>
-	<tr>
-		<!-- <th>ID</th> -->
-		<th>Image</th>
-		<th>Title</th>
-		<th>User</th>
-		<th>Discription</th>
-		<th>Category</th>
-		<th>Created</th>
-		<th>Edit/Deleat</th>
-	</tr>
-
-<?php foreach ($items as $item): ?>
-
-	<tr id="item_<?php echo h($item['Item']['id']); ?>">
-		<!-- <td><?php// echo $item['Item']['id']; ?></td> -->
-		<td><?php echo $this->Html->link('<img width=100px height=100px src= "/Raiber/img/item_img/'.h($item['Item']['image1']).'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?></td>
-		<td><?php echo $this->Html->link(h($item['Item']['title']),array('controller'=>'items', 'action'=>'view', $item['Item']['id'])); ?></td>
-		<td><?php echo h($item['User']['username']); ?></td>
-		<td><?php echo h($item['Item']['discription']); ?></td>
-		<td><?php echo h($item['Category']['name']); ?></td>
-		<td><?php echo h($item['Item']['created']); ?></td>
-		<td>
-			<?php echo $this->Html->link('Edit',array('action'=>'edit',$item['Item']['id']));?>
-			<?php echo $this->Html->link('Delete','#',array('class'=>'delete','data-post-id'=>$item['Item']['id'])); ?>
-		</td>
-
-	</tr>
-<?php endforeach; ?>
-<?php unset($item); ?>
-</table>
+<div id="wrapper">
+    <!-- サイドバー -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">カテゴリー  Category</li>
+            <li><?php echo $this->Html->link('全て  All', array('action' => 'index')); ?></li>
+            <?php foreach ($categories as $category): ?>
+            <li><?php echo $this->Html->link(h($category['Category']['name']), array('action' => 'category_index', $category['Category']['id'])); ?></a></li>
+        	<?php endforeach; ?>
+        </ul>
+    </div>
 
 
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                	<!-- サイドメニュー表示ボタン -->
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">カテゴリー表示</a>
 
+                    <h2><?php echo $pages_category['Category']['name']; ?></h2>
+                    <div class="item-list">
+	                    <div class="table-responsive">
+							<table class="table table-hover">
+							<?php foreach ($items as $item): ?>
+							<tr>
+								<div class="col-xs-12">
+									<td><?php echo $this->Html->link('<img src= "/Raiber/img/item_img/'.$item['Item']['image1'].'">',array('action' => 'view', $item['Item']['id']),array('escape'=>false)); ?></td>
+									<td>
+								</div>
+								<div class="item-detail col-xs-12">
+									<ul>
+										<li class="item-category"><?php echo h($item['Category']['name']); ?></li>
+										<li class="item-title"><?php echo $this->Html->link(h($item['Item']['title']), array('controller'=>'items', 'action'=>'view', $item['Item']['id'], $userSession['id'])); ?></li>
+										<li class="item-user"><span class="glyphicon glyphicon-user"></span><?php echo h($item['User']['username']); ?>
+										<span class="item-created"><?php echo h($item['Item']['created']); ?></span></li>
+										<li class="item-discription"><?php echo h($item['Item']['discription']); ?></li>
+										
+									</ul>
+								</div>
+								</td>
+							</tr>
+							<?php endforeach; ?>
+							<?php unset($item); ?>
+							</table>
+						</div><!-- /table-responsive -->
+					</div><!-- /item-list -->
+                </div><!-- /col-lg-12 -->
+            </div><!-- /row -->
+
+        <!-- ページネーション -->
+        <ul class="pagination">
+			<li><?php echo $this->Paginator->prev('< 前へ', array(), null, array('class' => 'prev disabled')); ?></li>
+			<li><?php echo $this->Paginator->numbers(array('separator' => '')); ?></li>
+			<li><?php echo $this->Paginator->next('次へ >', array(), null, array('class' => 'next disabled')); ?></li>
+		</ul>
+		
+        </div><!-- /container-fluid -->
+    </div><!-- /page-content-wrapper -->
+</div><!-- /wrapper -->
+
+
+
+<!-- サイドバー Script -->
 <script>
-$(function() {
-	$('a.delete').click(function(e) {
-		if (confirm('sure?')) {
-			$.post('./items/delete/'+$(this).data('post-id'), {} , function(res) {
-				$('#item_'+res.id).fadeOut();
-			}, "json");
-		}
-		return false;
-	});
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
 });
-
 </script>
+

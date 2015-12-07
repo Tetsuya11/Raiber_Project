@@ -1,127 +1,100 @@
 <?php
-App::uses('AppController', 'Controller');
-App::uses('CakeEmail', 'Network/Email');
 
 class UsersController extends AppController {
 
-    public $helpers = array('Html', 'Form', 'Session');
-    var $uses = array('User', 'Item', 'Category');//使用するモデル
-    
-    // 非会員がログインと新規登録、ログアウトのページにアクセスできる許可を与える
+    public $helpers = array('Html','Form','Session');
+    public $components = array('Session');
+    public $uses = array('User', 'Item');
+
+
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('add', 'logout', 'thanks');
+        $this->Auth->allow('index', 'add', 'logout');
+        $this->userSession = $this->Auth->user();
     }
-    
-    public function isAuthorized($user) {
-        //ユーザーが自身のマイページのみにアクセスしたり、自身のプロフィールのみ編集や削除ができるようにする
-        if (in_array($this->action, array(
-            'edit', 'delete', 'mypage'))) {
-            $userId = (int) $this->request->params['pass'][0];
-            if ($this->User->isOwnedBy($userId, $user['id'])) {
-                return true;
+
+
+    public function index() {
+
+    }
+
+    public function add() {
+        if ($this->request->is('post')) {
+            $this->User->create();
+            if ($this->User->save($this->request->data)) {
+                $this->Session->setFlash(__('登録しました。'));
+                return $this->redirect(array('action' => 'login'));
             }
+            $this->Session->setFlash(__('登録できませんでした。入力内容をお確かめください。'));
         }
-        return parent::isAuthorized($user);
     }
-    
+
     public function login() {
         if ($this->request->is('post')) {
-            //Authコンポーネントのログイン処理を呼び出す
             if ($this->Auth->login()) {
-                //ログイン成功
-                $this->redirect($this->Auth->redirect(array(
-                    'controller' => 'items', 'action' => 'index')));
+                $this->Session->setFlash(__('ログイン完了'));
+                $this->redirect($this->Auth->redirect(array('controller' => 'items', 'action' => 'index')));
             } else {
-                //ログイン失敗
-                $this->Session->setFlash(__('Invalid username or password, try again'
-                    , 'default', array(), 'auth'));
+                $this->Session->setFlash(__('ログインできませんでした。入力内容をもう一度お確かめください。'));
             }
         }
     }
 
     public function logout() {
-        $this->Session->setFlash(__('ログアウト完了 Completed logout'));
+        $this->Session->setFlash(__('ログアウト完了'));
         $this->redirect($this->Auth->logout());
     }
 
-    public function add() {
-        //もしデータがpost送信されたら
-        if ($this->request->is('post')) {
-            $this->User->create($this->request->data);
 
-            // user/addでアップロードしたファイルを$imageの中に格納
-            $image = $this->request->data['User']['user_img'];
+    public function mypage($id) {
+        $this->set('items', $this->Item->find('all', array('conditions' => array('Item.user_id' => $id))));
+    }
 
-            // usersデータベースのカラムpictureにファイル名を送る
-            $this->request->data['User']['picture'] = $image['name'];
 
+    public function edit($id) {
+        if (!$id) {
+            throw new NotFoundException(__('Invalid post'));
+        }
+        $user = $this->User->findById($id);
+        if (!$user){
+            throw new NotFoundException(__('Invalid post'));
+        }
+
+        if ($this->request->is(array('post', 'put'))) {
+            $this->User->id = $id;
+            $picture = $this->request->data['User']['user_pic'];
+            $this->request->data['User']['picture'] = $picture['name'];
             if ($this->User->save($this->request->data)) {
-
-                // 画像保存先のパス  webroot/img/user_img/イメージファイル名
                 $path = IMAGES.DS.'user_img';
-                
-                move_uploaded_file($image['tmp_name'], $path . DS . $image['name']);
-                $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'thanks'));
-            } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
-                }
-        }
-    }
-    
-    
-    public function thanks() {
-        
-    }
-
-    public function mypage($id = null) {
-        //出品アイテム取得
-        $myitems = $this->Item->find('all', array(
-            'conditions' => array('Item.user_id' => $this->Auth->user('id'))));
-        $this->set('myitems', $myitems);
-    }
-
-    public function edit($id = null) {
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        if ($this->request->is('post') || $this->request->is('put')) {
-            if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('The user has been saved'));
-                $this->redirect(array('action' => 'mypage'));
-            } else {
-                $this->Session->setFlash(__('The user could not be saved. Please, try again.'));
+                move_uploaded_file($picture['tmp_name'], $path . DS . $picture['name']);
+                $this->Session->setFlash(__('Your post has been updated.'));
+                return $this->redirect(array('action' => 'mypage', $id));
             }
+            $this->Session->setFlash(__('Unable to updata your post.'));
+        }
+
+        if (!$this->request->data) {
+            $this->request->data = $user;
+        }
+
+        $this->set(compact('user'));
+    }
+
+
+    public function delete() {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+        $this->User->id = $this->Auth->user();
+        
+        if ($this->User->delete($this->User->id, true)) {
+            $this->Auth->logout();
+            $this->Session->setFlash(__('退会処理が完了しました'));
+            return $this->redirect(array('controller' => 'tops', 'action' => 'index'));
         } else {
-            $this->request->data = $this->User->read(null, $id);
-            unset($this->request->data['User']['password']);
+            $this->Session->setFlash(__('削除エラー'));
+            return $this->redirect(array('controller' => 'items', 'action' => 'index'));
         }
     }
 
-    public function delete($id = null) {
-        
-        $this->request->onlyAllow('post');
-
-        $this->User->id = $id;
-        if (!$this->User->exists()) {
-            throw new NotFoundException(__('Invalid user'));
-        }
-        if ($this->User->delete()) {
-            $this->Session->setFlash(__('User deleted'));
-            $this->redirect(array('action' => 'index'));
-        }
-        $this->Session->setFlash(__('User was not deleted'));
-        
-        $this->User->bindModel(
-            array(
-                'hasMany' => array(
-                    'Item' => array('dependent' => true),
-                    'Post' => array('dependent' => true)
-                )
-            ),
-            false
-        );
-    }         
 }

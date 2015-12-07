@@ -19,7 +19,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
-App::uses('AppController', 'Controller');//クラスのローディング。よくわからん。
+App::uses('Controller', 'Controller');
 
 /**
  * Application Controller
@@ -27,24 +27,22 @@ App::uses('AppController', 'Controller');//クラスのローディング。よ�
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @package		app.Controller
- * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
+ * @package     app.Controller
+ * @link        http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-
 class AppController extends Controller {
-    Public $components = array(
+
+    public $components = array(
         'DebugKit.Toolbar',
         'Session',
-        // Authコンポーネントはユーザー名とパスワードの認証をするだけ
-        // 細かい処理（authorとadminの区別など）はisAuthorizedに記載？
         'Auth' => array(
             'loginRedirect' => array(
                 'controller' => 'items',
                 'action' => 'index'
             ),
             'logoutRedirect' => array(
-                'controller' => 'pages',
-                'action' => 'top',
+                'controller' => 'tops',
+                'action' => 'index',
                 // 'home'
             ),
             'authenticate' => array(
@@ -52,53 +50,23 @@ class AppController extends Controller {
                     'passwordHasher' => 'Blowfish'
                 ),
             ),
-            'flash' => array(
-                'element' => 'alert',
-                'key' => 'auth',
-                'params' => array(
-                    'plugin' => 'BoostCake',
-                    'class' => 'alert-error'
-                )
-            ),
-            'authorize' => array('Controller')
+            'authError' => 'ログインしてください',
         )
     );
 
-    // adminとauthorで権限を区別
-    // しかしこのままではauthorの権限が非ログインユーザーと変わらない
-    // 各コントローラーにisAuthorizedメソッドを追加して、ログインユーザーに権限を委譲する
-    // 
-    public function isAuthorized($user) {
-        if (isset($user['role']) && $user['role'] == 'admin') {
-            // adminユーザーならtrueが返ってくる
-            return true;
-        }
-        // authorユーザーならfalseが返ってくる
-        return false;
+
+    public function beforeFilter() {
+        $this->Auth->allow('index');
+        $userSession = $this->Auth->user();
+        $this->set('userSession', $userSession);
     }
 
-    // befireFilter関数でいくつかのアクションにログインなしでアクセスできるようにする
-    // しかし各コントローラーでしていしたほうが良さげなのでコメントアウトします
-    
-    public function beforeFilter() {
-        //Authコンポーネント呼び出し
-        $this->Auth->allow('index', 'view', 'login', 'logout');
-        //全体に共通する変数
-        //ログインユーザーとゲストの区別
-        $user_data = $this->Auth->user('username');     //$user_dataにログインユーザーの名前を代入
-        if (is_null($user_data)) {
-            $user_data = 'Guest';                       //nullだったらGuestを表示
-        }
-        $this->set('user_data', $user_data);            //nullじゃない場合user_dataに代入
-    }
-    
-    var $helpers = array(
+
+    public $helpers = array(
         'Session',
         'Html' => array('className' => 'BoostCake.BoostCakeHtml'),
         'Form' => array('className' => 'BoostCake.BoostCakeForm'),
         'Paginator' => array('className' => 'BoostCake.BoostCakePaginator'),
     );
-
     
-
 }

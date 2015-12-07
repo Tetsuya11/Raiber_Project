@@ -1,58 +1,51 @@
-<p><?php echo $this->Html->link("Back", array('action' => 'index')); ?></p>
+<div class="container">
+<p><?php echo $this->Html->link("戻る", array('action' => 'index')); ?></p>
+
 
 <!-- 商品タイトル -->
-<h2><?php echo h($item['Item']['title']); ?></h2>
+<h1 style="font-size:36px;"><?php echo h($item['Item']['title']); ?></h1>
 <!-- 商品画像 -->
-<?php echo '<img width=400px height=370px src= "/Raiber_Project/img/item_img/'.$item['Item']['image1'].'">' ?>
-<?php echo '<img width=400px height=370px src= "/Raiber_Project/img/item_img/'.$item['Item']['image2'].'">' ?>
-<?php echo '<img width=400px height=370px src= "/Raiber_Project/img/item_img/'.$item['Item']['image3'].'">' ?>
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-4"><?php echo '<img width=350px height=320px src= "/Raiber/img/item_img/'.$item['Item']['image1'].'">'; ?></div>
+	<div class="col-xs-12 col-sm-12 col-md-4"><?php echo '<img width=350px height=320px src= "/Raiber/img/item_img/'.$item['Item']['image2'].'">'; ?></div>
+	<div class="col-xs-12 col-sm-12 col-md-4"><?php echo '<img width=350px height=320px src= "/Raiber/img/item_img/'.$item['Item']['image3'].'">'; ?></div>
+</div>
 <!-- カテゴリー -->
-<p><?php echo $item['Category']['name']; ?>
+<?php foreach ($categories as $category): ?>
+<p><?php echo $category; ?></p>
+<?php endforeach; ?>
 <!-- 商品説明 -->
-<p style="margin:40px 0px;"><?php echo h($item['Item']['discription']); ?></p>
+<h2 style="font-size:18px;">[商品説明]</h2>
+<p><?php echo h($item['Item']['discription']); ?></p>
 
-
-<!-- メッセージ入力 -->
-<?php
-	echo $this->Form->create('Post');
-	echo $this->Form->input('message');
-	echo $this->Form->hidden('item_id',array('value'=>$item['Item']['id']));
-	//掲示板の送信ボタンを押したときに自分のページに帰ってくるようにする
-	echo $this->Form->end('投稿');
-?>
-
-<!-- 交渉掲示板 -->
-<table>
+<!-- 掲示板 -->
+<div class="board-wrap">
+	<table>
+	<?php foreach ($posts as $post): ?>
 	<tr>
-		<!-- <th>ID</th> -->
-		<th>Image</th>
-		<th>Message</th>
-		<th>Username</th>
-		<th>Created</th>
-		<th>Delete</th>
-		<th>Favorite</th>
+		<td><?php echo '<img width=50px height=50px src= "/Raiber/img/user_img/'.$post['User']['picture'].'">'; ?></td>
+		<td><?php echo h($post['User']['username']); ?></td>
+		<td><?php echo h($post['Post']['message']); ?></td>
+		<td><?php echo h($post['Post']['created']); ?></td>
+		<td>
+			<?php echo $this->Form->postLink('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id'],$item['Item']['id']), array('confirm' => 'Are you sure?')); ?>
+		</td>
 	</tr>
-
-
-	<?php foreach($item['Post'] as $post) :?>
-		<tr>
-			<!-- <td><?php// echo $post['id']; ?></td> -->
-			<td><?php echo '<img width=100px height=100px src= "/Raiber_Project/img/'.h($post['User']['picture']).'">'?></td>
-			<td><?php echo h($post['message']); ?></td>
-			<td><?php echo h($post['User']['username']); ?></td>
-			<td><?php echo h($post['created']); ?></td>
-
-		<div class="form-group">
-			<label class="control-label" for="email">
-				
-			<td><?php echo $this->Form->postlink('マンゴー', array(
-				'controller'=>'Posts','action'=>'delete',$post['id'],$item['Item']['id'])); ?></td>
-
-		     
-			<!-- </td> 			debug($post['id']);
-			'controller'=>'posts'でコント指定、'action' => 'delete'postsコントのfunction delete選択、$post['id']を持ったままpostsコントに行く。削除機能自体はここには無く、選択のみ
-			</td> -->
-			<td></td>
-		</tr>
 	<?php endforeach; ?>
-</table>
+	<?php unset($post); ?>
+	</table>
+
+
+	<!-- メッセージ入力 -->
+	<?php echo $this->Form->create('Post'); ?>
+	<div class="form-group"><?php echo $this->Form->input('message', array('class' => 'form-control', 'label' => 'メッセージ', 'rows' => '3', 'style' => 'width:70%;')); ?></div>
+	<div class="form-group"><?php echo $this->Form->hidden('item_id', array('value' => $item['Item']['id'])); ?>
+	<div class="form-group"><?php echo $this->Form->hidden('user_id', array('value' => $userSession['id'])); ?>
+	<div class="form-group"><?php echo $this->Form->submit('投稿', array('class' => 'btn btn-success', 'name' => 'post')); ?></div>
+</div>
+
+<?php echo $this->Form->create('Item'); ?>
+<?php echo $this->Form->hidden('status', array('value' => '2')); ?>
+<?php echo $this->Form->submit('交渉成立', array('class' => 'btn btn-warning', 'name' => 'item')); ?>
+
+</div>

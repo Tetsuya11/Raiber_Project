@@ -1,27 +1,14 @@
-<div class="users form">
-<?php echo $this->Session->flash('auth'); ?>
+<div class="container">
+
+<p><?php echo $this->Html->link("新規会員登録はこちら", array('controller' => 'users', 'action' => 'add')); ?></p>
+
 <?php echo $this->Form->create('User'); ?>
     <fieldset>
-        <legend><?php echo __('Please enter your username and password'); ?></legend>
-        <?php echo $this->Form->input('username');
-        echo $this->Form->input('password');
-    ?>
+        <legend><?php echo h(__('ログイン画面')); ?></legend>
+        <div class="form-group"><?php echo $this->Form->input('username', array('label' => 'お名前', 'class' => 'form-control', 'style' => 'width:50%;')); ?></div>
+
+        <div class="form-group"><?php echo $this->Form->input('password', array('label' => 'パスワード', 'class' => 'form-control', 'style' => 'width:50%;')); ?></div>
     </fieldset>
-<?php echo $this->Form->end(__('Login')); ?>
-</div>    
-
-<div class="actions">
-
-    <h3><?php echo __('Actions'); ?></h3>
-
-    <ul>
-
-        <li><?php echo $this->Html->link(__('Sing up'), array(
-        'action' => 'add')); ?></li>
-
-        <li><?php echo $this->Html->link(__('Enter'), array(
-        'controller' => 'items', 'action' => 'index')); ?> </li>
-
-    </ul>
+<?php echo $this->Form->end(array('label' => 'ログイン', 'class' => 'btn btn-success')); ?>
 
 </div>
