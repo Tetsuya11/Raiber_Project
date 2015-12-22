@@ -32,6 +32,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
 		// echo $this->Html->css('cake.generic');
 		echo $this->Html->css('reset');
+		echo $this->Html->css('mycss');
 		echo $this->Html->css('simple-sidebar');
 
 		// jQuery CDN

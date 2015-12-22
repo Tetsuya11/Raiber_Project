@@ -30,6 +30,7 @@
         <li><?php echo $this->Html->link('商品一覧へ', array('controller' => 'items', 'action' => 'index')); ?></li>
         <li><?php echo $this->Html->link('出品する', array('controller' => 'items', 'action' => 'add')); ?></li>
         <li><?php echo $this->Html->link('マイページ', array('controller' => 'users', 'action' =>'mypage', $userSession['id'])); ?></li>
+        <li><?php echo $this->Html->link('お問い合わせ', array('controller' => 'contacts', 'action' => 'index')); ?></li>
         <li class="nav-login"><?php if ($userSession === null) {
                         echo $this->Html->link('ログイン', array('controller' => 'users', 'action' => 'login'));
                       } else {

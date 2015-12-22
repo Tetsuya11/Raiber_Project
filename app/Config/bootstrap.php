@@ -116,6 +116,9 @@ CakePlugin::load("BoostCake");
 
 CakePlugin::load("DebugKit");
 
-//CakePlugin::load("Upload");
+CakePlugin::load("Upload");
+
+
+CakePlugin::load('Cakeplus');
 
 //CakePlugin::loadAll();
